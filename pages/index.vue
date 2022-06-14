@@ -23,4 +23,9 @@
 </template>
 <script setup>
 import PreRegForm from "./PreRegForm";
+import { onMounted } from "vue";
+onMounted(async () => {
+  const session = await $fetch("/api/session");
+  console.log("session: ", session);
+});
 </script>

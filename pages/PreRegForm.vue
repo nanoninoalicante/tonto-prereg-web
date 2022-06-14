@@ -4,7 +4,6 @@
       <div class="relative text-left">
         <div class="relative mb-8">
           <div class="max-w-md">
-            <ChooseHandle />
 <!--            <div class="mb-8 ml-1 flex">-->
 <!--              <div class="flex items-center">-->
 <!--                <label class="inline-flex items-center">-->
@@ -29,7 +28,6 @@
   </section>
 </template>
 <script setup>
-import ChooseHandle from "./ChooseHandle";
 import { useGeneral } from "../composables/general";
 const general = useGeneral();
 </script>
