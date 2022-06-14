@@ -8,6 +8,6 @@ export default defineNuxtConfig({
     instantSearch: true,
     lite: true,
     applicationId: "3C6JFEHDRS",
-    apiKey: "338eb9bfb8821edcd55371fc1f177495"
-  }
+    apiKey: "338eb9bfb8821edcd55371fc1f177495",
+  },
 });

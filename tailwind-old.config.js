@@ -19,5 +19,10 @@ module.exports = {
         '500': "#109C90"
       }
     },
+    extend: {
+      backgroundImage: {
+        hero: "url('/background-photo.jpg')",
+      },
+    },
   },
 };

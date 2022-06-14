@@ -10,11 +10,11 @@
         class="relative flex items-center text-gray-600 focus-within:text-gray-800"
       >
         <CheckCircleIcon
-          v-if="!newHandleError"
+          v-if="!newHandleError && newHandles"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
         ></CheckCircleIcon>
         <ExclamationCircleIcon
-          v-else
+          v-if="newHandleError"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-red-800"
         ></ExclamationCircleIcon>
         <input
@@ -42,7 +42,7 @@
       :class="[
         'rounded-xl border-2 border-teal-500 bg-teal-800 p-4 text-white hover:bg-teal-600 disabled:cursor-not-allowed disabled:border-gray-500 disabled:bg-gray-400 disabled:opacity-50',
       ]"
-      :disabled="newHandleError"
+      :disabled="newHandleError || !newHandles"
       @click.once="reserveThisHandle"
     >
       Reserve this Handle
@@ -52,7 +52,7 @@
 <script setup>
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { useField } from "vee-validate";
-import party, { confetti } from "party-js";
+// import party, { confetti } from "party-js";
 import { computed, onMounted, reactive, ref, watch } from "vue";
 const route = useRoute();
 const router = useRouter();
@@ -100,11 +100,11 @@ watch(newHandleError, (newVal) => {
 
 // METHODS
 
-const focusIn = () => {
-  confetti(handleInputRef.value, {
-    count: party.variation.range(20, 40),
-  });
-};
+// const focusIn = () => {
+//   confetti(handleInputRef.value, {
+//     count: party.variation.range(20, 40),
+//   });
+// };
 
 const reserveThisHandle = () => {
   return navigateTo({ path: "/handle/step-2/" + newHandles.value });
