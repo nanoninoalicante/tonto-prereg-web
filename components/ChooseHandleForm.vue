@@ -107,7 +107,7 @@ watch(newHandleError, (newVal) => {
 // };
 
 const reserveThisHandle = () => {
-  return navigateTo({ path: "/handle/step-2/" + newHandles.value });
+  return navigateTo({ path: "/step-2/" + newHandles.value });
 };
 
 // HANDLE UPDATES
