@@ -6,7 +6,7 @@
       ></div>
       <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
         <div
-          class="container mx-auto flex h-full flex-col items-center justify-center space-y-8 px-8 md:px-12 lg:px-32"
+          class="container mx-auto flex h-screen flex-col items-center justify-start pt-48 space-y-8 px-8 md:px-12 lg:px-32"
         >
           <div class="flex w-full justify-start">
             <img
