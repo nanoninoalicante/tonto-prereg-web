@@ -56,10 +56,11 @@
 </template>
 <script setup>
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
-// import party, { confetti } from "party-js";
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+const {$config} = useNuxtApp();
+console.log("cx: ", $config);
 const route = useRoute();
 const router = useRouter();
 const { result, search } = useSearch("dev_users");
@@ -101,12 +102,6 @@ watch(v$, (newVal) => {
 });
 
 // METHODS
-
-// const focusIn = () => {
-//   confetti(handleInputRef.value, {
-//     count: party.variation.range(20, 40),
-//   });
-// };
 
 const reserveThisHandle = () => {
   return navigateTo({ path: "/step-2/" + newHandles.value });

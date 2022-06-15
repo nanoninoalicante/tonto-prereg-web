@@ -27,6 +27,7 @@
     "pinia": "^2.0.14",
     "uuid": "^8.3.2",
     "vue": "^3.2.37",
+    "vue-confetti-explosion": "^1.0.1",
     "vue-instantsearch": "^4.3.3",
     "yup": "^0.32.11"
   }

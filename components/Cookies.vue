@@ -20,11 +20,11 @@
         </div>
         <div class="w-full px-4 md:w-1/3 lg:ml-auto lg:flex lg:max-w-max">
           <a
-            class="cursor-pointer font-heading mr-4 mb-2 inline-block w-full rounded-xl bg-blue-500 py-3 px-8 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 lg:mb-0"
+            class="font-heading mr-4 mb-2 inline-block w-full cursor-pointer rounded-xl bg-blue-500 py-3 px-8 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 lg:mb-0"
             @click="acceptCookies"
             >Got It</a
           ><a
-            class="cursor-pointer font-heading inline-block w-full rounded-xl bg-white py-3 px-10 text-center text-xl font-medium leading-7 tracking-tighter hover:bg-gray-50 focus:ring-2 focus:ring-white focus:ring-opacity-50"
+            class="font-heading inline-block w-full cursor-pointer rounded-xl bg-white py-3 px-10 text-center text-xl font-medium leading-7 tracking-tighter hover:bg-gray-50 focus:ring-2 focus:ring-white focus:ring-opacity-50"
             href="#"
             >More</a
           >
@@ -35,12 +35,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeMount, onMounted } from "vue";
 
-const showCookies = ref(true);
+const showCookies = ref(false);
 const acceptCookies = () => {
-  console.log("accept cookies")
-  showCookies.value = false;
+  console.log("accept cookies");
+  localStorage.setItem(
+    "accepted",
+    JSON.stringify({ accepted: true, ts: new Date().toISOString() })
+  );
+  window.location.reload();
 };
-
+onMounted(() => {
+  const accepted = localStorage.getItem("accepted");
+  showCookies.value = !accepted;
+});
 </script>
