@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
   console.log("New request: " + event.req.url);
   const cookies = useCookies(event);
   console.log("cookies: ", cookies.session);
+  event.context.auth = { user: 123 };
   if (!cookies.session) {
     const sessionId = uuid.v4();
     setCookie(event, "session", sessionId);
