@@ -58,7 +58,6 @@
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
-  ClockIcon,
 } from "@heroicons/vue/solid";
 // import party, { confetti } from "party-js";
 import { computed, onMounted, reactive, ref, watch } from "vue";
