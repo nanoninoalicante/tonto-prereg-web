@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from "nuxt";
-import ChooseHandlePage from "./pages/handle/index.vue";
+import ChooseHandlePage from "./pages/index.vue";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia"],

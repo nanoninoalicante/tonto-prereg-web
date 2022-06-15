@@ -21,5 +21,9 @@
         </div>
       </div>
     </div>
+    <Cookies></Cookies>
   </div>
 </template>
+<script setup>
+import Cookies from "~/components/Cookies.vue";
+</script>
