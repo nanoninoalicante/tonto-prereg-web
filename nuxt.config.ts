@@ -4,6 +4,9 @@ import ChooseHandlePage from "./pages/index.vue";
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia"],
   buildModules: ["@pinia/nuxt"],
+  build: {
+    transpile: ["@heroicons/vue"],
+  },
   algolia: {
     instantSearch: true,
     lite: true,

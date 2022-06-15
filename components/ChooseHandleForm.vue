@@ -55,14 +55,11 @@
   </div>
 </template>
 <script setup>
-import {
-  CheckCircleIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/vue/solid";
+import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 // import party, { confetti } from "party-js";
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
+import { useVuelidate } from "@vuelidate/core";
 const route = useRoute();
 const router = useRouter();
 const { result, search } = useSearch("dev_users");
