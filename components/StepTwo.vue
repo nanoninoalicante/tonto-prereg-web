@@ -94,6 +94,8 @@ import { computed, onMounted, onUpdated, ref, watch } from "vue";
 import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
+import { usePreReg } from "~/composables/prereg";
+const prereg = usePreReg();
 definePageMeta({
   layout: "prereg",
 });
@@ -124,6 +126,7 @@ const goToPrevious = () => {
 };
 
 const submitPrereg = () => {
+  prereg.setModal({ message: "loading" });
   return null;
 };
 

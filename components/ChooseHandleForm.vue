@@ -82,6 +82,8 @@ import { computed, onMounted, ref, watch } from "vue";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
+import { usePreReg } from "~/composables/prereg";
+const prereg = usePreReg();
 const route = useRoute();
 const router = useRouter();
 const indices = ["dev_preregisteredusers", "dev_users"];
@@ -116,7 +118,7 @@ const checkIfHandleExists = (value) => {
   });
 };
 
-const newHandles = ref(route.query?.handle || "");
+const newHandles = prereg.handle;
 const requiredNameLength = ref(2);
 const requiredNameMaxLength = ref(25);
 const rules = computed(() => ({
@@ -157,7 +159,11 @@ watch(newHandles, (newHandleName) => {
 });
 
 onMounted(() => {
-  console.log("route: ", route.params?.handle);
+  console.log("route: ", route.query?.handle);
   handleInputRef.value.focus();
+  newHandles.value = route.query?.handle || "";
+  if (route.query?.handle && route.query?.handle.length > 1) {
+    v$.value.newHandles.$validate();
+  }
 });
 </script>

@@ -1,15 +1,19 @@
 import { ref } from "vue";
+const emailAddress = ref("");
+const handle = ref("");
+const submittingLoading = ref(false);
+const modal = ref(null);
 
-const checkHandleLoading = ref(false);
-const handleVerified = ref(false);
-const checkHandle = async (handle) => {
-  console.log("check handle: ", handle);
-  checkHandleLoading.value = true;
-  const r = await $fetch("/api/session");
-  console.log("checked: ", r);
-  checkHandleLoading.value = false;
-  return handle;
-};
+const setHandle = (val) => (handle.value = val);
+const setModal = (val) => (modal.value = val);
+
 export function usePreReg() {
-  return { checkHandle, checkHandleLoading, handleVerified };
+  return {
+    handle,
+    emailAddress,
+    submittingLoading,
+    modal,
+    setHandle,
+    setModal,
+  };
 }

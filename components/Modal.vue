@@ -1,6 +1,6 @@
 <template>
   <section
-      v-if="showModal"
+    v-if="showModal"
     class="fixed top-0 left-0 right-0 bottom-0 z-10 flex h-full w-full items-center overflow-y-auto bg-gray-800 bg-opacity-80 p-4"
   >
     <div class="m-auto w-full max-w-lg rounded-md bg-white p-8">
@@ -44,5 +44,8 @@
   </section>
 </template>
 <script setup>
-const showModal = ref(false);
+import { usePreReg } from "../composables/prereg";
+
+const prereg = usePreReg();
+const showModal = prereg.modal;
 </script>
