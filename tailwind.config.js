@@ -16,7 +16,12 @@ module.exports = {
       yellow: colors.yellow,
       teal: colors.teal,
       primary: {
-        '500': "#109C90"
+        '500': "#109C90",
+        '700': "#1F6962"
+      },
+      warning: {
+        '200': "#FFAE71",
+        '500': "#FF6D00"
       }
     },
   },

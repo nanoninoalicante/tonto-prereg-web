@@ -1,9 +1,11 @@
 <template>
   <div class="flex w-full flex-col">
-    <p>step 2</p>
+    <StepTwo />
   </div>
 </template>
 <script setup>
+import StepTwo from "../../components/StepTwo";
+
 definePageMeta({
   layout: "prereg",
 });
