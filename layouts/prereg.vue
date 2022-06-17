@@ -8,7 +8,7 @@
       ></div>
       <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
         <div
-          class="container mx-auto flex h-screen flex-col items-center justify-start pt-[15vh] space-y-8 px-8 md:px-12 lg:px-32"
+          class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[15vh] md:px-12 lg:px-32"
         >
           <div class="flex w-full justify-start">
             <img
@@ -18,7 +18,12 @@
             />
           </div>
           <div class="w-full">
-            <p class="text-left text-2xl font-medium tracking-tighter text-white">Hello</p>
+            <p
+              class="text-left text-2xl font-medium tracking-tighter text-white"
+            >
+              Secure your handle in Tonto now. Pre-register below to make sure
+              you get that at launch
+            </p>
           </div>
           <div class="w-full">
             <slot />

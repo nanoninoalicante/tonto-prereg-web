@@ -22,6 +22,13 @@
       <div
         class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
       >
+        <CircleLoader
+          v-if="formInputLoading"
+          width="20"
+          height="20"
+          fill="#ccc"
+          class="absolute left-0 ml-4"
+        ></CircleLoader>
         <CheckCircleIcon
           v-if="v$.emailAddress.$dirty && !emailAddressIsInvalid"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
@@ -78,7 +85,7 @@ import { usePreReg } from "~/composables/prereg";
 import ErrorMessage from "~/components/ErrorMessage";
 import SuccessInputMessage from "~/components/SuccessInputMessage";
 import PrimaryButton from "~/components/PrimaryButton";
-
+const formInputLoading = ref(true);
 const router = useRouter();
 const prereg = usePreReg();
 definePageMeta({
@@ -116,7 +123,11 @@ const goToPrevious = () => {
 // SUBMIT FORM
 
 const submitPrereg = () => {
-  prereg.setModal({ message: "loading" });
+  prereg.fullPageLoader.value = true;
+  setTimeout(() => {
+    prereg.fullPageLoader.value = false;
+    prereg.setModal({ message: "loading" });
+  }, 1000);
   return null;
 };
 
@@ -140,5 +151,6 @@ onMounted(async () => {
   } else {
     prereg.fullPageLoader.value = false;
   }
+  formInputLoading.value = false;
 });
 </script>

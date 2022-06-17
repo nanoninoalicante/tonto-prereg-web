@@ -1,10 +1,11 @@
 <template>
   <div class="flex w-full flex-col">
-      <ChooseHandleForm />
+    <StepThree />
   </div>
 </template>
 <script setup>
-import ChooseHandleForm from "~/components/ChooseHandleForm";
+import StepThree from "../../components/StepThree";
+
 definePageMeta({
   layout: "prereg",
 });

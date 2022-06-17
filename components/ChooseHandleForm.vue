@@ -9,6 +9,13 @@
       <div
         class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
       >
+        <CircleLoader
+          v-if="formInputLoading"
+          width="20"
+          height="20"
+          fill="#ccc"
+          class="absolute left-0 ml-4"
+        ></CircleLoader>
         <CheckCircleIcon
           v-if="!formIsInvalid && v$.newHandles.$dirty"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
@@ -19,7 +26,9 @@
         ></ExclamationCircleIcon>
         <input
           class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-          :class="{ 'border-warning-500': formIsInvalid }"
+          :class="{
+            'border-warning-500': formIsInvalid,
+          }"
           type="text"
           id="handle"
           name="newHandleInput"
@@ -68,13 +77,14 @@ import { usePreReg } from "~/composables/prereg";
 import ErrorMessage from "~/components/ErrorMessage";
 import SuccessInputMessage from "~/components/SuccessInputMessage";
 import PrimaryButton from "~/components/PrimaryButton";
+import CircleLoader from "~/components/CircleLoader";
 const prereg = usePreReg();
 const route = useRoute();
 const router = useRouter();
 const indices = ["dev_preregisteredusers", "dev_users"];
 const algolia = useAlgolia();
 const handleInputRef = ref(null);
-
+const formInputLoading = ref(true);
 // VALIDATION
 
 const searchResultMatchesInput = (inputName, searchMatches) => {
@@ -83,6 +93,7 @@ const searchResultMatchesInput = (inputName, searchMatches) => {
 };
 
 const checkIfHandleExists = (value) => {
+  formInputLoading.value = true;
   const queries = indices.map((index) => {
     return {
       indexName: index,
@@ -99,6 +110,8 @@ const checkIfHandleExists = (value) => {
       results.map((result) => result.hits)
     );
     console.log("search results: ", concatenatedResults);
+
+    formInputLoading.value = false;
     return !searchResultMatchesInput(value.slice(1), concatenatedResults);
   });
 };
