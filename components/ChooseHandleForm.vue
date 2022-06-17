@@ -6,32 +6,6 @@
         for="handle"
         >Choose Your New Handle</label
       >
-      <button
-        @click="
-          addAlert({ id: 'test', message: 'successfull', type: 'success' })
-        "
-        class="p4"
-      >
-        add success
-      </button>
-      <button
-        @click="
-          addAlert({
-            message: 'there was an error',
-            type: 'error',
-            close: 'manual',
-          })
-        "
-        class="p4"
-      >
-        add error
-      </button>
-      <button
-        @click="addAlert({ message: 'warning', type: 'warning' })"
-        class="p4"
-      >
-        add warning
-      </button>
       <div
         class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
       >
