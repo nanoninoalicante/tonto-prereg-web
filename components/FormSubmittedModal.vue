@@ -6,7 +6,7 @@
   </div>
   <h3 class="mb-2 text-2xl font-semibold text-gray-900">Modal success</h3>
   <p class="mb-6 text-sm font-medium text-gray-500">
-    This section has been published sucessfully.
+    {{ preregData.newHandles }}
   </p>
   <div class="-m-2 flex flex-wrap justify-end">
     <div class="w-full p-2 md:w-1/2">
@@ -27,8 +27,13 @@
 </template>
 <script setup>
 import ThumbsUp from "./ThumbsUp";
+import { usePreReg } from "~/composables/prereg";
 const emit = defineEmits(["accepted"]);
+const { preregData } = usePreReg();
 const accept = () => {
+  navigateTo({
+    path: "/step-3/",
+  });
   emit("accepted");
 };
 </script>

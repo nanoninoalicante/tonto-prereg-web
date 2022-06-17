@@ -2,7 +2,7 @@ import { defineNuxtConfig } from "nuxt";
 import ChooseHandlePage from "./pages/index.vue";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/algolia", "@vueuse/nuxt"],
   buildModules: ["@pinia/nuxt"],
   build: {
     transpile: ["@heroicons/vue"],

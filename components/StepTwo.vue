@@ -2,13 +2,13 @@
   <div>
     <div class="flex flex-col items-center space-y-2">
       <button
-        v-if="handle"
+        v-if="preregData.handle"
         @click="goToPrevious"
         class="box-shadow-xl m-4 flex animate-pulse items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl hover:bg-teal-700"
       >
         <span
           class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
-          >{{ handle }}</span
+          >{{ preregData.handle }}</span
         >
         <CheckCircleIcon
           class="pointer-events-none inline h-8 w-8 text-teal-400"
@@ -82,16 +82,12 @@ import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
-import ErrorMessage from "~/components/ErrorMessage";
-import SuccessInputMessage from "~/components/SuccessInputMessage";
-import PrimaryButton from "~/components/PrimaryButton";
 const formInputLoading = ref(true);
 const router = useRouter();
-const prereg = usePreReg();
+const { setModal, fullPageLoader, preregData } = usePreReg();
 definePageMeta({
   layout: "prereg",
 });
-const emailAddress = ref("");
 const rules = computed(() => ({
   emailAddress: {
     $lazy: true,
@@ -99,7 +95,7 @@ const rules = computed(() => ({
     required,
   },
 }));
-const v$ = useVuelidate(rules, { emailAddress });
+const v$ = useVuelidate(rules, preregData);
 
 const emailAddressIsInvalid = computed(() => {
   return v$.value.emailAddress.$invalid;
@@ -109,47 +105,44 @@ const formIsInvalid = computed(() => {
 });
 
 // PREVIOUS STEP
-const route = useRoute();
-const handle = ref(route.params?.handle);
-
 const goToPrevious = () => {
-  console.log("/?handle=" + handle.value);
   return navigateTo({
     path: "/",
-    query: { handle: handle.value, email: emailAddress.value },
   });
 };
 
 // SUBMIT FORM
 
 const submitPrereg = () => {
-  prereg.fullPageLoader.value = true;
+  fullPageLoader.value = true;
   setTimeout(() => {
-    prereg.fullPageLoader.value = false;
-    prereg.setModal({ message: "loading" });
+    fullPageLoader.value = false;
+    setModal({ message: "loading" });
   }, 1000);
   return null;
 };
-
-// WATCH EMAIL ADDRESS UPDATE
-
-watch(emailAddress, (newVal) => {
-  router.replace({ query: { email: newVal } });
-});
 
 const emailInputRef = ref(null);
 onUpdated(() => {
   emailInputRef.value.focus();
 });
+
+onMounted(() => {
+  if (
+    !preregData.value?.newHandles ||
+    preregData.value?.newHandles.length === 0
+  ) {
+    window.location.href = "/";
+  }
+});
 onMounted(async () => {
-  console.log("route: ", route.params?.handle);
   emailInputRef.value.focus();
-  emailAddress.value = route.query?.email || "";
-  if (route.query?.email && route.query?.email.length > 1) {
+  if (
+    preregData.value.emailAddress &&
+    preregData.value.emailAddress.length > 1
+  ) {
     await v$.value.emailAddress.$validate();
-    prereg.fullPageLoader.value = false;
-  } else {
-    prereg.fullPageLoader.value = false;
+    formInputLoading.value = false;
   }
   formInputLoading.value = false;
 });

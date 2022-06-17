@@ -17,11 +17,11 @@
           class="absolute left-0 ml-4"
         ></CircleLoader>
         <CheckCircleIcon
-          v-if="!formIsInvalid && v$.newHandles.$dirty"
+          v-if="!formIsInvalid && v$.handle.$dirty"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
         ></CheckCircleIcon>
         <ExclamationCircleIcon
-          v-if="v$.newHandles.$invalid"
+          v-if="v$.handle.$invalid"
           class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
         ></ExclamationCircleIcon>
         <input
@@ -33,7 +33,7 @@
           id="handle"
           name="newHandleInput"
           ref="handleInputRef"
-          v-model="v$.newHandles.$model"
+          v-model="v$.handle.$model"
           placeholder="@elonmusk"
           v-on:keydown.enter="reserveThisHandle"
         />
@@ -41,20 +41,20 @@
 
       <div class="flex w-full flex-col space-y-1">
         <TransitionGroup
-          v-if="v$.newHandles.$invalid"
+          v-if="v$.handle.$invalid"
           name="fade"
           tag="div"
           mode="in-out"
         >
           <ErrorMessage
-            v-for="error in v$.newHandles.$silentErrors"
+            v-for="error in v$.handle.$silentErrors"
             :key="error.$uid"
             :error="error"
           />
         </TransitionGroup>
         <Transition name="fade" mode="in-out">
           <SuccessInputMessage
-            v-if="!v$.newHandles.$invalid && v$.newHandles.$dirty"
+            v-if="!v$.handle.$invalid && v$.handle.$dirty"
             :message="'That\'s a good lookin handle!'"
           ></SuccessInputMessage>
         </Transition>
@@ -74,17 +74,14 @@ import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
-import ErrorMessage from "~/components/ErrorMessage";
-import SuccessInputMessage from "~/components/SuccessInputMessage";
-import PrimaryButton from "~/components/PrimaryButton";
-import CircleLoader from "~/components/CircleLoader";
-const prereg = usePreReg();
-const route = useRoute();
+const { preregData, handle } = usePreReg();
 const router = useRouter();
+
 const indices = ["dev_preregisteredusers", "dev_users"];
 const algolia = useAlgolia();
 const handleInputRef = ref(null);
 const formInputLoading = ref(true);
+
 // VALIDATION
 
 const searchResultMatchesInput = (inputName, searchMatches) => {
@@ -116,11 +113,10 @@ const checkIfHandleExists = (value) => {
   });
 };
 
-const newHandles = prereg.handle;
 const requiredNameLength = ref(2);
 const requiredNameMaxLength = ref(25);
 const rules = computed(() => ({
-  newHandles: {
+  handle: {
     $lazy: true,
     isTaken: helpers.withMessage(
       "This handle is taken",
@@ -131,43 +127,28 @@ const rules = computed(() => ({
     maxLength: maxLength(requiredNameMaxLength.value),
   },
 }));
-const v$ = useVuelidate(rules, { newHandles });
+const v$ = useVuelidate(rules, { handle });
 
 const formIsInvalid = computed(() => {
-  return v$.value.newHandles.$invalid;
+  return v$.value.handle.$invalid;
 });
 
 // METHODS
 
 const reserveThisHandle = () => {
-  if (v$.value.newHandles.$invalid) return null;
+  if (v$.value.handle.$invalid) return null;
   return navigateTo({
-    path: "/step-2/" + newHandles.value,
-    query: { ...route.query },
+    path: "/step-2/",
   });
 };
 
-// HANDLE UPDATES
-
-watch(newHandles, (newHandleName) => {
-  if (!newHandleName.startsWith("@")) {
-    newHandles.value = "@" + newHandleName;
-  }
-  if (/\s/gi.test(newHandleName)) {
-    newHandles.value = newHandleName.replaceAll(/\s/gi, "");
-  }
-  router.replace({ query: { handle: newHandleName, ...route.query } });
-});
-
 onMounted(async () => {
-  console.log("route: ", route.query?.handle);
+  console.log("prereg data: ", handle);
   handleInputRef.value.focus();
-  newHandles.value = route.query?.handle || "";
-  if (route.query?.handle && route.query?.handle.length > 1) {
-    await v$.value.newHandles.$validate();
-    prereg.fullPageLoader.value = false;
+  if (handle.value && handle.value.length > 1) {
+    await v$.value.handle.$validate();
   } else {
-    prereg.fullPageLoader.value = false;
+    formInputLoading.value = false;
   }
 });
 </script>
