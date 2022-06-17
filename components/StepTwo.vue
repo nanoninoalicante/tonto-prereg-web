@@ -49,44 +49,24 @@
           tag="div"
           mode="out-in"
         >
-          <div
+          <ErrorMessage
             v-for="error in v$.emailAddress.$silentErrors"
             :key="error.$uid"
-            class="flex items-center space-x-2 rounded-2xl bg-warning-500 py-2 px-4 text-white"
-          >
-            <ExclamationCircleIcon
-              class="h-6 w-6 text-white"
-            ></ExclamationCircleIcon>
-            <span
-              class="text-md font-bold font-medium leading-7 tracking-tighter"
-              >{{ error.$message }}</span
-            >
-          </div>
+            :error="error"
+          />
         </TransitionGroup>
         <Transition name="fade" mode="out-in">
-          <div
+          <SuccessInputMessage
             v-if="!emailAddressIsInvalid && v$.emailAddress.$dirty"
-            class="space-x-2 rounded-2xl bg-teal-500 py-2 px-4 text-white"
-          >
-            <span class="mr-1 text-xl">&#128077;</span>
-            <span
-              class="text-md font-bold font-medium leading-7 tracking-tighter"
-              >Almost there</span
-            >
-          </div>
+          />
         </Transition>
       </div>
     </div>
-    <button
-      class="absolute bottom-[15vh]"
-      :class="[
-        'font-heading inline-block cursor-pointer rounded-xl border-2 border-teal-500 bg-teal-800 p-4 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-teal-600 disabled:cursor-not-allowed disabled:border-gray-500 disabled:bg-gray-400 disabled:opacity-50',
-      ]"
+    <PrimaryButton
+      :text="'Pre Register'"
       :disabled="formIsInvalid || !v$.emailAddress.$dirty"
       @click.once="submitPrereg"
-    >
-      Pre Register
-    </button>
+    />
   </div>
 </template>
 <script setup>
@@ -95,6 +75,11 @@ import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
+import ErrorMessage from "~/components/ErrorMessage";
+import SuccessInputMessage from "~/components/SuccessInputMessage";
+import PrimaryButton from "~/components/PrimaryButton";
+
+const router = useRouter();
 const prereg = usePreReg();
 definePageMeta({
   layout: "prereg",
@@ -122,20 +107,38 @@ const handle = ref(route.params?.handle);
 
 const goToPrevious = () => {
   console.log("/?handle=" + handle.value);
-  return navigateTo({ path: "/", query: { handle: handle.value } });
+  return navigateTo({
+    path: "/",
+    query: { handle: handle.value, email: emailAddress.value },
+  });
 };
+
+// SUBMIT FORM
 
 const submitPrereg = () => {
   prereg.setModal({ message: "loading" });
   return null;
 };
 
+// WATCH EMAIL ADDRESS UPDATE
+
+watch(emailAddress, (newVal) => {
+  router.replace({ query: { email: newVal } });
+});
+
 const emailInputRef = ref(null);
 onUpdated(() => {
   emailInputRef.value.focus();
 });
-onMounted(() => {
+onMounted(async () => {
   console.log("route: ", route.params?.handle);
   emailInputRef.value.focus();
+  emailAddress.value = route.query?.email || "";
+  if (route.query?.email && route.query?.email.length > 1) {
+    await v$.value.emailAddress.$validate();
+    prereg.fullPageLoader.value = false;
+  } else {
+    prereg.fullPageLoader.value = false;
+  }
 });
 </script>

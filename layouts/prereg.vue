@@ -1,5 +1,6 @@
 <template>
   <div class="h-screen">
+    <FullPageLoading></FullPageLoading>
     <Modal></Modal>
     <div class="flex h-screen flex-wrap md:mb-0">
       <div
@@ -17,6 +18,9 @@
             />
           </div>
           <div class="w-full">
+            <p class="text-left text-2xl font-medium tracking-tighter text-white">Hello</p>
+          </div>
+          <div class="w-full">
             <slot />
           </div>
         </div>
@@ -28,4 +32,5 @@
 <script setup>
 import Modal from "~/components/Modal";
 import Cookies from "~/components/Cookies.vue";
+import FullPageLoading from "~/components/FullPageLoading";
 </script>

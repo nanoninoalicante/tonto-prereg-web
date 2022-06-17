@@ -37,44 +37,26 @@
           tag="div"
           mode="in-out"
         >
-          <div
+          <ErrorMessage
             v-for="error in v$.newHandles.$silentErrors"
             :key="error.$uid"
-            class="flex items-center space-x-2 rounded-2xl bg-warning-500 py-2 px-4 text-white"
-          >
-            <ExclamationCircleIcon
-              class="h-6 w-6 text-white"
-            ></ExclamationCircleIcon>
-            <span
-              class="text-md font-bold font-medium leading-7 tracking-tighter"
-              >{{ error.$message }}</span
-            >
-          </div>
+            :error="error"
+          />
         </TransitionGroup>
         <Transition name="fade" mode="in-out">
-          <div
+          <SuccessInputMessage
             v-if="!v$.newHandles.$invalid && v$.newHandles.$dirty"
-            class="flex items-center space-x-2 rounded-2xl bg-teal-500 py-2 px-4 text-white"
-          >
-            <span class="mr-1 text-xl">&#128077;</span>
-            <span
-              class="text-md font-bold font-medium leading-7 tracking-tighter"
-              >That's good lookin' handle!</span
-            >
-          </div>
+            :message="'That\'s a good lookin handle!'"
+          ></SuccessInputMessage>
         </Transition>
       </div>
     </div>
-    <button
-      class="absolute bottom-[15vh]"
-      :class="[
-        'font-heading inline-block cursor-pointer rounded-xl border-2 border-teal-500 bg-teal-800 p-4 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-teal-600 disabled:cursor-not-allowed disabled:border-gray-500 disabled:bg-gray-400 disabled:opacity-50',
-      ]"
+    <PrimaryButton
+      :text="'Reserve this Handle'"
       :disabled="formIsInvalid"
       @click.once="reserveThisHandle"
     >
-      Reserve this Handle
-    </button>
+    </PrimaryButton>
   </div>
 </template>
 <script setup>
@@ -83,6 +65,9 @@ import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
+import ErrorMessage from "~/components/ErrorMessage";
+import SuccessInputMessage from "~/components/SuccessInputMessage";
+import PrimaryButton from "~/components/PrimaryButton";
 const prereg = usePreReg();
 const route = useRoute();
 const router = useRouter();
@@ -143,7 +128,10 @@ const formIsInvalid = computed(() => {
 
 const reserveThisHandle = () => {
   if (v$.value.newHandles.$invalid) return null;
-  return navigateTo({ path: "/step-2/" + newHandles.value });
+  return navigateTo({
+    path: "/step-2/" + newHandles.value,
+    query: { ...route.query },
+  });
 };
 
 // HANDLE UPDATES
@@ -155,15 +143,18 @@ watch(newHandles, (newHandleName) => {
   if (/\s/gi.test(newHandleName)) {
     newHandles.value = newHandleName.replaceAll(/\s/gi, "");
   }
-  router.replace({ query: { handle: newHandleName } });
+  router.replace({ query: { handle: newHandleName, ...route.query } });
 });
 
-onMounted(() => {
+onMounted(async () => {
   console.log("route: ", route.query?.handle);
   handleInputRef.value.focus();
   newHandles.value = route.query?.handle || "";
   if (route.query?.handle && route.query?.handle.length > 1) {
-    v$.value.newHandles.$validate();
+    await v$.value.newHandles.$validate();
+    prereg.fullPageLoader.value = false;
+  } else {
+    prereg.fullPageLoader.value = false;
   }
 });
 </script>

@@ -6,6 +6,7 @@ const modal = ref(null);
 
 const setHandle = (val) => (handle.value = val);
 const setModal = (val) => (modal.value = val);
+const fullPageLoader = ref(true);
 
 export function usePreReg() {
   return {
@@ -15,5 +16,6 @@ export function usePreReg() {
     modal,
     setHandle,
     setModal,
+    fullPageLoader,
   };
 }
