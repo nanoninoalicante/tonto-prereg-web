@@ -6,6 +6,32 @@
         for="handle"
         >Choose Your New Handle</label
       >
+      <button
+        @click="
+          addAlert({ id: 'test', message: 'successfull', type: 'success' })
+        "
+        class="p4"
+      >
+        add success
+      </button>
+      <button
+        @click="
+          addAlert({
+            message: 'there was an error',
+            type: 'error',
+            close: 'manual',
+          })
+        "
+        class="p4"
+      >
+        add error
+      </button>
+      <button
+        @click="addAlert({ message: 'warning', type: 'warning' })"
+        class="p4"
+      >
+        add warning
+      </button>
       <div
         class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
       >
@@ -74,7 +100,9 @@ import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
+import { useAlerts } from "~/composables/alerts";
 const { preregData, handle } = usePreReg();
+const { addAlert } = useAlerts();
 const router = useRouter();
 
 const indices = ["dev_preregisteredusers", "dev_users"];
