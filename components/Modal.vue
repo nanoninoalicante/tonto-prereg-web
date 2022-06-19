@@ -1,16 +1,16 @@
 <template>
-  <div class="modals">
-    <teleport to="body">
-      <section
-        v-if="showModal"
-        class="fixed backdrop-blur-lg top-0 left-0 right-0 bottom-0 z-10 flex h-full w-full items-center overflow-y-auto bg-gray-800 bg-opacity-80 p-4"
-      >
-        <div class="m-auto w-full max-w-lg rounded-xl bg-white p-8">
-          <FormSubmittedModal @accepted="modalAccepted" />
-        </div>
-      </section>
-    </teleport>
-  </div>
+    <div class="modals">
+        <teleport to="body">
+            <section
+                v-if="showModal"
+                class="fixed top-0 left-0 right-0 bottom-0 z-10 flex h-full w-full items-center overflow-y-auto bg-gray-800 bg-opacity-80 p-4 backdrop-blur-lg"
+            >
+                <div class="m-auto w-full max-w-lg rounded-xl bg-white p-8">
+                    <FormSubmittedModal @accepted="modalAccepted" />
+                </div>
+            </section>
+        </teleport>
+    </div>
 </template>
 <script setup>
 import { usePreReg } from "../composables/prereg";
@@ -19,8 +19,6 @@ import FormSubmittedModal from "./FormSubmittedModal";
 const prereg = usePreReg();
 const showModal = prereg.modal;
 const modalAccepted = () => {
-  showModal.value = null;
+    showModal.value = null;
 };
-
-
 </script>

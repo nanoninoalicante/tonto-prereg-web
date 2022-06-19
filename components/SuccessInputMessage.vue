@@ -1,10 +1,11 @@
 <template>
-  <div class="space-x-2 rounded-2xl bg-teal-500 py-2 px-4 text-white">
-    <ThumbsUp />
-    <span class="text-md font-bold font-medium leading-7 tracking-tighter">{{
-      message || "Almost there"
-    }}</span>
-  </div>
+    <div class="space-x-2 rounded-2xl bg-teal-500 py-2 px-4 text-white">
+        <ThumbsUp />
+        <span
+            class="text-md font-bold font-medium leading-7 tracking-tighter"
+            >{{ message || "Almost there" }}</span
+        >
+    </div>
 </template>
 <script setup>
 import ThumbsUp from "./ThumbsUp";

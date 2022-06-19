@@ -27,7 +27,7 @@ useHead({
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease-in;
+  transition: opacity 0.7s ease-in;
 }
 
 .fade-enter-from,
@@ -36,7 +36,7 @@ useHead({
 }
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.2s ease-in;
+  transition: all 0.8s ease-in;
 }
 .list-enter-from,
 .list-leave-to {

@@ -6,31 +6,31 @@ type CloseTypes = "auto" | "manual";
 
 const alerts = ref([]);
 const addAlert = (data: {
-  id?: string;
-  message: string;
-  type?: AlertTypes;
-  close?: CloseTypes;
+    id?: string;
+    message: string;
+    type?: AlertTypes;
+    close?: CloseTypes;
 }) => {
-  const alertId = data.id || uuid.v4();
-  console.log("adding alert: ", alertId);
-  alerts.value.push({
-    message: data.message,
-    type: data.type || "error",
-    close: data.close || "auto",
-    id: alertId,
-  });
+    const alertId = data.id || uuid.v4();
+    console.log("adding alert: ", alertId);
+    alerts.value.push({
+        message: data.message,
+        type: data.type || "error",
+        close: data.close || "auto",
+        id: alertId,
+    });
 };
 const removeAlert = (id: string) => {
-  console.log("remove alert: ", id);
-  const index = alerts.value.findIndex((i) => i.id === id);
-  if (index > -1) {
-    alerts.value.splice(index, 10);
-  }
+    console.log("remove alert: ", id);
+    const index = alerts.value.findIndex((i) => i.id === id);
+    if (index > -1) {
+        alerts.value.splice(index, 10);
+    }
 };
 export function useAlerts() {
-  return {
-    alerts,
-    addAlert,
-    removeAlert,
-  };
+    return {
+        alerts,
+        addAlert,
+        removeAlert,
+    };
 }

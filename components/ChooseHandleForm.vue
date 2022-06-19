@@ -1,81 +1,83 @@
 <template>
-  <div class="">
-    <div class="flex flex-col items-center space-y-2">
-      <label
-        class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
-        for="handle"
-        >Choose Your New Handle</label
-      >
-      <div
-        class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
-      >
-        <CircleLoader
-          v-if="formInputLoading"
-          width="20"
-          height="20"
-          fill="#ccc"
-          class="absolute left-0 ml-4"
-        ></CircleLoader>
-        <CheckCircleIcon
-          v-if="!formIsInvalid && v$.handle.$dirty"
-          class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
-        ></CheckCircleIcon>
-        <ExclamationCircleIcon
-          v-if="v$.handle.$invalid"
-          class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
-        ></ExclamationCircleIcon>
-        <input
-          class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-          :class="{
-            'border-warning-500': formIsInvalid,
-          }"
-          type="text"
-          id="handle"
-          name="newHandleInput"
-          ref="handleInputRef"
-          v-model="v$.handle.$model"
-          placeholder="@elonmusk"
-          v-on:keydown.enter="reserveThisHandle"
-        />
-      </div>
+    <div class="">
+        <div class="flex flex-col items-center space-y-2">
+            <label
+                class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
+                for="handle"
+                >Choose Your New Handle</label
+            >
+            <div
+                class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
+            >
+                <CircleLoader
+                    v-if="formInputLoading"
+                    width="20"
+                    height="20"
+                    fill="#ccc"
+                    class="absolute left-0 ml-4"
+                ></CircleLoader>
+                <CheckCircleIcon
+                    v-if="!formIsInvalid && v$.handle.$dirty"
+                    class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
+                ></CheckCircleIcon>
+                <ExclamationCircleIcon
+                    v-if="v$.handle.$invalid"
+                    class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
+                ></ExclamationCircleIcon>
+                <input
+                    class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                    :class="{
+                        'border-warning-500': formIsInvalid,
+                    }"
+                    type="text"
+                    id="handle"
+                    name="newHandleInput"
+                    ref="handleInputRef"
+                    v-model="v$.handle.$model"
+                    placeholder="@elonmusk"
+                    v-on:keydown.enter="reserveThisHandle"
+                />
+            </div>
 
-      <div class="flex w-full flex-col space-y-1">
-        <TransitionGroup
-          v-if="v$.handle.$invalid"
-          name="fade"
-          tag="div"
-          mode="in-out"
+            <div class="flex w-full flex-col space-y-1">
+                <TransitionGroup
+                    v-if="v$.handle.$invalid"
+                    name="fade"
+                    tag="div"
+                    mode="in-out"
+                >
+                    <ErrorMessage
+                        v-for="error in v$.handle.$silentErrors"
+                        :key="error.$uid"
+                        :error="error"
+                    />
+                </TransitionGroup>
+                <Transition name="fade" mode="in-out">
+                    <SuccessInputMessage
+                        v-if="!v$.handle.$invalid && v$.handle.$dirty"
+                        :message="'That\'s a good lookin handle!'"
+                    ></SuccessInputMessage>
+                </Transition>
+            </div>
+        </div>
+        <PrimaryButton
+            :text="'Reserve this Handle'"
+            :disabled="formIsInvalid"
+            class="absolute bottom-[15vh]"
+            @click.once="reserveThisHandle"
         >
-          <ErrorMessage
-            v-for="error in v$.handle.$silentErrors"
-            :key="error.$uid"
-            :error="error"
-          />
-        </TransitionGroup>
-        <Transition name="fade" mode="in-out">
-          <SuccessInputMessage
-            v-if="!v$.handle.$invalid && v$.handle.$dirty"
-            :message="'That\'s a good lookin handle!'"
-          ></SuccessInputMessage>
-        </Transition>
-      </div>
+        </PrimaryButton>
     </div>
-    <PrimaryButton
-      :text="'Reserve this Handle'"
-      :disabled="formIsInvalid"
-      @click.once="reserveThisHandle"
-    >
-    </PrimaryButton>
-  </div>
 </template>
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
+import autoAnimate from "@formkit/auto-animate";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { useAlerts } from "~/composables/alerts";
-const { preregData, handle } = usePreReg();
+const { preregData, handle, resetForm } = usePreReg();
 const { addAlert } = useAlerts();
 const router = useRouter();
 
@@ -87,70 +89,74 @@ const formInputLoading = ref(true);
 // VALIDATION
 
 const searchResultMatchesInput = (inputName, searchMatches) => {
-  if (!searchMatches || searchMatches.length === 0) return false;
-  return searchMatches.some((hit) => hit.userName === inputName);
+    if (!searchMatches || searchMatches.length === 0) return false;
+    return searchMatches.some((hit) => hit.userName === inputName);
 };
 
 const checkIfHandleExists = (value) => {
-  formInputLoading.value = true;
-  const queries = indices.map((index) => {
-    return {
-      indexName: index,
-      query: value.slice(1),
-      params: {
-        hitsPerPage: 3,
-        restrictSearchableAttributes: ["userName"],
-      },
-    };
-  });
-  return algolia.multipleQueries(queries).then(({ results }) => {
-    const concatenatedResults = [].concat.apply(
-      [],
-      results.map((result) => result.hits)
-    );
-    console.log("search results: ", concatenatedResults);
+    formInputLoading.value = true;
+    const queries = indices.map((index) => {
+        return {
+            indexName: index,
+            query: value.slice(1),
+            params: {
+                hitsPerPage: 3,
+                restrictSearchableAttributes: ["userName"],
+            },
+        };
+    });
+    return algolia.multipleQueries(queries).then(({ results }) => {
+        const concatenatedResults = [].concat.apply(
+            [],
+            results.map((result) => result.hits)
+        );
+        console.log("search results: ", concatenatedResults);
 
-    formInputLoading.value = false;
-    return !searchResultMatchesInput(value.slice(1), concatenatedResults);
-  });
+        formInputLoading.value = false;
+        return !searchResultMatchesInput(value.slice(1), concatenatedResults);
+    });
 };
 
 const requiredNameLength = ref(2);
 const requiredNameMaxLength = ref(25);
 const rules = computed(() => ({
-  handle: {
-    $lazy: true,
-    isTaken: helpers.withMessage(
-      "This handle is taken",
-      helpers.withAsync(checkIfHandleExists)
-    ),
-    required,
-    minLength: minLength(requiredNameLength.value),
-    maxLength: maxLength(requiredNameMaxLength.value),
-  },
+    handle: {
+        $lazy: true,
+        isTaken: helpers.withMessage(
+            "This handle is taken",
+            helpers.withAsync(checkIfHandleExists)
+        ),
+        required,
+        minLength: minLength(requiredNameLength.value),
+        maxLength: maxLength(requiredNameMaxLength.value),
+    },
 }));
 const v$ = useVuelidate(rules, { handle });
 
 const formIsInvalid = computed(() => {
-  return v$.value.handle.$invalid;
+    return v$.value.handle.$invalid;
 });
 
 // METHODS
 
 const reserveThisHandle = () => {
-  if (v$.value.handle.$invalid) return null;
-  return navigateTo({
-    path: "/step-2/",
-  });
+    if (v$.value.handle.$invalid) return null;
+    return navigateTo({
+        path: "/step-2/",
+    });
 };
 
+/*
+ANIMATE
+ */
+
 onMounted(async () => {
-  console.log("prereg data: ", handle);
-  handleInputRef.value.focus();
-  if (handle.value && handle.value.length > 1) {
-    await v$.value.handle.$validate();
-  } else {
-    formInputLoading.value = false;
-  }
+    console.log("prereg data: ", handle);
+    handleInputRef.value.focus();
+    if (handle.value && handle.value.length > 1) {
+        await v$.value.handle.$validate();
+    } else {
+        formInputLoading.value = false;
+    }
 });
 </script>
