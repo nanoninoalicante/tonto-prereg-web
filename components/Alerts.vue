@@ -2,14 +2,12 @@
     <div class="alerts">
         <teleport to="body">
             <section class="fixed bottom-0 left-0 z-10 w-full py-4">
-                <div class="container mx-auto px-8">
-                    <TransitionGroup name="list" tag="div" mode="in-out">
-                        <Alert
-                            v-for="alert in filteredAlerts"
-                            :key="alert.id"
-                            :alert="alert"
-                        />
-                    </TransitionGroup>
+                <div v-auto-animate class="container mx-auto px-8">
+                    <Alert
+                        v-for="alert in filteredAlerts"
+                        :key="alert.id"
+                        :alert="alert"
+                    />
                 </div>
             </section>
         </teleport>
@@ -19,9 +17,17 @@
 import { useAlerts } from "~/composables/alerts";
 import Alert from "./Alert";
 import { computed } from "vue";
+import autoAnimate from "@formkit/auto-animate";
 
 const { alerts } = useAlerts();
 const filteredAlerts = computed(() => {
     return useUniqBy(alerts.value, (a) => a.id);
 });
+
+/*
+ANIMATE
+ */
+const vAutoAnimate = {
+    mounted: (el) => autoAnimate(el),
+};
 </script>

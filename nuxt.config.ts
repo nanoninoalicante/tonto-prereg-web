@@ -1,9 +1,11 @@
 import { defineNuxtConfig } from "nuxt";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    // pageTransition: {
-    //     page: true,
-    // },
+    publicRuntimeConfig: {
+        primaryApiBaseUrl: process.env.PRIMARY_API_BASE_URL || "",
+        primaryApiApiKey: process.env.PRIMARY_API_API_KEY || "",
+    },
+    ssr: true,
     modules: [
         "@nuxtjs/tailwindcss",
         "@nuxtjs/algolia",

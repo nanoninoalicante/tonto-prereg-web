@@ -46,7 +46,9 @@
                     id="email"
                     name="emailInput"
                     ref="emailInputRef"
+                    v-auto-focus
                     v-model="v$.emailAddress.$model"
+                    v-on:keydown.enter="submitPrereg"
                     placeholder="elon@musk.com"
                 />
             </div>
@@ -63,29 +65,54 @@
             </div>
         </div>
         <div v-auto-animate class="buttons mt-4 space-x-2">
-            <PrimaryButton :text="'Go Back'" @click.once="goToPrevious" />
+            <PrimaryButton
+                :text="'Go Back'"
+                class="bg-white"
+                @click.once="goToPrevious"
+            />
             <PrimaryButton
                 :text="'Pre Register'"
                 :disabled="formIsInvalid || !v$.emailAddress.$dirty"
-                @click.once="submitPrereg"
+                @click.prevent="submitPrereg"
             />
         </div>
     </div>
 </template>
 <script setup>
+/*
+IMPORTS
+ */
 import { computed, onMounted, onUpdated, ref, watch } from "vue";
 import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
-import autoAnimate from "@formkit/auto-animate";
+import { useAlerts } from "~/composables/alerts";
+import { usePrimaryApi } from "~/composables/api";
+import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
+const runtimeConfig = useRuntimeConfig();
+/*
+META DATA
+ */
+
+definePageMeta({
+    layout: "prereg",
+});
+
+/*
+COMPOSABLE
+ */
+const { addAlert } = useAlerts();
+const primaryApi = usePrimaryApi();
+
 const isMounted = useMounted();
 const formInputLoading = ref(true);
 const router = useRouter();
 const { setModal, fullPageLoader, preregData } = usePreReg();
-definePageMeta({
-    layout: "prereg",
-});
+
+/*
+FORM VALIDATION
+ */
 const rules = computed(() => ({
     emailAddress: {
         $lazy: true,
@@ -111,26 +138,50 @@ const goToPrevious = () => {
 
 // SUBMIT FORM
 
-const submitPrereg = () => {
+const submitPrereg = async () => {
+    if (v$.value.emailAddress.$invalid) {
+        addAlert({
+            message: "We just need your best email address first",
+            type: "warning",
+        });
+        return null;
+    }
+    if (!preregData.value?.emailAddress || !preregData.value?.newHandles) {
+        addAlert({
+            message: "We just need your email address or your new handle first",
+            type: "warning",
+        });
+        return null;
+    }
     fullPageLoader.value = true;
-    setTimeout(() => {
+    const requestData = {
+        email: preregData.value.emailAddress,
+        handle: preregData.value.newHandles,
+    };
+    const r = await primaryApi
+        .preRegisterUser(requestData, runtimeConfig)
+        .catch((e) => {
+            fullPageLoader.value = false;
+            console.log("error from api: ", e.data);
+            if (e.data?.error_msg === "Request already taken by twitter.") {
+                setModal({ type: "twitter" });
+                return;
+            }
+            addAlert({
+                message:
+                    "Oops, sorry there was an error: " + e.data?.error_msg ||
+                    e.message,
+                type: "error",
+            });
+        });
+    if (r) {
         fullPageLoader.value = false;
-        setModal({ message: "loading" });
-    }, 1000);
+        setModal({ type: "success" });
+    }
     return null;
 };
 
-const emailInputRef = ref(null);
-onUpdated(() => {
-    emailInputRef.value.focus();
-});
-
-/*
-ANIMATE
- */
-const vAutoAnimate = {
-    mounted: (el) => autoAnimate(el),
-};
+const emailInputRef = ref();
 
 onMounted(() => {
     if (

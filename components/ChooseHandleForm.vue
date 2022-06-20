@@ -7,7 +7,7 @@
                 >Choose Your New Handle</label
             >
             <div
-                class="relative flex w-full mb-2 items-center text-gray-600 focus-within:text-gray-800"
+                class="relative mb-2 flex w-full items-center text-gray-600 focus-within:text-gray-800"
             >
                 <CircleLoader
                     v-if="formInputLoading"
@@ -33,6 +33,7 @@
                     id="handle"
                     name="newHandleInput"
                     ref="handleInputRef"
+                    v-auto-focus
                     v-model="v$.handle.$model"
                     placeholder="@elonmusk"
                     v-on:keydown.enter="reserveThisHandle"
@@ -63,6 +64,9 @@
     </div>
 </template>
 <script setup>
+/*
+IMPORTS
+ */
 import { computed, onMounted, ref, watch } from "vue";
 import autoAnimate from "@formkit/auto-animate";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
@@ -70,7 +74,9 @@ import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { useAlerts } from "~/composables/alerts";
-const { preregData, handle, resetForm } = usePreReg();
+import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
+
+const { handle } = usePreReg();
 const { addAlert } = useAlerts();
 const router = useRouter();
 
@@ -137,13 +143,6 @@ const reserveThisHandle = () => {
     return navigateTo({
         path: "/step-2/",
     });
-};
-
-/*
-ANIMATE
- */
-const vAutoAnimate = {
-    mounted: (el) => autoAnimate(el),
 };
 
 /*

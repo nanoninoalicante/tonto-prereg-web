@@ -16,16 +16,15 @@ const addAlert = (data: {
     alerts.value.push({
         message: data.message,
         type: data.type || "error",
-        close: data.close || "auto",
+        close: data.type === "error" ? "manual" : "auto",
         id: alertId,
     });
 };
 const removeAlert = (id: string) => {
     console.log("remove alert: ", id);
-    const index = alerts.value.findIndex((i) => i.id === id);
-    if (index > -1) {
-        alerts.value.splice(index, 10);
-    }
+    alerts.value = alerts.value.filter((alert) => {
+        return alert.id !== id;
+    });
 };
 export function useAlerts() {
     return {
