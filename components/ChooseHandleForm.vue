@@ -1,13 +1,13 @@
 <template>
     <div class="">
-        <div class="flex flex-col items-center space-y-2">
+        <div class="">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
                 >Choose Your New Handle</label
             >
             <div
-                class="relative flex w-full items-center text-gray-600 focus-within:text-gray-800"
+                class="relative flex w-full mb-2 items-center text-gray-600 focus-within:text-gray-800"
             >
                 <CircleLoader
                     v-if="formInputLoading"
@@ -39,34 +39,27 @@
                 />
             </div>
 
-            <div class="flex w-full flex-col space-y-1">
-                <TransitionGroup
-                    v-if="v$.handle.$invalid"
-                    name="fade"
-                    tag="div"
-                    mode="in-out"
+            <div v-auto-animate class="flex w-full flex-col space-y-1">
+                <ErrorMessage
+                    v-for="error in v$.handle.$silentErrors"
+                    :key="error.$uid"
+                    :error="error"
+                />
+                <SuccessInputMessage
+                    v-if="!v$.handle.$invalid && v$.handle.$dirty"
+                    :message="'That\'s a good lookin handle!'"
+                ></SuccessInputMessage>
+            </div>
+
+            <div v-auto-animate class="buttons mt-8 space-x-2">
+                <PrimaryButton
+                    :text="'Reserve this Handle'"
+                    :disabled="formIsInvalid"
+                    @click.once="reserveThisHandle"
                 >
-                    <ErrorMessage
-                        v-for="error in v$.handle.$silentErrors"
-                        :key="error.$uid"
-                        :error="error"
-                    />
-                </TransitionGroup>
-                <Transition name="fade" mode="in-out">
-                    <SuccessInputMessage
-                        v-if="!v$.handle.$invalid && v$.handle.$dirty"
-                        :message="'That\'s a good lookin handle!'"
-                    ></SuccessInputMessage>
-                </Transition>
+                </PrimaryButton>
             </div>
         </div>
-        <PrimaryButton
-            :text="'Reserve this Handle'"
-            :disabled="formIsInvalid"
-            class="absolute bottom-[15vh]"
-            @click.once="reserveThisHandle"
-        >
-        </PrimaryButton>
     </div>
 </template>
 <script setup>
@@ -148,6 +141,13 @@ const reserveThisHandle = () => {
 
 /*
 ANIMATE
+ */
+const vAutoAnimate = {
+    mounted: (el) => autoAnimate(el),
+};
+
+/*
+ON MOUNTED
  */
 
 onMounted(async () => {

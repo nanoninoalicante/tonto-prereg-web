@@ -8,7 +8,7 @@
       ></div>
       <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
         <div
-          class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[15vh] md:px-12 lg:px-32"
+          class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[10vh] md:px-12 lg:px-32"
         >
           <div class="flex w-full justify-start">
             <img
@@ -43,6 +43,7 @@ import FullPageLoading from "~/components/FullPageLoading";
 import { watch } from "vue";
 import { useAlerts } from "~/composables/alerts";
 const offline = useOnline();
+const isMounted = useMounted();
 const { addAlert } = useAlerts();
 watch(offline, (newVal) => {
   console.log("offline: ", newVal);

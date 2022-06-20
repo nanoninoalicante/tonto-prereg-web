@@ -22,6 +22,7 @@ useHead({
     },
   ],
 });
+
 </script>
 
 <style>
@@ -42,5 +43,32 @@ useHead({
 .list-leave-to {
   opacity: 0;
   transform: translateX(10px);
+}
+/* "page" is hardcoded in nuxt3 page transitions atm */
+.page-enter-from{
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+.layout-enter-from{
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.2s;
+}
+.layout-enter,
+.layout-leave-to {
+  opacity: 0;
 }
 </style>

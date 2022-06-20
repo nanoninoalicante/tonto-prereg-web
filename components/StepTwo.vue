@@ -1,19 +1,21 @@
 <template>
     <div>
         <div class="flex flex-col items-center space-y-2">
-            <button
-                v-if="preregData.handle"
-                @click="goToPrevious"
-                class="box-shadow-xl m-4 flex animate-pulse items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl hover:bg-teal-700"
-            >
-                <span
-                    class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
-                    >{{ preregData.handle }}</span
+            <div v-if="isMounted" class="handle">
+                <button
+                    v-show="preregData.newHandles"
+                    @click="goToPrevious"
+                    class="box-shadow-xl m-4 flex animate-pulse items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl hover:bg-teal-700"
                 >
-                <CheckCircleIcon
-                    class="pointer-events-none inline h-8 w-8 text-teal-400"
-                ></CheckCircleIcon>
-            </button>
+                    <span
+                        class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
+                        >{{ preregData.newHandles }}</span
+                    >
+                    <CheckCircleIcon
+                        class="pointer-events-none inline h-8 w-8 text-teal-400"
+                    ></CheckCircleIcon>
+                </button>
+            </div>
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
@@ -49,31 +51,25 @@
                 />
             </div>
 
-            <div class="flex w-full flex-col space-y-1">
-                <TransitionGroup
-                    v-if="emailAddressIsInvalid"
-                    name="list"
-                    tag="div"
-                    mode="out-in"
-                >
-                    <ErrorMessage
-                        v-for="error in v$.emailAddress.$silentErrors"
-                        :key="error.$uid"
-                        :error="error"
-                    />
-                </TransitionGroup>
-                <Transition name="fade" mode="out-in">
-                    <SuccessInputMessage
-                        v-if="!emailAddressIsInvalid && v$.emailAddress.$dirty"
-                    />
-                </Transition>
+            <div v-auto-animate class="flex w-full flex-col space-y-1">
+                <ErrorMessage
+                    v-for="error in v$.emailAddress.$silentErrors"
+                    :key="error.$uid"
+                    :error="error"
+                />
+                <SuccessInputMessage
+                    v-if="!emailAddressIsInvalid && v$.emailAddress.$dirty"
+                />
             </div>
         </div>
-        <PrimaryButton
-            :text="'Pre Register'"
-            :disabled="formIsInvalid || !v$.emailAddress.$dirty"
-            @click.once="submitPrereg"
-        />
+        <div v-auto-animate class="buttons mt-4 space-x-2">
+            <PrimaryButton :text="'Go Back'" @click.once="goToPrevious" />
+            <PrimaryButton
+                :text="'Pre Register'"
+                :disabled="formIsInvalid || !v$.emailAddress.$dirty"
+                @click.once="submitPrereg"
+            />
+        </div>
     </div>
 </template>
 <script setup>
@@ -82,6 +78,8 @@ import { email, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
+import autoAnimate from "@formkit/auto-animate";
+const isMounted = useMounted();
 const formInputLoading = ref(true);
 const router = useRouter();
 const { setModal, fullPageLoader, preregData } = usePreReg();
@@ -126,6 +124,13 @@ const emailInputRef = ref(null);
 onUpdated(() => {
     emailInputRef.value.focus();
 });
+
+/*
+ANIMATE
+ */
+const vAutoAnimate = {
+    mounted: (el) => autoAnimate(el),
+};
 
 onMounted(() => {
     if (
