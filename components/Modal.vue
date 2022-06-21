@@ -9,7 +9,11 @@
                 <div
                     class="m-auto w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl"
                 >
-                    <component :is="selectedModal" @accepted="modalAccepted" @cancel="modalCancelled" />
+                    <component
+                        :is="selectedModal"
+                        @accepted="modalAccepted"
+                        @cancel="modalCancelled"
+                    />
                 </div>
             </section>
         </teleport>
@@ -19,19 +23,21 @@
 import { usePreReg } from "../composables/prereg";
 import FormSubmittedModal from "./FormSubmittedModal";
 import TwitterHandleModal from "./TwitterHandleModal";
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from "@vueuse/core";
 import { computed, ref } from "vue";
 
 const selectedModal = computed(() => {
+    if (!showModal.value?.type) return TwitterHandleModal;
     return showModal.value?.type === "twitter"
         ? TwitterHandleModal
         : FormSubmittedModal;
 });
 
 const prereg = usePreReg();
-const showModal = prereg.modal;
+// const showModal = prereg.modal;
+const showModal = true;
 const modalRef = ref(null);
-onClickOutside(modalRef, (event) => console.log(event))
+onClickOutside(modalRef, (event) => console.log(event));
 const modalAccepted = () => {
     showModal.value = null;
 };

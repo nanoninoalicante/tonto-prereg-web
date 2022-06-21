@@ -77,7 +77,6 @@
 IMPORTS
  */
 import { computed, onMounted, ref, watch } from "vue";
-import autoAnimate from "@formkit/auto-animate";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
