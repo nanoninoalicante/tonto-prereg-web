@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="w-full">
+        <div class="w-full mb-8">
             <p
                 class="text-left text-2xl font-medium tracking-tighter text-white"
             >

@@ -15,6 +15,9 @@ useHead({
   title: "Secure your handle now - PreReg with Tonto now.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   charset: "utf-8",
+  script: [
+    { src:'https://www.googletagmanager.com/gtm.js?id=GTM-TV653HH', async: true }
+  ],
   meta: [
     {
       name: "description",

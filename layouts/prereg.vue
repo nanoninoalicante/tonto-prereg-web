@@ -1,31 +1,41 @@
 <template>
-  <div class="h-screen">
-    <FullPageLoading></FullPageLoading>
-    <Modal></Modal>
-    <div class="flex h-screen flex-wrap md:mb-0">
-      <div
-        class="display-none bg-lime-600 w-full bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:h-screen md:w-1/2"
-      ></div>
-      <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
-        <div
-          class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[10vh] md:px-12 lg:px-32"
-        >
-          <div class="flex w-full justify-start">
-            <img
-              src="/tonto_logotipo_horizontal_white@2x.png"
-              alt="Go Tonto"
-              class="m-0 w-56 p-0"
-            />
-          </div>
-          <div class="w-full">
-            <slot />
-          </div>
+    <div class="h-screen">
+        <FullPageLoading></FullPageLoading>
+        <Modal></Modal>
+        <div class="flex h-screen flex-wrap md:mb-0">
+            <div
+                class="display-none w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:h-screen md:w-1/2"
+            ></div>
+            <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
+                <div
+                    class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[10vh] md:px-12 lg:px-32"
+                >
+                    <div class="flex w-full justify-start">
+                        <img
+                            src="/tonto_logotipo_horizontal_white@2x.png"
+                            alt="Go Tonto"
+                            class="m-0 w-56 p-0"
+                        />
+                    </div>
+                    <div class="w-full">
+                        <slot />
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <Alerts></Alerts>
+        <Cookies></Cookies>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-TV653HH"
+                height="0"
+                width="0"
+                style="display: none; visibility: hidden"
+            ></iframe
+        ></noscript>
+        <!-- End Google Tag Manager (noscript) -->
     </div>
-    <Alerts></Alerts>
-    <Cookies></Cookies>
-  </div>
 </template>
 <script setup>
 import Modal from "~/components/Modal";
@@ -38,11 +48,21 @@ const offline = useOnline();
 const isMounted = useMounted();
 const { addAlert } = useAlerts();
 watch(offline, (newVal) => {
-  console.log("offline: ", newVal);
-  if (!newVal) {
-    addAlert({ id: "2", message: "Looks like you've lost internet", type: "warning", close: "manual" });
-  } else {
-    addAlert({ id: "3", message: "Back online", type: "success", close: "auto" });
-  }
+    console.log("offline: ", newVal);
+    if (!newVal) {
+        addAlert({
+            id: "2",
+            message: "Looks like you've lost internet",
+            type: "warning",
+            close: "manual",
+        });
+    } else {
+        addAlert({
+            id: "3",
+            message: "Back online",
+            type: "success",
+            close: "auto",
+        });
+    }
 });
 </script>
