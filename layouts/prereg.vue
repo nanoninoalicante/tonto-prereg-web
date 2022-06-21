@@ -11,16 +11,19 @@
                     class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[10vh] md:px-12 lg:px-32"
                 >
                     <div class="flex w-full justify-start">
-                        <img
-                            src="/tonto_logotipo_horizontal_white@2x.png"
-                            alt="Go Tonto"
-                            class="m-0 w-56 p-0"
-                        />
+                        <a href="https://www.gettonto.com"
+                            ><img
+                                src="/tonto_logotipo_horizontal_white@2x.png"
+                                alt="Go Tonto"
+                                class="m-0 w-48 p-0"
+                        /></a>
                     </div>
                     <div class="w-full">
                         <slot />
                     </div>
                 </div>
+
+                <PrimaryFooter />
             </div>
         </div>
         <Alerts></Alerts>
@@ -34,6 +37,8 @@ import Alerts from "~/components/Alerts.vue";
 import FullPageLoading from "~/components/FullPageLoading";
 import { watch } from "vue";
 import { useAlerts } from "~/composables/alerts";
+import PrimaryFooter from "./PrimaryFooter";
+
 const offline = useOnline();
 const isMounted = useMounted();
 const { addAlert } = useAlerts();

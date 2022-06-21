@@ -77,6 +77,14 @@
                 />
             </div>
         </div>
+        <div v-auto-animate class="buttons mt-6 mb-6 ml-1 space-x-2">
+            <AcceptTermsCheckbox v-model="v$.termsAccepted.$model"
+                >Please accept our
+                <a href="https://www.gettonto.com" target="_blank" class="underline hover:no-underline"
+                    >terms and conditions and privacy policy</a
+                ></AcceptTermsCheckbox
+            >
+        </div>
         <div v-auto-animate class="buttons mt-4 space-x-2">
             <PrimaryButton class="bg-white" @click.once="goToPrevious"
                 >Go Back</PrimaryButton
@@ -93,14 +101,15 @@
 /*
 IMPORTS
  */
-import { computed, onMounted, onUpdated, ref, watch } from "vue";
-import { email, required } from "@vuelidate/validators";
+import { computed, onMounted, ref } from "vue";
+import { email, helpers, required, sameAs } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { useAlerts } from "~/composables/alerts";
 import { usePrimaryApi } from "~/composables/api";
-import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
+import { vAutoAnimate, vAutoFocus } from "~/directives/directives";
+import AcceptTermsCheckbox from "./AcceptTermsCheckbox";
 const runtimeConfig = useRuntimeConfig();
 /*
 META DATA
@@ -127,8 +136,25 @@ FORM VALIDATION
 const rules = computed(() => ({
     emailAddress: {
         $lazy: true,
-        email,
-        required,
+        email: helpers.withMessage(
+            "Sorry, we just need a valid email address",
+            email
+        ),
+        required: helpers.withMessage(
+            "We just need your email so we can secure your handle",
+            required
+        ),
+    },
+    termsAccepted: {
+        $lazy: false,
+        required: helpers.withMessage(
+            "We just need you to accept our terms of service first",
+            required
+        ),
+        accepted: helpers.withMessage(
+            "We just need you to accept our terms of service first",
+            sameAs(true)
+        ),
     },
 }));
 const v$ = useVuelidate(rules, preregData);
@@ -137,7 +163,7 @@ const emailAddressIsInvalid = computed(() => {
     return v$.value.emailAddress.$invalid;
 });
 const formIsInvalid = computed(() => {
-    return v$.value.emailAddress.$invalid;
+    return v$.value.$invalid;
 });
 
 // PREVIOUS STEP
@@ -156,19 +182,15 @@ const proceedToStepThree = () => {
 // SUBMIT FORM
 
 const submitPrereg = async () => {
-    if (v$.value.emailAddress.$invalid) {
-        addAlert({
-            message: "We just need your best email address first",
-            type: "warning",
+    await v$.value.$validate();
+    if (v$.value.$invalid) {
+        v$.value.$errors.map((e) => {
+            addAlert({
+                message: e.$message,
+                type: "warning",
+            });
         });
-        return null;
-    }
-    if (!preregData.value?.emailAddress || !preregData.value?.newHandles) {
-        addAlert({
-            message: "We just need your email address or your new handle first",
-            type: "warning",
-        });
-        return null;
+        return;
     }
     fullPageLoader.value = true;
     const requestData = {

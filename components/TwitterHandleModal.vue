@@ -3,7 +3,7 @@
         <TwitterIcon
             height="32"
             width="32"
-            class="mr-2 inline-block fill-blue-700"
+            class="mr-2 inline-block fill-twitter"
         ></TwitterIcon
         >It looks like your handle is verified on twitter.
     </h3>
@@ -14,7 +14,10 @@
     <p
         class="my-8 inline-block rounded-full bg-gray-100 p-4 text-2xl font-medium text-gray-500"
     >
-        {{ preregData.newHandles || "@elonmusk" }}
+        <TwitterVerifiedIcon
+            class="mr-1 inline-block h-6 w-6"
+        ></TwitterVerifiedIcon
+        >{{ preregData.newHandles || "@elonmusk" }}
     </p>
     <div class="flex flex-wrap justify-end">
         <div class="mb-2 w-full">
@@ -28,7 +31,7 @@
         <div class="w-full">
             <a
                 class="font-heading mr-4 mb-2 inline-block w-full cursor-pointer rounded-xl bg-gray-300 py-3 px-8 text-center text-xl font-medium leading-7 tracking-tighter text-gray-500 hover:bg-gray-400 hover:text-white focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 lg:mb-0"
-                @click="handleCancel"
+                @click="handleClose"
                 >Go Back</a
             >
         </div>
@@ -38,9 +41,15 @@
 import TwitterIcon from "~/components/icons/TwitterIcon";
 import TwitterVerifiedIcon from "~/components/icons/TwitterVerifiedIcon";
 import { usePreReg } from "~/composables/prereg";
-const emit = defineEmits(["cancel"]);
+const emit = defineEmits(["close"]);
 const { preregData } = usePreReg();
-const handleCancel = () => {
-    emit("cancel");
+const handleClose = () => {
+    navigateTo({
+        path: "/step-3",
+        query: {
+            twitter: true,
+        },
+    });
+    emit("close");
 };
 </script>

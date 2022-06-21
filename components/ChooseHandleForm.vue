@@ -41,7 +41,6 @@
                     id="handle"
                     name="newHandleInput"
                     ref="handleInputRef"
-                    v-auto-focus
                     autocorrect="off"
                     v-model="v$.newHandles.$model"
                     placeholder="@elonmusk"
@@ -82,7 +81,8 @@ import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { useAlerts } from "~/composables/alerts";
-import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
+import { vAutoAnimate } from "~/directives/directives";
+import FormTextInput from "./FormTextInput";
 
 const { preregData } = usePreReg();
 const { addAlert } = useAlerts();

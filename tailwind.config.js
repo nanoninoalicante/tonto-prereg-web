@@ -1,6 +1,11 @@
 const colors = require("tailwindcss/colors");
 module.exports = {
     content: [],
+    plugins: [
+        require("@tailwindcss/forms")({
+            strategy: "class",
+        }),
+    ],
     theme: {
         colors: {
             transparent: "transparent",
@@ -16,6 +21,7 @@ module.exports = {
             indigo: colors.indigo,
             yellow: colors.yellow,
             teal: colors.teal,
+            twitter: "#1DA1F2",
             primary: {
                 500: "#109C90",
                 700: "#1F6962",

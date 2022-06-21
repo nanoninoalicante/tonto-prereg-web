@@ -7,6 +7,7 @@ STATE
 const preregData: any = useStorage("prereg", {
     emailAddress: "",
     newHandles: "",
+    termsAccepted: false,
 });
 const submittingLoading = ref(false);
 const modal = ref(null);
@@ -19,6 +20,7 @@ const setModal = (val) => (modal.value = val);
 const resetForm = async () => {
     preregData.value.newHandles = "";
     preregData.value.emailAddress = "";
+    preregData.value.termsAccepted = false;
     window.location.reload();
 };
 

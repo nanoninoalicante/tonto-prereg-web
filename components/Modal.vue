@@ -12,7 +12,7 @@
                     <component
                         :is="selectedModal"
                         @accepted="modalAccepted"
-                        @cancel="modalCancelled"
+                        @close="modalClosed"
                     />
                 </div>
             </section>
@@ -34,14 +34,13 @@ const selectedModal = computed(() => {
 });
 
 const prereg = usePreReg();
-// const showModal = prereg.modal;
-const showModal = true;
+const showModal = prereg.modal;
 const modalRef = ref(null);
 onClickOutside(modalRef, (event) => console.log(event));
 const modalAccepted = () => {
     showModal.value = null;
 };
-const modalCancelled = () => {
+const modalClosed = () => {
     showModal.value = null;
 };
 </script>
