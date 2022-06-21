@@ -1,11 +1,9 @@
 <template>
     <button
-        class="font-heading inline-block cursor-pointer rounded-xl border-2 border-teal-500 bg-teal-800 p-4 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-teal-600 disabled:cursor-not-allowed disabled:border-gray-500 disabled:bg-gray-400 disabled:opacity-50"
+        class="font-heading inline-block cursor-pointer rounded-3xl border-2 border-teal-500 bg-teal-800 p-4 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-teal-600 disabled:cursor-not-allowed disabled:border-gray-500 disabled:bg-gray-400 disabled:opacity-50"
+        v-bind="$attrs"
     >
-        {{ text }}
+        <slot></slot>
     </button>
 </template>
-<script setup>
-const props = defineProps(["text"]);
-const text = props.text;
-</script>
+<script setup></script>

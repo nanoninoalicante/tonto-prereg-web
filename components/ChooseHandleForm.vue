@@ -1,5 +1,13 @@
 <template>
     <div class="">
+        <div class="w-full">
+            <p
+                class="text-left text-2xl font-medium tracking-tighter text-white"
+            >
+                Secure your handle in Tonto now. Pre-register below to make sure
+                you get that at launch
+            </p>
+        </div>
         <div class="">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
@@ -34,6 +42,7 @@
                     name="newHandleInput"
                     ref="handleInputRef"
                     v-auto-focus
+                    autocorrect="off"
                     v-model="v$.handle.$model"
                     placeholder="@elonmusk"
                     v-on:keydown.enter="reserveThisHandle"
@@ -54,10 +63,10 @@
 
             <div v-auto-animate class="buttons mt-8 space-x-2">
                 <PrimaryButton
-                    :text="'Reserve this Handle'"
-                    :disabled="formIsInvalid"
+                    :disabled="formIsInvalid || !v$.handle.$dirty"
                     @click.once="reserveThisHandle"
                 >
+                    Reserve this Handle
                 </PrimaryButton>
             </div>
         </div>

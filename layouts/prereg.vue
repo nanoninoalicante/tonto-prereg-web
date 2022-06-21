@@ -18,14 +18,6 @@
             />
           </div>
           <div class="w-full">
-            <p
-              class="text-left text-2xl font-medium tracking-tighter text-white"
-            >
-              Secure your handle in Tonto now. Pre-register below to make sure
-              you get that at launch
-            </p>
-          </div>
-          <div class="w-full">
             <slot />
           </div>
         </div>

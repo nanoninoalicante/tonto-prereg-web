@@ -65,16 +65,14 @@
             </div>
         </div>
         <div v-auto-animate class="buttons mt-4 space-x-2">
+            <PrimaryButton class="bg-white" @click.once="goToPrevious"
+                >Go Back</PrimaryButton
+            >
             <PrimaryButton
-                :text="'Go Back'"
-                class="bg-white"
-                @click.once="goToPrevious"
-            />
-            <PrimaryButton
-                :text="'Pre Register'"
                 :disabled="formIsInvalid || !v$.emailAddress.$dirty"
                 @click.prevent="submitPrereg"
-            />
+                >Pre Register</PrimaryButton
+            >
         </div>
     </div>
 </template>
@@ -136,6 +134,12 @@ const goToPrevious = () => {
     });
 };
 
+const proceedToStepThree = () => {
+    return navigateTo({
+        path: "/step-3",
+    });
+};
+
 // SUBMIT FORM
 
 const submitPrereg = async () => {
@@ -176,7 +180,7 @@ const submitPrereg = async () => {
         });
     if (r) {
         fullPageLoader.value = false;
-        setModal({ type: "success" });
+        proceedToStepThree();
     }
     return null;
 };
