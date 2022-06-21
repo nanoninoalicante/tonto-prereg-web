@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen">
+    <div class="min-h-screen">
         <FullPageLoading></FullPageLoading>
         <Modal></Modal>
         <div class="flex h-screen flex-wrap md:mb-0">
@@ -25,16 +25,6 @@
         </div>
         <Alerts></Alerts>
         <Cookies></Cookies>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript
-            ><iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-TV653HH"
-                height="0"
-                width="0"
-                style="display: none; visibility: hidden"
-            ></iframe
-        ></noscript>
-        <!-- End Google Tag Manager (noscript) -->
     </div>
 </template>
 <script setup>

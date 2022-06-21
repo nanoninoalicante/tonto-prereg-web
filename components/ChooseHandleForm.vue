@@ -25,11 +25,11 @@
                     class="absolute left-0 ml-4"
                 ></CircleLoader>
                 <CheckCircleIcon
-                    v-if="!formIsInvalid && v$.handle.$dirty"
+                    v-if="!formIsInvalid && v$.newHandles.$dirty"
                     class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
                 ></CheckCircleIcon>
                 <ExclamationCircleIcon
-                    v-if="v$.handle.$invalid"
+                    v-if="v$.newHandles.$invalid"
                     class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
                 ></ExclamationCircleIcon>
                 <input
@@ -43,7 +43,7 @@
                     ref="handleInputRef"
                     v-auto-focus
                     autocorrect="off"
-                    v-model="v$.handle.$model"
+                    v-model="v$.newHandles.$model"
                     placeholder="@elonmusk"
                     v-on:keydown.enter="reserveThisHandle"
                 />
@@ -51,19 +51,19 @@
 
             <div v-auto-animate class="flex w-full flex-col space-y-1">
                 <ErrorMessage
-                    v-for="error in v$.handle.$silentErrors"
+                    v-for="error in v$.newHandles.$silentErrors"
                     :key="error.$uid"
                     :error="error"
                 />
                 <SuccessInputMessage
-                    v-if="!v$.handle.$invalid && v$.handle.$dirty"
+                    v-if="!v$.newHandles.$invalid && v$.newHandles.$dirty"
                     :message="'That\'s a good lookin handle!'"
                 ></SuccessInputMessage>
             </div>
 
             <div v-auto-animate class="buttons mt-8 space-x-2">
                 <PrimaryButton
-                    :disabled="formIsInvalid || !v$.handle.$dirty"
+                    :disabled="formIsInvalid || !v$.newHandles.$dirty"
                     @click.once="reserveThisHandle"
                 >
                     Reserve this Handle
@@ -85,7 +85,7 @@ import { usePreReg } from "~/composables/prereg";
 import { useAlerts } from "~/composables/alerts";
 import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
 
-const { handle } = usePreReg();
+const { preregData } = usePreReg();
 const { addAlert } = useAlerts();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
@@ -132,7 +132,7 @@ const checkIfHandleExists = (value) => {
 const requiredNameLength = ref(2);
 const requiredNameMaxLength = ref(25);
 const rules = computed(() => ({
-    handle: {
+    newHandles: {
         $lazy: true,
         isTaken: helpers.withMessage(
             "This handle is taken",
@@ -143,16 +143,37 @@ const rules = computed(() => ({
         maxLength: maxLength(requiredNameMaxLength.value),
     },
 }));
-const v$ = useVuelidate(rules, { handle });
+const v$ = useVuelidate(rules, preregData);
 
 const formIsInvalid = computed(() => {
-    return v$.value.handle.$invalid;
+    return v$.value.newHandles.$invalid;
 });
+
+/*
+WATCH
+ */
+
+watch(
+    () => preregData.value.newHandles,
+    (newVal) => {
+        console.log("formatting handle: ", preregData.value.newHandles);
+        if (!preregData.value.newHandles.startsWith("@")) {
+            preregData.value.newHandles = "@" + newVal;
+        }
+        preregData.value.newHandles = preregData.value.newHandles.replaceAll(
+            /\s|[^@a-z0-9_-]/gi,
+            ""
+        );
+        preregData.value.newHandles = preregData.value.newHandles
+            .toLowerCase()
+            .trim();
+    }
+);
 
 // METHODS
 
 const reserveThisHandle = () => {
-    if (v$.value.handle.$invalid) return null;
+    if (v$.value.newHandles.$invalid) return null;
     return navigateTo({
         path: "/step-2/",
     });
@@ -163,10 +184,10 @@ ON MOUNTED
  */
 
 onMounted(async () => {
-    console.log("prereg data: ", handle);
+    console.log("prereg data: ", preregData.value.newHandles);
     handleInputRef.value.focus();
-    if (handle.value && handle.value.length > 1) {
-        await v$.value.handle.$validate();
+    if (preregData.value.newHandles && preregData.value.newHandles.length > 1) {
+        await v$.value.newHandles.$validate();
     } else {
         formInputLoading.value = false;
     }
