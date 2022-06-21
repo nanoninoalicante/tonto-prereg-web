@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="w-full mb-8">
+        <div class="mb-8 w-full">
             <p
                 class="text-left text-2xl font-medium tracking-tighter text-white"
             >
@@ -88,8 +88,12 @@ import { vAutoFocus, vAutoAnimate } from "~/directives/directives";
 const { handle } = usePreReg();
 const { addAlert } = useAlerts();
 const router = useRouter();
+const runtimeConfig = useRuntimeConfig();
 
-const indices = ["dev_preregisteredusers", "dev_users"];
+const indices = [
+    runtimeConfig.public?.algoliaPreRegIndex,
+    runtimeConfig.public?.algoliaUsersIndex,
+];
 const algolia = useAlgolia();
 const handleInputRef = ref(null);
 const formInputLoading = ref(true);
