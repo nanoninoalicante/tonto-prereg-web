@@ -160,12 +160,10 @@ watch(
             preregData.value.newHandles = "@" + newVal;
         }
         preregData.value.newHandles = preregData.value.newHandles.replaceAll(
-            /\s|[^@a-z0-9_-]/gi,
+            /\s|[^@a-zA-Z0-9_-]/gi,
             ""
         );
-        preregData.value.newHandles = preregData.value.newHandles
-            .toLowerCase()
-            .trim();
+        preregData.value.newHandles = preregData.value.newHandles.trim();
     }
 );
 

@@ -8,7 +8,7 @@
             ></div>
             <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
                 <div
-                    class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[10vh] md:px-12 lg:px-32"
+                    class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[5vh] md:px-12 lg:px-32"
                 >
                     <div class="flex w-full justify-start">
                         <a href="https://www.gettonto.com"
