@@ -2,9 +2,9 @@
     <div class="min-h-screen">
         <FullPageLoading></FullPageLoading>
         <Modal></Modal>
-        <div class="flex min-h-screen md:mb-0">
+        <div class="flex flex-wrap min-h-screen md:mb-0">
             <div
-                class="display-none w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:min-h-screen md:w-1/2"
+                class="hidden md:block w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:min-h-screen md:w-1/2"
             ></div>
             <div class="w-full bg-primary-500 md:mb-0 md:w-1/2">
                 <div
