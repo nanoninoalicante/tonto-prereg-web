@@ -19,20 +19,21 @@
         ></TwitterVerifiedIcon
         >{{ preregData.newHandles || "@elonmusk" }}
     </p>
-    <div class="flex flex-wrap justify-end">
-        <div class="mb-2 w-full">
+    <div class="flex flex-wrap justify-center space-y-2">
+        <div class="w-full">
             <a
                 class="font-heading mr-4 inline-block w-full cursor-pointer rounded-xl bg-teal-500 py-3 px-8 text-center text-xl font-medium leading-7 tracking-tighter text-white hover:bg-teal-600 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 lg:mb-0"
                 href="https://www.twitter.com/@gettonto"
                 target="_blank"
-                >Message us on Twitter to reserve {{ preregData.newHandles }}</a
+                >Message us on Twitter to reserve <span class="ml-1 underline">{{ preregData.newHandles }}</span></a
             >
         </div>
+        <p class="font-medium text-gray-500 text-xl font-bold">or</p>
         <div class="w-full">
             <a
                 class="font-heading mr-4 mb-2 inline-block w-full cursor-pointer rounded-xl bg-gray-300 py-3 px-8 text-center text-xl font-medium leading-7 tracking-tighter text-gray-500 hover:bg-gray-400 hover:text-white focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 lg:mb-0"
                 @click="handleClose"
-                >Go Back</a
+                >Edit this handle instead</a
             >
         </div>
     </div>
@@ -45,7 +46,7 @@ const emit = defineEmits(["close"]);
 const { preregData } = usePreReg();
 const handleClose = () => {
     navigateTo({
-        path: "/step-3",
+        path: "/",
         query: {
             twitter: true,
         },
