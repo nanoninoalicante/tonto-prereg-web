@@ -2,15 +2,15 @@
     <div class="min-h-screen">
         <FullPageLoading></FullPageLoading>
         <Modal></Modal>
-        <div class="flex h-screen flex-wrap md:mb-0">
+        <div class="flex min-h-screen md:mb-0">
             <div
-                class="display-none w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:h-screen md:w-1/2"
+                class="display-none w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:min-h-screen md:w-1/2"
             ></div>
-            <div class="h-screen w-full bg-primary-500 md:mb-0 md:w-1/2">
+            <div class="w-full bg-primary-500 md:mb-0 md:w-1/2">
                 <div
-                    class="container mx-auto flex h-screen flex-col items-center justify-start space-y-8 px-8 pt-[5vh] md:px-12 lg:px-32"
+                    class="container mx-auto mb-24 flex flex-col items-center justify-start px-8 pt-8 md:px-12 lg:px-32"
                 >
-                    <div class="flex w-full justify-start">
+                    <div class="mb-2 -ml-8 flex w-full justify-start">
                         <a href="https://www.gettonto.com"
                             ><img
                                 src="/tonto_logotipo_horizontal_white@2x.png"
