@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center">
-        <div class="mb-4 w-full">
+        <div class="mb-4 w-full flex flex-col space-y-3">
             <p
                 class="text-left text-2xl font-medium tracking-tighter text-white"
             >
@@ -9,15 +9,15 @@
             <p
                 class="text-left text-xl font-medium tracking-tighter text-white"
             >
-                We will send you an email to confirm that you have been a part
-                of the Tonto community. Share the app with your people and grow
-                your influence
+                We will send you an email to confirm that you are part of the
+                Tonto community.
             </p>
+          <CopyText>Copy this link and share it with your friends to grow your influence!</CopyText>
         </div>
         <div class="flex flex-col items-center space-y-2">
             <button
                 v-if="preregData.newHandles"
-                class="pointer-events-none box-shadow-xl m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
+                class="box-shadow-xl pointer-events-none m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
             >
                 <span
                     class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
@@ -29,7 +29,7 @@
             </button>
             <button
                 v-if="preregData.emailAddress"
-                class="pointer-events-none box-shadow-xl m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
+                class="box-shadow-xl pointer-events-none m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
             >
                 <span
                     class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
@@ -58,11 +58,14 @@
     </div>
 </template>
 <script setup>
-import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
-import { onMounted, ref } from "vue";
+import { CheckCircleIcon } from "@heroicons/vue/solid";
+import { onMounted } from "vue";
 import { usePreReg } from "~/composables/prereg";
 import { RefreshIcon } from "@heroicons/vue/outline";
+import CopyText from "./CopyText";
+
 const { preregData, resetForm } = usePreReg();
+
 onMounted(() => {
     if (
         !preregData.value?.newHandles ||

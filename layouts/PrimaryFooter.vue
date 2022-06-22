@@ -6,10 +6,8 @@
             >
                 <div class="w-full px-2 text-right">
                     <span class="text-sm font-medium text-teal-800"
-                        ><a href="https://www.gettonto.com" class="underline"
-                            >Tonto</a
-                        >
-                        © {{ year }} All Rights Reserved</span
+                        ><a href="https://www.gettonto.com" class="underline">Tonto</a> ©
+                        {{ year }} All Rights Reserved</span
                     >
                 </div>
             </footer>

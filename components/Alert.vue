@@ -5,6 +5,7 @@
             { 'border-yellow-500 bg-yellow-400': alert.type === 'warning' },
             { 'border-red-500 bg-red-400': alert.type === 'error' },
             { 'border-teal-500 bg-teal-400': alert.type === 'success' },
+            { 'border-blue-500 bg-blue-400': alert.type === 'info' },
         ]"
     >
         <div class="-m-2 flex flex-wrap items-center justify-between">
@@ -37,11 +38,12 @@ import { onBeforeUnmount, onMounted } from "vue";
 const props = defineProps(["alert"]);
 const alert = props.alert;
 const { removeAlert } = useAlerts();
-const timeoutDuration = 2000;
+const timeoutDuration = 3000;
 const icons = {
     success: "👍",
     warning: "😬",
     error: "😯",
+    info: "👉",
 };
 const icon = icons[alert.type || "warning"];
 const timeoutCloseAlert = () => {

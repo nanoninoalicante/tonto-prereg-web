@@ -80,7 +80,10 @@
         <div v-auto-animate class="buttons mt-6 mb-6 ml-1 space-x-2">
             <AcceptTermsCheckbox v-model="v$.termsAccepted.$model"
                 >Please accept our
-                <a href="https://www.gettonto.com" target="_blank" class="underline hover:no-underline"
+                <a
+                    href="https://www.gettonto.com"
+                    target="_blank"
+                    class="underline hover:no-underline"
                     >terms and conditions and privacy policy</a
                 ></AcceptTermsCheckbox
             >
@@ -204,6 +207,17 @@ const submitPrereg = async () => {
             console.log("error from api: ", e.data);
             if (e.data?.error_msg === "Request already taken by twitter.") {
                 setModal({ type: "twitter" });
+                return;
+            }
+            if (
+                e.data?.error_msg === "Request already taken by another account"
+            ) {
+                addAlert({
+                    message:
+                        "This email address is already associated with one account. If you are an Urlo user, you will have direct access to the Tonto app.",
+                    type: "info",
+                    close: "manual",
+                });
                 return;
             }
             addAlert({

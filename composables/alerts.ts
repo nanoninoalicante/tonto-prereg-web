@@ -16,7 +16,7 @@ const addAlert = (data: {
     alerts.value.push({
         message: data.message,
         type: data.type || "error",
-        close: data.type === "error" ? "manual" : "auto",
+        close: data.close || "auto",
         id: alertId,
     });
 };
