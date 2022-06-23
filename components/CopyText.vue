@@ -23,7 +23,7 @@ const handleCopyLink = () => {
             v-if="copied"
             class="absolute -top-10 -mt-4 block rounded-full bg-white p-3 text-gray-700 shadow-xl"
         >
-            Copied
+            Copied!
         </div>
     </div>
 </template>
