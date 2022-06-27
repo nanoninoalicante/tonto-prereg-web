@@ -7,7 +7,7 @@
     </div>
 </template>
 <script setup>
-import MetaTags from "./MetaTags";
+import MetaTags from "./components/MetaTags";
 
 definePageMeta({
     transition: {

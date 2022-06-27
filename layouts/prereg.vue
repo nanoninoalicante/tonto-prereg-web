@@ -11,10 +11,11 @@
                     class="container mx-auto mb-24 flex flex-col items-center justify-start px-8 pt-8 md:px-12 lg:px-32"
                 >
                     <div class="mb-2 -ml-8 flex w-full justify-start">
-                        <a href="https://www.gettonto.com"
+                        <a href="https://www.gettonto.com" title="Get Tonto - Pre Register now to secure your favorite handle"
                             ><img
                                 src="/tonto_logotipo_horizontal_white@2x.png"
-                                alt="Go Tonto"
+                                alt="Get Tonto - Create, share and stream your favourite audio content"
+                                title="Get Tonto - Create, share and stream your favourite audio content"
                                 class="m-0 w-48 p-0"
                         /></a>
                     </div>
@@ -37,7 +38,7 @@ import Alerts from "~/components/Alerts.vue";
 import FullPageLoading from "~/components/FullPageLoading";
 import { watch } from "vue";
 import { useAlerts } from "~/composables/alerts";
-import PrimaryFooter from "./PrimaryFooter";
+import PrimaryFooter from "../components/PrimaryFooter";
 import { useOnline } from "@vueuse/core/index";
 
 const offline = useOnline();
