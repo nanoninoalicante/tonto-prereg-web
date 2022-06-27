@@ -81,10 +81,17 @@
             <AcceptTermsCheckbox v-model="v$.termsAccepted.$model"
                 >Please accept our
                 <a
-                    href="https://www.gettonto.com"
+                    href="https://www.gettonto.com/terms-of-use/"
                     target="_blank"
                     class="underline hover:no-underline"
-                    >terms and conditions and privacy policy</a
+                    >Terms and Conditions</a
+                >
+                and
+                <a
+                    href="https://www.gettonto.com/privacy-policy/"
+                    target="_blank"
+                    class="underline hover:no-underline"
+                    >Privacy Policy</a
                 ></AcceptTermsCheckbox
             >
         </div>
