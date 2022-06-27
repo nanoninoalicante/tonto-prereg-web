@@ -43,12 +43,6 @@ useHead({
             type: "text/javascript",
         },
     ],
-    meta: [
-        {
-            name: "description",
-            content: "Secure your handle now - PreReg with Tonto now.",
-        },
-    ],
 });
 </script>
 
