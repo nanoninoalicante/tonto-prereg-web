@@ -1,46 +1,14 @@
 <template>
     <div>
-        <!-- Primary Meta Tags -->
-        <Title>Secure your handle now - PreReg with Tonto now.</Title>
-        <Meta
-            name="title"
-            content="Secure your handle now - PreReg with Tonto now."
-        ></Meta>
-
-        <!-- Open Graph / Facebook -->
-        <Meta property="og:type" content="website"></Meta>
-        <Meta property="og:url" content="https://start.gettonto.com/"></Meta>
-        <Meta
-            property="og:title"
-            content="Secure your handle now - PreReg with Tonto now."
-        ></Meta>
-        <Meta
-            property="og:description"
-            content="Secure your handle now - PreReg with Tonto now."
-        ></Meta>
-        <Meta property="og:image" content=""></Meta>
-
-        <!-- Twitter -->
-        <Meta property="twitter:card" content="summary_large_image"></Meta>
-        <Meta
-            property="twitter:url"
-            content="https://start.gettonto.com/"
-        ></Meta>
-        <Meta
-            property="twitter:title"
-            content="Secure your handle now - PreReg with Tonto now."
-        ></Meta>
-        <Meta
-            property="twitter:description"
-            content="Secure your handle now - PreReg with Tonto now."
-        ></Meta>
-        <Meta property="twitter:image" content=""></Meta>
+      <MetaTags />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
     </div>
 </template>
 <script setup>
+import MetaTags from "./MetaTags";
+
 definePageMeta({
     transition: {
         name: "page",
