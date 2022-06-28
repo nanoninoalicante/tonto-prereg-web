@@ -11,7 +11,9 @@
                     class="container mx-auto mb-24 flex flex-col items-center justify-start px-8 pt-8 md:px-12 lg:px-32"
                 >
                     <div class="mb-2 -ml-8 flex w-full justify-start">
-                        <a href="https://www.gettonto.com" title="Get Tonto - Pre Register now to secure your favorite handle"
+                        <a
+                            href="https://www.gettonto.com"
+                            title="Get Tonto - Pre Register now to secure your favorite handle"
                             ><img
                                 src="/tonto_logotipo_horizontal_white@2x.png"
                                 alt="Get Tonto - Create, share and stream your favourite audio content"
