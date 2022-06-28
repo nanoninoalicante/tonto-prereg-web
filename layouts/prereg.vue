@@ -4,7 +4,7 @@
         <Modal></Modal>
         <div class="flex min-h-screen flex-wrap md:mb-0">
             <div
-                class="hidden w-full bg-lime-600 bg-[url('/background-photo.jpg')] bg-cover bg-center md:mb-0 md:block md:min-h-screen md:w-1/2"
+                class="hidden w-full bg-lime-600 bg-[url('/tonto-prereg-compressed.jpg')] bg-cover bg-center md:mb-0 md:block md:min-h-screen md:w-1/2"
             ></div>
             <div class="w-full bg-primary-500 md:mb-0 md:w-1/2">
                 <div
