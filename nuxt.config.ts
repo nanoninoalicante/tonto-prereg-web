@@ -6,6 +6,9 @@ export default defineNuxtConfig({
         primaryApiApiKey: process.env.PRIMARY_API_API_KEY || "",
         algoliaPreRegIndex: process.env.ALGOLIA_PREREG_INDEX || "",
         algoliaUsersIndex: process.env.ALGOLIA_USERS_INDEX || "",
+        SENTRY_DSN:
+            process.env.SENTRY_DSN ||
+            "https://9a19e8c0c8194d1382d194e272cfc203@o956177.ingest.sentry.io/6538790",
     },
     ssr: true,
     modules: [

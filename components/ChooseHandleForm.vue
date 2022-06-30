@@ -4,15 +4,14 @@
             <h1
                 class="text-left text-2xl font-medium tracking-tighter text-white"
             >
-                Secure your handle in Tonto now. Pre-register below to make sure
-                you get that at launch
+                {{ description }}
             </h1>
         </div>
         <div class="">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
-                >Choose Your New Handle</label
+                >{{ chooseYourHandleLabel }}</label
             >
             <div
                 class="relative mb-2 flex w-full items-center text-gray-600 focus-within:text-gray-800"
@@ -80,12 +79,15 @@ import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
-import { useAlerts } from "~/composables/alerts";
 import { vAutoAnimate } from "~/directives/directives";
-import FormTextInput from "./FormTextInput";
+import { useMetaTags } from "~/composables/metatags";
+import { useContent } from "~/composables/content";
+const { getContent } = useContent();
+const { description } = useMetaTags();
+
+const chooseYourHandleLabel = getContent("label", "chooseYourNewHandleLabel");
 
 const { preregData } = usePreReg();
-const { addAlert } = useAlerts();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 

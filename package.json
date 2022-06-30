@@ -8,7 +8,6 @@
     "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
   "devDependencies": {
-    "@netlify/plugin-sitemap": "^0.8.1",
     "@nuxtjs/tailwindcss": "^5.1.2",
     "@tailwindcss/forms": "^0.5.2",
     "@vueuse/core": "^8.7.3",
@@ -30,6 +29,8 @@
     "@heroicons/vue": "^1.0.6",
     "@nuxtjs/algolia": "^0.9.2",
     "@pinia/nuxt": "^0.1.9",
+    "@sentry/tracing": "^7.3.1",
+    "@sentry/vue": "^7.3.1",
     "@upstash/redis": "^1.6.1",
     "@vuelidate/core": "^2.0.0-alpha.41",
     "@vuelidate/validators": "^2.0.0-alpha.29",
