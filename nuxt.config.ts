@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         buildAssetsDir: "/_prereg/",
+        cdnURL: "/_prereg-public/",
     },
     router: {
         base: "/start/",
