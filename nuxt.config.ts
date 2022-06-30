@@ -11,6 +11,9 @@ export default defineNuxtConfig({
             "https://9a19e8c0c8194d1382d194e272cfc203@o956177.ingest.sentry.io/6538790",
     },
     ssr: true,
+    app: {
+        buildAssetsDir: "/_prereg/",
+    },
     modules: [
         "@nuxtjs/tailwindcss",
         "@nuxtjs/algolia",
