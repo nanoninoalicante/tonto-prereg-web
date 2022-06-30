@@ -4,7 +4,7 @@
         <Modal></Modal>
         <div class="flex min-h-screen flex-wrap md:mb-0">
             <div
-                class="hidden w-full bg-lime-600 bg-[url('/tonto-prereg-compressed.jpg')] bg-cover bg-center md:mb-0 md:block md:min-h-screen md:w-1/2"
+                class="hidden w-full bg-lime-600 bg-[url('/_prereg-public/tonto-prereg-compressed.jpg')] bg-cover bg-center md:mb-0 md:block md:min-h-screen md:w-1/2"
             ></div>
             <div class="w-full bg-primary-500 md:mb-0 md:w-1/2">
                 <div
@@ -15,7 +15,7 @@
                             href="https://www.gettonto.com"
                             title="Get Tonto - Pre Register now to secure your favorite handle"
                             ><img
-                                src="/tonto_logotipo_horizontal_white@2x.png"
+                                src="/_prereg-public/tonto_logotipo_horizontal_white@2x.png"
                                 alt="Get Tonto - Create, share and stream your favourite audio content"
                                 title="Get Tonto - Create, share and stream your favourite audio content"
                                 class="m-0 w-48 p-0"
