@@ -11,7 +11,7 @@
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
-                >{{ chooseYourHandleLabel }}</label
+                >{{ chooseYourHandleLabel || "Choose your new Handle" }}</label
             >
             <div
                 class="relative mb-2 flex w-full items-center text-gray-600 focus-within:text-gray-800"
