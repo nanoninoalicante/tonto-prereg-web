@@ -38,7 +38,7 @@ const emit = defineEmits(["close"]);
 const { preregData } = usePreReg();
 const handleClose = () => {
     navigateTo({
-        path: "/",
+        path: "/start/",
         query: {
             twitter: true,
         },
@@ -47,7 +47,7 @@ const handleClose = () => {
 };
 const handleAcceptTwitterHandle = () => {
     navigateTo({
-        path: "/step-3",
+        path: "/start/step-3",
         query: {
             twitter: true,
         },

@@ -179,13 +179,13 @@ const formIsInvalid = computed(() => {
 // PREVIOUS STEP
 const goToPrevious = () => {
     return navigateTo({
-        path: "/",
+        path: "/start/",
     });
 };
 
 const proceedToStepThree = () => {
     return navigateTo({
-        path: "/step-3",
+        path: "/start/step-3",
     });
 };
 

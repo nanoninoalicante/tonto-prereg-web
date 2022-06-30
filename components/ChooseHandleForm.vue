@@ -174,7 +174,7 @@ watch(
 const reserveThisHandle = () => {
     if (v$.value.newHandles.$invalid) return null;
     return navigateTo({
-        path: "/step-2/",
+        path: "/start/step-2/",
     });
 };
 

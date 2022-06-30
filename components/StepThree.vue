@@ -73,7 +73,7 @@ onMounted(() => {
         !preregData.value?.emailAddress ||
         preregData.value?.emailAddress.length === 0
     ) {
-        window.location.href = "/";
+        window.location.href = "/start/";
     }
 });
 </script>

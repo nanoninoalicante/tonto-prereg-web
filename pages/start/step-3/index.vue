@@ -4,7 +4,7 @@
     </div>
 </template>
 <script setup>
-import StepThree from "../../components/StepThree";
+import StepThree from "~/components/StepThree";
 
 definePageMeta({
     layout: "prereg",
