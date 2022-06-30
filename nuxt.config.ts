@@ -13,7 +13,10 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         baseURL: "/start/",
-        buildAssetsDir: "/start/_prereg/",
+        buildAssetsDir: "/_prereg/",
+    },
+    router: {
+        base: "/start/",
     },
     modules: [
         "@nuxtjs/tailwindcss",
