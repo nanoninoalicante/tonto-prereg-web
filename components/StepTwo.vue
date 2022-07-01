@@ -248,7 +248,7 @@ onMounted(() => {
         !preregData.value?.newHandles ||
         preregData.value?.newHandles.length === 0
     ) {
-        window.location.href = "/";
+        window.location.href = "/start/";
     }
 });
 onMounted(async () => {
