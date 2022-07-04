@@ -12,7 +12,6 @@ export default defineNuxtConfig({
     },
     ssr: true,
     app: {
-        baseURL: "/start/",
         buildAssetsDir: "/_prereg/",
     },
     modules: [
