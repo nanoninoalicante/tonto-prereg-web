@@ -1,12 +1,16 @@
 <template>
-    <div class="flex w-full flex-col">
-        <StepTwo />
-    </div>
+  <PrimaryPageHolder>
+    <PrimarySection>
+      <StepTwo />
+    </PrimarySection>
+  </PrimaryPageHolder>
 </template>
 <script setup>
 import StepTwo from "~/components/StepTwo";
+import PrimarySection from "~/components/PrimarySection";
+import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 
 definePageMeta({
-    layout: "prereg",
+    layout: "preregv2",
 });
 </script>

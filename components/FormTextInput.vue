@@ -2,7 +2,7 @@
     <input
         type="text"
         v-auto-focus
-        class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+        class="w-full rounded-xl border-4 border-red-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
     />
 </template>
 <script setup>
