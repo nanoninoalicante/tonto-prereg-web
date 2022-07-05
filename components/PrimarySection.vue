@@ -4,17 +4,24 @@ import PrimaryLogoHolder from "~/components/PrimaryLogoHolder";
 </script>
 <template>
     <section
-        class="relative flex min-h-screen w-full snap-start flex-col items-left justify-start p-8"
+        class="items-left relative flex min-h-screen w-full snap-start flex-col justify-start bg-cover p-8 md:w-1/2"
     >
-        <div class="flex pt-8 px-6">
-            <PrimaryLogoHolder />
-        </div>
-        <div class="flex py-4 px-6">
-            <slot />
-        </div>
-        <div class="absolute left-1/2 -ml-6 bottom-0 my-8 flex">
+        <div class="hidden md:block absolute left-1/2 top-0 my-8 -ml-6 flex">
             <ArrowDownIconV2
-                class="h-12 w-12 animate-pulse fill-white opacity-50"
+                class="h-12 w-12 animate-pulse fill-white opacity-75"
+            ></ArrowDownIconV2>
+        </div>
+        <div class="flex flex-col w-full md:items-center md:justify-center min-h-full">
+            <div class="block md:hidden flex px-6 pt-8">
+                <PrimaryLogoHolder />
+            </div>
+            <div class="flex py-4 px-6">
+                <slot />
+            </div>
+        </div>
+        <div class="absolute left-1/2 bottom-0 my-8 -ml-6 flex">
+            <ArrowDownIconV2
+                class="h-12 w-12 animate-pulse fill-white opacity-75"
             ></ArrowDownIconV2>
         </div>
     </section>
