@@ -21,6 +21,10 @@ const { title, description, primaryUrl, metaTagImage } = useMetaTags();
             <Meta property="twitter:title" :content="title"></Meta>
             <Meta property="twitter:description" :content="description"></Meta>
             <Meta property="twitter:image" :content="metaTagImage"></Meta>
+            <Meta
+                name="google-site-verification"
+                content="-3jSETOy5E1m3-_MW6m3l7Gopkubs1S8l6BfgJG9E7k"
+            />
         </Head>
     </div>
 </template>
