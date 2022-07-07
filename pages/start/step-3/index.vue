@@ -7,6 +7,6 @@
 import StepThree from "~/components/StepThree";
 
 definePageMeta({
-    layout: "prereg",
+    layout: "pre-reg-v2",
 });
 </script>

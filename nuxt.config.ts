@@ -1,14 +1,16 @@
 import { defineNuxtConfig } from "nuxt";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    publicRuntimeConfig: {
-        primaryApiBaseUrl: process.env.PRIMARY_API_BASE_URL || "",
-        primaryApiApiKey: process.env.PRIMARY_API_API_KEY || "",
-        algoliaPreRegIndex: process.env.ALGOLIA_PREREG_INDEX || "",
-        algoliaUsersIndex: process.env.ALGOLIA_USERS_INDEX || "",
-        SENTRY_DSN:
-            process.env.SENTRY_DSN ||
-            "https://9a19e8c0c8194d1382d194e272cfc203@o956177.ingest.sentry.io/6538790",
+    runtimeConfig: {
+        public: {
+            primaryApiBaseUrl: process.env.PRIMARY_API_BASE_URL || "",
+            primaryApiApiKey: process.env.PRIMARY_API_API_KEY || "",
+            algoliaPreRegIndex: process.env.ALGOLIA_PREREG_INDEX || "",
+            algoliaUsersIndex: process.env.ALGOLIA_USERS_INDEX || "",
+            SENTRY_DSN:
+                process.env.SENTRY_DSN ||
+                "https://9a19e8c0c8194d1382d194e272cfc203@o956177.ingest.sentry.io/6538790",
+        },
     },
     ssr: true,
     app: {

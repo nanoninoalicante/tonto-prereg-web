@@ -1,18 +1,18 @@
 <template>
     <PrimaryPageHolder>
         <PrimarySection class="hidden md:block">
-            <FullPageWalkThrough>Player</FullPageWalkThrough>
+            <FullPageWalkThrough>player</FullPageWalkThrough>
         </PrimarySection>
 
         <section
-            class="hidden md:block md:fixed top-0 right-0 w-1/2 items-left flex min-h-screen flex-col justify-start"
+            class="items-left top-0 right-0 flex hidden min-h-screen w-1/2 flex-col justify-start md:fixed md:block"
         >
             <div class="flex flex-col px-4 lg:px-24">
                 <div class="flex px-6 pt-8">
                     <PrimaryLogoHolder />
                 </div>
                 <div class="flex py-4 px-6">
-                  <ChooseHandleForm />
+                    <ChooseHandleForm />
                 </div>
             </div>
         </section>
@@ -43,6 +43,6 @@ import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
 
 definePageMeta({
-    layout: "preregv2",
+    layout: "pre-reg-v2",
 });
 </script>
