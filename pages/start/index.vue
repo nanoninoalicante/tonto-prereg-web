@@ -1,7 +1,7 @@
 <template>
     <PrimaryPageHolder>
         <PrimarySection class="hidden md:block">
-            <GlobalPlayer></GlobalPlayer>
+<!--            <GlobalPlayer></GlobalPlayer>-->
         </PrimarySection>
 
         <section
