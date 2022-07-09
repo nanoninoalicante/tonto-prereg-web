@@ -41,7 +41,12 @@ import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
+import { usePostStore } from "../../stores/posts";
 
+const postId = "62c8cc735ce5bc000f58c7ea";
+const postStore = usePostStore();
+const { data } = useAsyncData("post", () => postStore.fetchPost(postId));
+console.log("data: ", data);
 definePageMeta({
     layout: "pre-reg-v2",
 });

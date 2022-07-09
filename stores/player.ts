@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
-import { useAudioComposable } from "../composables/audioComposable";
+import { acceptHMRUpdate, defineStore } from "pinia";
+import { useAudioComposable } from "~/composables/audioComposable";
 const { calculateTimeInReadable } = useAudioComposable();
-export const usePlayerStore = defineStore("player", {
+export const usePlayerStore = defineStore("player-store", {
     state: () => {
         return {
             currentPost: null,
@@ -24,3 +24,6 @@ export const usePlayerStore = defineStore("player", {
     },
     actions: {},
 });
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(usePlayerStore, import.meta.hot));
+}

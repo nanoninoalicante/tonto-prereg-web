@@ -47,6 +47,7 @@ const timeUpdated = () => {
     );
 };
 
+
 const loadHlsAudio = async ({ streamingUrl }) => {
     if (Hls.isSupported()) {
         const hls = new Hls();

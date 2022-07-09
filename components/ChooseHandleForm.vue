@@ -7,6 +7,9 @@
                 {{ description }}
             </h1>
         </div>
+      <div class="w-full">
+        <GlobalPlayer></GlobalPlayer>
+      </div>
         <div class="">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
@@ -82,6 +85,7 @@ import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
+import GlobalPlayer from "./Player/GlobalPlayer";
 const { getContent } = useContent();
 const { description } = useMetaTags();
 
