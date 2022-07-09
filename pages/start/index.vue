@@ -4,7 +4,7 @@
         <!--            <GlobalPlayer></GlobalPlayer>-->
         <!--        </PrimarySection>-->
 
-        <PrimarySection class="hidden md:block bg-[url('/socialNetwork.png')]">
+        <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
         </PrimarySection>
 
@@ -27,10 +27,7 @@
                         >
                             what is Tonto
                         </h1>
-
-                        <template v-slot:player>
-                            <GlobalPlayer></GlobalPlayer> </template
-                    ></ChooseHandleForm>
+                    </ChooseHandleForm>
                 </div>
             </div>
         </section>
@@ -51,7 +48,7 @@
                     <GlobalPlayer></GlobalPlayer> </template
             ></ChooseHandleForm>
         </PrimarySection>
-        <PrimarySection class="block md:hidden bg-[url('/socialNetwork.png')]">
+        <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
         </PrimarySection>
         <PrimarySection class="bg-[url('/onlyAudios.png')]">
@@ -87,6 +84,11 @@ import FullPageWalkThrough from "~/components/FullPageWalkThrough";
 import GlobalPlayer from "~/components/Player/GlobalPlayer";
 import { usePostStore } from "../../stores/posts";
 import { useMetaTags } from "../../composables/metatags";
+
+import { useMediaQuery } from "@vueuse/core";
+
+const isMobileScreen = useMediaQuery("(min-width: 0px)");
+const isMedScreen = useMediaQuery("(min-width: 481px)");
 
 const { description } = useMetaTags();
 
