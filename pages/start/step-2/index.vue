@@ -1,5 +1,5 @@
 <template>
-    <PrimaryPageHolder>
+    <PrimaryPageHolder class="flex-wrap">
         <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
         </PrimarySection>

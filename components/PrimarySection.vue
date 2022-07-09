@@ -12,7 +12,7 @@ import PrimaryLogoHolder from "~/components/PrimaryLogoHolder";
             ></ArrowDownIconV2>
         </div>
         <div class="flex flex-col w-full md:items-center md:justify-center min-h-full">
-            <div class="block md:hidden flex px-6 pt-8">
+            <div class="block flex px-6 pt-8">
                 <PrimaryLogoHolder />
             </div>
             <div class="flex py-4 px-4">

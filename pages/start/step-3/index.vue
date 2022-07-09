@@ -1,5 +1,5 @@
 <template>
-    <PrimaryPageHolder>
+    <PrimaryPageHolder class="flex-wrap">
         <PrimarySection class="bg-[url('/freeSpeech.png')]">
             <FullPageWalkThrough>FREE SPEECH</FullPageWalkThrough>
         </PrimarySection>

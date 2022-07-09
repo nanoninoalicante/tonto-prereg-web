@@ -121,7 +121,7 @@ onMounted(() => {
         loadHlsAudio({ streamingUrl: postStore.getPost?.streamingUrl });
     } else {
         console.log("cannot load player");
-        alertsStore.addAlert({ message: "Cannot load audio", type: "error" });
+        // alertsStore.addAlert({ message: "Cannot load audio", type: "error" });
     }
 });
 </script>
