@@ -1,7 +1,7 @@
 <template>
     <PrimaryPageHolder class="flex-wrap">
-        <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
-            <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
+        <PrimarySection class="hidden bg-[url('/noLimits.png')] md:block">
+            <FullPageWalkThrough>NO LIMITS</FullPageWalkThrough>
         </PrimarySection>
         <PrimarySection>
             <StepTwo />

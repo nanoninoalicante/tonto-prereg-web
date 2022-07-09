@@ -6,12 +6,12 @@ import PrimaryLogoHolder from "~/components/PrimaryLogoHolder";
     <section
         class="items-left relative flex min-h-screen overflow-x-hidden w-full snap-start flex-col justify-start bg-cover px-4 py-4 md:w-1/2"
     >
-        <div class="hidden md:block absolute left-1/2 top-0 my-8 -ml-6 flex">
+        <div class="hidden md:block fixed left-1/4 top-0 my-8 -ml-6 flex">
             <ArrowDownIconV2
-                class="h-12 w-12 animate-pulse fill-white opacity-75"
+                class="-scale-y-100 h-12 w-12 animate-pulse fill-white opacity-75"
             ></ArrowDownIconV2>
         </div>
-        <div class="flex flex-col w-full md:items-center md:justify-center min-h-full">
+        <div class="flex flex-col w-full">
             <div class="block flex px-6 pt-8">
                 <PrimaryLogoHolder />
             </div>
