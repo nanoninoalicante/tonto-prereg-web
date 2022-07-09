@@ -1,17 +1,18 @@
 <template>
-    <div class="alerts">
-        <teleport to="body">
-            <section v-if="filteredAlerts.length > 0" class="fixed bottom-0 left-0 z-9 w-full py-4">
-                <div v-auto-animate class="container mx-auto px-8">
-                    <Alert
-                        v-for="alert in filteredAlerts"
-                        :key="alert.id"
-                        :alert="alert"
-                    />
-                </div>
-            </section>
-        </teleport>
-    </div>
+    <teleport to="body">
+        <section
+            v-if="filteredAlerts.length > 0"
+            class="fixed bottom-0 left-0 z-[100] w-full py-4"
+        >
+            <div v-auto-animate class="container mx-auto px-8">
+                <Alert
+                    v-for="alert in filteredAlerts"
+                    :key="alert.id"
+                    :alert="alert"
+                />
+            </div>
+        </section>
+    </teleport>
 </template>
 <script setup>
 import { useAlerts } from "~/composables/alerts";

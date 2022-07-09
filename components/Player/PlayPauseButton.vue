@@ -21,12 +21,14 @@ const pause = () => {
 };
 </script>
 <template>
-    <div class="cursor-pointer flex justify-center bg-teal-600 p-4 text-white rounded-full">
+    <div
+        class="flex cursor-pointer justify-center rounded-full bg-teal-600 p-4 text-white hover:bg-teal-500 active:bg-teal-700"
+    >
         <PlayIcon
             v-if="!playerStore.playing"
             @click="play"
-            class="w-12 h-12"
+            class="h-16 w-16"
         ></PlayIcon>
-        <PauseIcon v-else @click="pause" class="w-12 h-12"></PauseIcon>
+        <PauseIcon v-else @click="pause" class="h-12 w-12"></PauseIcon>
     </div>
 </template>

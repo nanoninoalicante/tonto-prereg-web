@@ -1,16 +1,12 @@
 <template>
-    <div class="">
-        <div class="mb-8 w-full">
-            <h1
-                class="text-left text-2xl font-medium tracking-tighter text-white"
-            >
-                {{ description }}
-            </h1>
+    <div class="w-full">
+        <div class="w-full">
+            <slot></slot>
         </div>
-      <div class="w-full">
-        <GlobalPlayer></GlobalPlayer>
-      </div>
-        <div class="">
+        <div class="block w-full md:hidden">
+            <GlobalPlayer></GlobalPlayer>
+        </div>
+        <div class="md:mt-4">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
@@ -62,7 +58,7 @@
                 ></SuccessInputMessage>
             </div>
 
-            <div v-auto-animate class="buttons mt-8 space-x-2">
+            <div v-auto-animate class="buttons mt-4 space-x-2">
                 <PrimaryButton
                     :disabled="formIsInvalid || !v$.newHandles.$dirty"
                     @click.once="reserveThisHandle"

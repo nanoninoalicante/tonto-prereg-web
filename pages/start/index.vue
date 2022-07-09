@@ -1,7 +1,7 @@
 <template>
     <PrimaryPageHolder>
         <PrimarySection class="hidden md:block">
-            <FullPageWalkThrough>player</FullPageWalkThrough>
+            <GlobalPlayer></GlobalPlayer>
         </PrimarySection>
 
         <section
@@ -12,12 +12,34 @@
                     <PrimaryLogoHolder />
                 </div>
                 <div class="flex py-4 px-6">
-                    <ChooseHandleForm />
+                    <ChooseHandleForm
+                        ><h1
+                            class="text-left text-3xl font-medium tracking-tighter text-white"
+                        >
+                            Play to know
+                        </h1>
+                        <h1
+                            class="text-left text-4xl font-bold tracking-tighter text-white"
+                        >
+                            what is Tonto
+                        </h1></ChooseHandleForm
+                    >
                 </div>
             </div>
         </section>
         <PrimarySection class="block md:hidden">
-            <ChooseHandleForm />
+            <ChooseHandleForm
+                ><h1
+                    class="text-left text-2xl font-medium tracking-tighter text-white"
+                >
+                    Play to know
+                </h1>
+                <h1
+                    class="text-left text-3xl font-bold tracking-tighter text-white"
+                >
+                    what is Tonto
+                </h1></ChooseHandleForm
+            >
         </PrimarySection>
         <PrimarySection class="bg-[url('/socialNetwork.png')]">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
@@ -32,7 +54,18 @@
             <FullPageWalkThrough>NO LIMITS</FullPageWalkThrough>
         </PrimarySection>
         <PrimarySection class="block md:hidden">
-            <ChooseHandleForm />
+            <ChooseHandleForm
+                ><h1
+                    class="text-left text-5xl font-medium tracking-tighter text-white"
+                >
+                    PRE REGISTER
+                </h1>
+                <h1
+                    class="text-left text-6xl font-bold tracking-tighter text-white"
+                >
+                    NOW
+                </h1></ChooseHandleForm
+            >
         </PrimarySection>
     </PrimaryPageHolder>
 </template>
@@ -41,6 +74,7 @@ import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
+import GlobalPlayer from "~/components/FullPageWalkThrough";
 import { usePostStore } from "../../stores/posts";
 
 const postId = "62c8cc735ce5bc000f58c7ea";

@@ -24,17 +24,15 @@ const skip = () => {
 </script>
 <template>
 <!--    <teleport to="body">-->
-        <div class="w-full mb-4">
+        <div class="w-full mb-4 mx-0">
             <div
                 class="
                     py-2
-                    px-2
-                    mx-auto
+                    px-0
+                    mx-0
                     w-full
                     md:w-4/5
                     lg:w-[500px]
-                    bg-white bg-opacity-0
-                    backdrop-blur-lg
                     max-w-6xl
                     rounded-2xl
                     shadow-3xl

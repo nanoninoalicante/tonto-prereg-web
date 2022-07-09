@@ -31,7 +31,7 @@ watch(offline, (newVal) => {
 </script>
 
 <template>
-    <div class="">
+    <div class="min-h-screen">
         <FullPageLoading></FullPageLoading>
         <Modal></Modal>
         <slot />

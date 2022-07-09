@@ -47,13 +47,15 @@ const timeUpdated = () => {
     );
 };
 
-
 const loadHlsAudio = async ({ streamingUrl }) => {
     if (Hls.isSupported()) {
         const hls = new Hls();
         console.log("hls is supported: ", streamingUrl);
         hls.loadSource(streamingUrl);
         hls.attachMedia(audioRef.value);
+    } else {
+        console.log("hls not required");
+        audioRef.value.setAttribute("src", streamingUrl);
     }
     return Promise.resolve("loadHlsAudio");
 };
