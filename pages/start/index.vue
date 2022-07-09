@@ -1,7 +1,11 @@
 <template>
     <PrimaryPageHolder>
-        <PrimarySection class="hidden md:block">
-<!--            <GlobalPlayer></GlobalPlayer>-->
+        <!--        <PrimarySection class="hidden md:block">-->
+        <!--            <GlobalPlayer></GlobalPlayer>-->
+        <!--        </PrimarySection>-->
+
+        <PrimarySection class="hidden md:block bg-[url('/socialNetwork.png')]">
+            <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
         </PrimarySection>
 
         <section
@@ -14,11 +18,19 @@
                 <div class="flex py-4 px-6">
                     <ChooseHandleForm>
                         <h1
-                            class="text-left text-2xl tracking-tighter text-white"
+                            class="text-left text-2xl font-medium tracking-tighter text-white"
                         >
-                            {{ description }}
-                        </h1></ChooseHandleForm
-                    >
+                            Play to know
+                        </h1>
+                        <h1
+                            class="text-left text-3xl font-bold tracking-tighter text-white"
+                        >
+                            what is Tonto
+                        </h1>
+
+                        <template v-slot:player>
+                            <GlobalPlayer></GlobalPlayer> </template
+                    ></ChooseHandleForm>
                 </div>
             </div>
         </section>
@@ -39,7 +51,7 @@
                     <GlobalPlayer></GlobalPlayer> </template
             ></ChooseHandleForm>
         </PrimarySection>
-        <PrimarySection class="bg-[url('/socialNetwork.png')]">
+        <PrimarySection class="block md:hidden bg-[url('/socialNetwork.png')]">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
         </PrimarySection>
         <PrimarySection class="bg-[url('/onlyAudios.png')]">

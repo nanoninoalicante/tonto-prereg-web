@@ -58,7 +58,7 @@ const change = () => {
             :style="seekerToolTipPositionStyle"
             class="
                 absolute
-                z-10
+                z-[30]
                 px-4
                 py-2
                 bg-teal-700
