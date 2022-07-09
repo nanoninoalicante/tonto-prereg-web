@@ -4,9 +4,9 @@
             <slot></slot>
         </div>
         <div class="block w-full md:hidden">
-            <GlobalPlayer></GlobalPlayer>
+            <slot name="player"></slot>
         </div>
-        <div class="md:mt-4">
+        <div class="mt-2 md:mt-4">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"

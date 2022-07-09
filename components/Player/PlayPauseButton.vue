@@ -29,6 +29,6 @@ const pause = () => {
             @click="play"
             class="h-16 w-16"
         ></PlayIcon>
-        <PauseIcon v-else @click="pause" class="h-12 w-12"></PauseIcon>
+        <PauseIcon v-else @click="pause" class="h-16 w-16"></PauseIcon>
     </div>
 </template>

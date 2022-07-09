@@ -12,16 +12,11 @@
                     <PrimaryLogoHolder />
                 </div>
                 <div class="flex py-4 px-6">
-                    <ChooseHandleForm
-                        ><h1
-                            class="text-left text-3xl font-medium tracking-tighter text-white"
-                        >
-                            Play to know
-                        </h1>
+                    <ChooseHandleForm>
                         <h1
-                            class="text-left text-4xl font-bold tracking-tighter text-white"
+                            class="text-left text-2xl tracking-tighter text-white"
                         >
-                            what is Tonto
+                            {{ description }}
                         </h1></ChooseHandleForm
                     >
                 </div>
@@ -38,8 +33,11 @@
                     class="text-left text-3xl font-bold tracking-tighter text-white"
                 >
                     what is Tonto
-                </h1></ChooseHandleForm
-            >
+                </h1>
+
+                <template v-slot:player>
+                    <GlobalPlayer></GlobalPlayer> </template
+            ></ChooseHandleForm>
         </PrimarySection>
         <PrimarySection class="bg-[url('/socialNetwork.png')]">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
@@ -74,8 +72,11 @@ import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
-import GlobalPlayer from "~/components/FullPageWalkThrough";
+import GlobalPlayer from "~/components/Player/GlobalPlayer";
 import { usePostStore } from "../../stores/posts";
+import { useMetaTags } from "../../composables/metatags";
+
+const { description } = useMetaTags();
 
 const postId = "62c8cc735ce5bc000f58c7ea";
 const postStore = usePostStore();
