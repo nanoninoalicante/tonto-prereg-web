@@ -184,7 +184,7 @@ ON MOUNTED
 
 onMounted(async () => {
     console.log("prereg data: ", preregData.value.newHandles);
-    handleInputRef.value.focus();
+    // handleInputRef.value.focus();
     if (preregData.value.newHandles && preregData.value.newHandles.length > 1) {
         await v$.value.newHandles.$validate();
     } else {
