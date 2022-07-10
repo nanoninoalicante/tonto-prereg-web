@@ -3,7 +3,7 @@
         <div class="w-full">
             <slot></slot>
         </div>
-        <div class="block w-full md:hidden">
+        <div class="block w-full">
             <slot name="player"></slot>
         </div>
         <div class="mt-2 md:mt-4">

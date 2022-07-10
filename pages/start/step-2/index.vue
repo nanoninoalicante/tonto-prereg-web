@@ -1,21 +1,9 @@
 <template>
-    <PrimaryPageHolder class="flex-wrap">
-        <PrimarySection class="hidden bg-[url('/noLimits.png')] md:block">
-            <FullPageWalkThrough>NO LIMITS</FullPageWalkThrough>
-        </PrimarySection>
-        <PrimarySection>
-            <StepTwo />
-        </PrimarySection>
-    </PrimaryPageHolder>
+    <StepTwo />
 </template>
 <script setup>
 import StepTwo from "~/components/StepTwo";
-import FullPageWalkThrough from "~/components/FullPageWalkThrough";
-
-import PrimarySection from "~/components/PrimarySection";
-import PrimaryPageHolder from "~/components/PrimaryPageHolder";
-
 definePageMeta({
-    layout: "pre-reg-v2",
+    layout: "pre-reg-v3",
 });
 </script>
