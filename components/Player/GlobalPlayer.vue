@@ -5,7 +5,6 @@ import SkipForwardIcon from "~/components/icons/SkipForwardIcon";
 import SkipBackIcon from "~/components/icons/SkipBackIcon";
 import { vAutoAnimate } from "~/directives/directives";
 import { usePlayerStore } from "~/stores/player";
-import AudioPlayerHolder from "./AudioPlayerHolder";
 import BackSkipButton from "./BackSkipButton";
 import TimeDisplay from "./TimeDisplay";
 import { useEventBus } from "@vueuse/core";
@@ -23,101 +22,49 @@ const skip = () => {
 };
 </script>
 <template>
-<!--    <teleport to="body">-->
-        <div class="w-full mb-4 mx-0">
+    <!--    <teleport to="body">-->
+    <div class="w-full mb-4 mx-0">
+        <div
+            class="py-2 px-0 mx-0 w-full md:w-4/5 lg:w-[500px] max-w-6xl rounded-2xl shadow-3xl"
+        >
             <div
-                class="
-                    py-2
-                    px-0
-                    mx-0
-                    w-full
-                    md:w-4/5
-                    lg:w-[500px]
-                    max-w-6xl
-                    rounded-2xl
-                    shadow-3xl
-                "
+                class="flex flex-col justify-center items-center w-full py-4 px-2"
             >
-                <div class="flex flex-col justify-center items-center w-full py-4 px-2">
-                    <AudioPlayerHolder />
+                <div
+                    class="flex flex-row justify-center items-center w-full mb-2"
+                    v-auto-animate
+                >
+                    <div class="flex w-1/4 justify-center w-full mb-0 md:mb-0">
+                        <BackSkipButton @click="back">
+                            <SkipBackIcon></SkipBackIcon>
+                        </BackSkipButton>
+                    </div>
+                    <div class="flex w-1/5 justify-start w-full mb-0 md:mb-0">
+                        <TimeDisplay
+                            >{{ playerStore.getCurrentTime }}
+                        </TimeDisplay>
+                    </div>
+                    <div class="flex w-1/5 justify-center w-full mb-0 md:mb-0">
+                        <PlayPauseButton />
+                    </div>
                     <div
-                        class="
-                            flex flex-row
-                            justify-center
-                            items-center
-                            w-full
-                            mb-2
-                        "
-                        v-auto-animate
+                        class="flex w-1/5 justify-start pl-5 w-full mb-0 md:mb-0"
                     >
-                        <div
-                            class="
-                                flex
-                                w-1/4
-                                justify-center
-                                w-full
-                                mb-0
-                                md:mb-0
-                            "
-                        >
-                            <BackSkipButton @click="back">
-                                <SkipBackIcon></SkipBackIcon>
-                            </BackSkipButton>
-                        </div>
-                        <div
-                            class="flex w-1/5 justify-start w-full mb-0 md:mb-0"
-                        >
-                            <TimeDisplay
-                                >{{ playerStore.getCurrentTime }}
-                            </TimeDisplay>
-                        </div>
-                        <div
-                            class="
-                                flex
-                                w-1/5
-                                justify-center
-                                w-full
-                                mb-0
-                                md:mb-0
-                            "
-                        >
-                            <PlayPauseButton />
-                        </div>
-                        <div
-                            class="
-                                flex
-                                w-1/5
-                                justify-start
-                                pl-5
-                                w-full
-                                mb-0
-                                md:mb-0
-                            "
-                        >
-                            <TimeDisplay
-                                >{{ playerStore.getTotalDuration }}
-                            </TimeDisplay>
-                        </div>
-                        <div
-                            class="
-                                flex
-                                w-1/5
-                                justify-center
-                                w-full
-                                mb-0
-                                md:mb-0
-                            "
-                        >
-                            <BackSkipButton @click="skip">
-                                <SkipForwardIcon></SkipForwardIcon>
-                            </BackSkipButton>
-                        </div>
+                        <TimeDisplay
+                            >{{ playerStore.getTotalDuration }}
+                        </TimeDisplay>
                     </div>
-                    <div class="w-full">
-                        <PlayerSeeker />
+                    <div class="flex w-1/5 justify-center w-full mb-0 md:mb-0">
+                        <BackSkipButton @click="skip">
+                            <SkipForwardIcon></SkipForwardIcon>
+                        </BackSkipButton>
                     </div>
+                </div>
+                <div class="w-full">
+                    <PlayerSeeker />
                 </div>
             </div>
         </div>
-<!--    </teleport>-->
+    </div>
+    <!--    </teleport>-->
 </template>

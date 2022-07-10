@@ -95,7 +95,7 @@ const indices = [
     runtimeConfig.public?.algoliaPreRegIndex,
     runtimeConfig.public?.algoliaUsersIndex,
 ];
-const algolia = useAlgolia();
+const algolia = useAlgoliaRef();
 const handleInputRef = ref(null);
 const formInputLoading = ref(true);
 

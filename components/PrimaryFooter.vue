@@ -1,6 +1,6 @@
 <template>
     <div>
-        <teleport to="body">
+        <teleport to="body" :disabled="true">
             <footer
                 class="footer fixed bottom-0 right-0 z-10 w-full rounded-t-xl bg-teal-600 bg-opacity-40 p-1 backdrop-blur-md"
             >

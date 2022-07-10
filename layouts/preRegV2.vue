@@ -2,6 +2,7 @@
 import Modal from "~/components/Modal";
 import Cookies from "~/components/Cookies.vue";
 import Alerts from "~/components/Alerts.vue";
+import AudioPlayerHolder from "~/components/Player/AudioPlayerHolder";
 import FullPageLoading from "~/components/FullPageLoading";
 import { watch } from "vue";
 import { useAlerts } from "~/composables/alerts";
@@ -36,6 +37,7 @@ watch(offline, (newVal) => {
         <Modal></Modal>
         <slot />
 
+        <AudioPlayerHolder></AudioPlayerHolder>
         <PrimaryFooter />
         <Alerts></Alerts>
         <Cookies></Cookies>

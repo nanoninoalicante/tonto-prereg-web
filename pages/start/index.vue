@@ -45,7 +45,9 @@
                 </h1>
 
                 <template v-slot:player>
-                    <GlobalPlayer></GlobalPlayer> </template
+                    <GlobalPlayer></GlobalPlayer>
+                    <GlobalPlayer></GlobalPlayer>
+                </template
             ></ChooseHandleForm>
         </PrimarySection>
         <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
