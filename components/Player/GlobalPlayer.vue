@@ -25,7 +25,7 @@ const skip = () => {
     <!--    <teleport to="body">-->
     <div class="w-full mb-4 mx-0">
         <div
-            class="py-2 px-0 mx-0 w-full md:w-4/5 lg:w-[500px] max-w-6xl rounded-2xl shadow-3xl"
+            class="py-2 px-0 mx-0 w-full md:w-full lg:w-[500px] max-w-6xl rounded-2xl shadow-3xl"
         >
             <div
                 class="flex flex-col justify-center items-center w-full py-4 px-2"

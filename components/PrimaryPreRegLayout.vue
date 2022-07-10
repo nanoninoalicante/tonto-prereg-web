@@ -2,22 +2,29 @@
     <PrimaryPageHolder>
         <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
+            <PageArrowHolder />
         </PrimarySection>
 
         <PrimarySection class="block md:fixed md:right-0 md:top-0">
             <slot></slot>
+            <PageArrowHolder />
         </PrimarySection>
         <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
             <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
+
+            <PageArrowHolder />
         </PrimarySection>
         <PrimarySection class="bg-[url('/onlyAudios.png')]">
             <FullPageWalkThrough>ONLY AUDIOS</FullPageWalkThrough>
+            <PageArrowHolder />
         </PrimarySection>
         <PrimarySection class="bg-[url('/freeSpeech.png')]">
             <FullPageWalkThrough>FREE SPEECH</FullPageWalkThrough>
+            <PageArrowHolder />
         </PrimarySection>
         <PrimarySection class="bg-[url('/noLimits.png')]">
             <FullPageWalkThrough>NO LIMITS</FullPageWalkThrough>
+            <PageArrowHolder />
         </PrimarySection>
         <PrimarySection class="block md:hidden">
             <ChooseHandleForm
@@ -40,6 +47,6 @@ import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
-import GlobalPlayer from "~/components/Player/GlobalPlayer";
-
+import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
+import PageArrowHolder from "./PageArrowHolder";
 </script>

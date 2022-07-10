@@ -39,13 +39,6 @@ watch(offline, (newVal) => {
         <Modal></Modal>
         <PrimaryPreRegLayout><slot /></PrimaryPreRegLayout>
 
-        <div
-            class="fixed left-1/2 md:left-1/4 bottom-0 my-8 -ml-6 flex"
-        >
-            <ArrowDownIconV2
-                class="scale-y-100 h-12 w-12 animate-pulse fill-white opacity-75"
-            ></ArrowDownIconV2>
-        </div>
         <AudioPlayerHolder></AudioPlayerHolder>
         <PrimaryFooter />
         <Alerts></Alerts>
