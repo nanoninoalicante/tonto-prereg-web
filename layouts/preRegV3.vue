@@ -4,6 +4,7 @@ import Cookies from "~/components/Cookies.vue";
 import Alerts from "~/components/Alerts.vue";
 import AudioPlayerHolder from "~/components/Player/AudioPlayerHolder";
 import FullPageLoading from "~/components/FullPageLoading";
+import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
 import PrimaryPreRegLayout from "~/components/PrimaryPreRegLayout";
 import { watch } from "vue";
 import { useAlerts } from "~/composables/alerts";
@@ -38,6 +39,13 @@ watch(offline, (newVal) => {
         <Modal></Modal>
         <PrimaryPreRegLayout><slot /></PrimaryPreRegLayout>
 
+        <div
+            class="fixed left-1/2 md:left-1/4 bottom-0 my-8 -ml-6 flex"
+        >
+            <ArrowDownIconV2
+                class="scale-y-100 h-12 w-12 animate-pulse fill-white opacity-75"
+            ></ArrowDownIconV2>
+        </div>
         <AudioPlayerHolder></AudioPlayerHolder>
         <PrimaryFooter />
         <Alerts></Alerts>
