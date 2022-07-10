@@ -22,7 +22,8 @@ import autoAnimate from "@formkit/auto-animate";
 
 const { alerts } = useAlerts();
 const filteredAlerts = computed(() => {
-    return useUniqBy(alerts.value, (a) => a.id);
+  return alerts.value;
+    // return useUniqBy(alerts.value, (a) => a.id);
 });
 
 /*

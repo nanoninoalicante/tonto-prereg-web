@@ -1,7 +1,10 @@
 import { defineNuxtConfig } from "nuxt";
 import { resolve } from "path";
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    ssr: true,
+    modules: ["@nuxtjs/tailwindcss", "@vueuse/nuxt", "@nuxtjs/algolia"],
     runtimeConfig: {
         public: {
             primaryApiBaseUrl: process.env.PRIMARY_API_BASE_URL || "",
@@ -16,18 +19,10 @@ export default defineNuxtConfig({
                 "https://9a19e8c0c8194d1382d194e272cfc203@o956177.ingest.sentry.io/6538790",
         },
     },
-    ssr: true,
-    buildModules: ["@pinia/nuxt"],
-    modules: [
-        "@pinia/nuxt",
-        "@nuxtjs/tailwindcss",
-        "@nuxtjs/algolia",
-        "@vueuse/nuxt",
-        "nuxt-lodash",
-    ],
     alias: {
         "~": resolve(__dirname, "./"),
     },
+    buildModules: ["@pinia/nuxt"],
     build: {
         transpile: ["@heroicons/vue"],
     },
