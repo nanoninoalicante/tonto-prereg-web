@@ -1,7 +1,7 @@
 <template>
     <PrimaryPageHolder>
         <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
-            <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
+            <FullPageWalkThrough>THE SOCIAL NET</FullPageWalkThrough>
             <PageArrowHolder />
         </PrimarySection>
 

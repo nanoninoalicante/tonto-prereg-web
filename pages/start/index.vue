@@ -1,10 +1,10 @@
 <template>
     <ChooseHandleForm
         ><h1 class="text-left text-2xl font-medium tracking-tighter text-white">
-            Play to know
+            Coming soon! Pre-register for early access
         </h1>
         <h1 class="text-left text-3xl font-bold tracking-tighter text-white">
-            what is Tonto
+            Now we're talkin
         </h1>
 
         <template v-slot:player> <GlobalPlayer></GlobalPlayer> </template

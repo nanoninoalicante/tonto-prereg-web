@@ -10,7 +10,7 @@
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
                 for="handle"
-                >{{ chooseYourHandleLabel || "Choose your new Handle" }}</label
+                >{{ "Choose your new Tonto Handle" }}</label
             >
             <div
                 class="relative mb-2 flex w-full items-center text-gray-600 focus-within:text-gray-800"
@@ -63,7 +63,7 @@
                     :disabled="formIsInvalid || !v$.newHandles.$dirty"
                     @click.once="reserveThisHandle"
                 >
-                    Reserve this Handle
+                    Reserve this username
                 </PrimaryButton>
             </div>
         </div>
