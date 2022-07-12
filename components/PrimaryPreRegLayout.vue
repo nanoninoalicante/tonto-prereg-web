@@ -10,7 +10,7 @@
             <PageArrowHolder class="block md:hidden" />
         </PrimarySection>
         <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
-            <FullPageWalkThrough>NEW SOCIAL NET</FullPageWalkThrough>
+            <FullPageWalkThrough>THE SOCIAL NET</FullPageWalkThrough>
 
             <PageArrowHolder />
         </PrimarySection>
