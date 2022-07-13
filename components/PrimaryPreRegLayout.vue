@@ -1,7 +1,7 @@
 <template>
     <PrimaryPageHolder>
         <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
-            <FullPageWalkThrough>THE NEW SOCIAL</FullPageWalkThrough>
+            <FullPageWalkThrough>AUDIO SOCIAL</FullPageWalkThrough>
             <PageArrowHolder />
         </PrimarySection>
 
@@ -10,7 +10,7 @@
             <PageArrowHolder class="block md:hidden" />
         </PrimarySection>
         <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
-            <FullPageWalkThrough>THE NEW SOCIAL</FullPageWalkThrough>
+            <FullPageWalkThrough>AUDIO SOCIAL</FullPageWalkThrough>
 
             <PageArrowHolder />
         </PrimarySection>
