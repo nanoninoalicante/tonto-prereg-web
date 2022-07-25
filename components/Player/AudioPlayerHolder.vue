@@ -6,11 +6,11 @@ import { onMounted, ref, watch } from "vue";
 import Hls from "hls.js";
 import { usePlayerStore } from "~/stores/player";
 import { useAudioComposable } from "~/composables/audioComposable";
-const { convertSeekTimeToAudioTime, convertAudioTimeToSeekTime } =
-    useAudioComposable();
 import { useEventBus } from "@vueuse/core";
 import { usePostStore } from "~/stores/posts";
 import { useAlerts } from "~/composables/alerts";
+const { convertSeekTimeToAudioTime, convertAudioTimeToSeekTime } =
+    useAudioComposable();
 
 /*
 Store

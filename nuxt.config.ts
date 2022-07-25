@@ -9,8 +9,8 @@ export default defineNuxtConfig({
         public: {
             primaryApiBaseUrl: process.env.PRIMARY_API_BASE_URL || "",
             primaryApiApiKey: process.env.PRIMARY_API_API_KEY || "",
-            algoliaPreRegIndex: process.env.ALGOLIA_PREREG_INDEX || "",
-            algoliaUsersIndex: process.env.ALGOLIA_USERS_INDEX || "",
+            algoliaPreRegIndex: process.env.ALGOLIA_PREREG_INDEX || "prod_preregisteredusers",
+            algoliaUsersIndex: process.env.ALGOLIA_USERS_INDEX || "prod_users",
             FEED_API_BASE_URL:
                 process.env.FEED_API_BASE_URL ||
                 "https://tonto-webfeed-api-prod-mar2022-us-ij73avvvcq-uk.a.run.app/",
@@ -29,8 +29,8 @@ export default defineNuxtConfig({
     algolia: {
         instantSearch: true,
         lite: true,
-        applicationId: process.env.ALGOLIA_APP_ID || "3C6JFEHDRS",
+        applicationId: process.env.ALGOLIA_APP_ID || "PKOSWN2NGY",
         apiKey:
-            process.env.ALGOLIA_API_KEY || "338eb9bfb8821edcd55371fc1f177495",
+            process.env.ALGOLIA_API_KEY || "d435a1aad098fb58850e965e0719c787",
     },
 });

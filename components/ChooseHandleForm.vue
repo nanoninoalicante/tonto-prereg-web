@@ -81,7 +81,6 @@ import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
-import GlobalPlayer from "./Player/GlobalPlayer";
 const { getContent } = useContent();
 const { description } = useMetaTags();
 
