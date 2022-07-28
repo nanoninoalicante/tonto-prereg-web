@@ -48,7 +48,7 @@ useHead({
 
 <style>
 body {
-    background-color: #109c90;
+    background-color: #ffffff;
 }
 .fade-enter-active,
 .fade-leave-active {
