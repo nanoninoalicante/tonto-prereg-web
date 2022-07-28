@@ -1,6 +1,27 @@
 <script setup>
 import { onMounted } from "vue";
+import { useEventBus } from "@vueuse/core";
+import { useMousePressed } from "@vueuse/core";
+
+/*
+Events
+ */
+const bus = useEventBus("player_playpause_updated");
+
+const { pressed } = useMousePressed();
+watch(pressed, (value) => {
+    console.log("touch; ", value);
+    bus.emit(value);
+});
+
 onMounted(() => {
+    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const LeftScroll =
+        window.pageXOffset || document.documentElement.scrollLeft;
+
+    window.onscroll = function () {
+        window.scrollTo(LeftScroll, TopScroll);
+    };
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     let coord = { x: 0, y: 0 };
@@ -18,8 +39,8 @@ onMounted(() => {
         ctx.canvas.height = window.innerHeight;
     }
     function reposition(event) {
-        coord.x = event.clientX - canvas.offsetLeft;
-        coord.y = event.clientY - canvas.offsetTop;
+        coord.x = event.clientX || event.pageX;
+        coord.y = event.clientY || event.pageY;
     }
     function start(event) {
         document.addEventListener("mousemove", draw);
@@ -52,6 +73,7 @@ onMounted(() => {
         return `hsl(0, 100, 100)`;
     }
     function draw(event) {
+        console.log("drawing ");
         ctx.beginPath();
         ctx.lineWidth = getWidth(currentWidth);
         ctx.lineCap = "round";
@@ -65,11 +87,14 @@ onMounted(() => {
 });
 </script>
 <template>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" class="z-8"></canvas>
 </template>
 <style>
 canvas#canvas {
-    width: 100vw;
-    height: 100vh;
+    overflow: visible;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgb(238, 238, 238);
 }
 </style>

@@ -37,7 +37,7 @@ watch(offline, (newVal) => {
     <div class="min-h-screen">
         <FullPageLoading></FullPageLoading>
         <Modal></Modal>
-        <PrimaryPreRegLayoutV2><slot /></PrimaryPreRegLayoutV2>
+        <slot />
 
         <AudioPlayerHolder></AudioPlayerHolder>
         <PrimaryFooter />

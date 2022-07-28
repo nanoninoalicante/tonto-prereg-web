@@ -19,6 +19,6 @@ const postId = "62c8cc735ce5bc000f58c7ea";
 const postStore = usePostStore();
 const { data } = useAsyncData("post", () => postStore.fetchPost(postId));
 definePageMeta({
-    layout: "pre-reg-v4",
+    layout: "pre-reg-v3",
 });
 </script>
