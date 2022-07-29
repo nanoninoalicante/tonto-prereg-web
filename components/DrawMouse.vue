@@ -22,12 +22,12 @@ watch(pressed, (value) => {
 });
 
 onMounted(() => {
-    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const LeftScroll =
+    const topScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const leftScroll =
         window.pageXOffset || document.documentElement.scrollLeft;
 
     window.onscroll = function () {
-        window.scrollTo(LeftScroll, TopScroll);
+        window.scrollTo(leftScroll, topScroll);
     };
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
