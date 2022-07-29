@@ -2,16 +2,11 @@
 import { onMounted } from "vue";
 import { useEventBus } from "@vueuse/core";
 import { useMousePressed } from "@vueuse/core";
-
+import { useGeneral } from "~/composables/general";
+const { getRandomInt } = useGeneral();
 const colorR = ref(155);
 const colorG = ref(155);
 const colorB = ref(155);
-
-const getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); 
-}
 
 /*
 Events

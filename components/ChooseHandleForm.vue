@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full">
+    <div class="w-full pr-6">
         <div class="w-full">
             <slot></slot>
         </div>
@@ -31,7 +31,7 @@
                     class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
                 ></ExclamationCircleIcon>
                 <input
-                    class="w-full rounded-xl border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                    class="w-full rounded-full border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                     :class="{
                         'border-warning-500': formIsInvalid,
                     }"
