@@ -3,6 +3,16 @@ import { onMounted } from "vue";
 import { useEventBus } from "@vueuse/core";
 import { useMousePressed } from "@vueuse/core";
 
+const colorR = ref(155);
+const colorG = ref(155);
+const colorB = ref(155);
+
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); 
+}
+
 /*
 Events
  */
@@ -10,8 +20,10 @@ const bus = useEventBus("player_playpause_updated");
 
 const { pressed } = useMousePressed();
 watch(pressed, (value) => {
-    console.log("touch; ", value);
     bus.emit(value);
+    colorR.value = getRandomInt(0, 255);
+    colorG.value = getRandomInt(0, 255);
+    colorB.value = getRandomInt(0, 255);
 });
 
 onMounted(() => {
@@ -69,16 +81,16 @@ onMounted(() => {
         }
         return currentWidth;
     }
-    function getColor(currentHue) {
-        return `hsl(0, 100, 100)`;
+    function getColor(r, g , b) {
+        return `rgb(${r}, ${g}, ${b})`;
     }
     function draw(event) {
-        console.log("drawing ");
+        console.log("drawing ", getColor(colorR.value, colorG.value, colorB.value));
         ctx.beginPath();
         ctx.lineWidth = getWidth(currentWidth);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.strokeStyle = "rgb(77, 255, 243)";
+        ctx.strokeStyle = getColor(colorR.value, colorG.value, colorB.value);
         ctx.moveTo(coord.x, coord.y);
         reposition(event);
         ctx.lineTo(coord.x, coord.y);
@@ -87,14 +99,5 @@ onMounted(() => {
 });
 </script>
 <template>
-    <canvas id="canvas" class="z-8"></canvas>
+    <canvas id="canvas" class="z-0 overflow-visible fixed left-0 top-0 bg-gray-50 bg-opacity-40"></canvas>
 </template>
-<style>
-canvas#canvas {
-    overflow: visible;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: rgb(238, 238, 238);
-}
-</style>
