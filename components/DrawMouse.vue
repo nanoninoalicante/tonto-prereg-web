@@ -32,6 +32,7 @@ onMounted(() => {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     let coord = { x: 0, y: 0 };
+    const scale = 2;
 
     document.addEventListener("mousedown", start);
     document.addEventListener("touchstart", start);
@@ -42,12 +43,12 @@ onMounted(() => {
     resize();
 
     function resize() {
-        ctx.canvas.width = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
+        ctx.canvas.width = window.innerWidth * scale;
+        ctx.canvas.height = window.innerHeight * scale;
     }
     function reposition(event) {
-        coord.x = event.clientX || event.pageX;
-        coord.y = event.clientY || event.pageY;
+        coord.x = event.clientX * scale || event.pageX * scale;
+        coord.y = event.clientY * scale || event.pageY * scale;
     }
     function start(event) {
         document.addEventListener("mousemove", draw);
@@ -58,9 +59,9 @@ onMounted(() => {
         document.removeEventListener("mousemove", draw);
         document.removeEventListener("touchmove", draw);
     }
-    let currentWidth = 5;
-    let maxWidth = 50;
-    let minWidth = 4;
+    let currentWidth = 5 * scale;
+    let maxWidth = 50 * scale;
+    let minWidth = 4 * scale;
     let isGoingUp = true;
     function getWidth(current) {
         if (isGoingUp) {
@@ -94,5 +95,5 @@ onMounted(() => {
 });
 </script>
 <template>
-    <canvas id="canvas" class="z-0 overflow-visible fixed left-0 top-0 bg-gray-50 bg-opacity-40"></canvas>
+    <canvas id="canvas" class="z-0 w-[100vw] h-[100vh] overflow-visible fixed left-0 top-0 bg-gray-50 bg-opacity-40"></canvas>
 </template>
