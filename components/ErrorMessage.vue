@@ -6,7 +6,7 @@
             class="h-6 w-6 text-white"
         ></ExclamationCircleIcon>
         <span
-            class="text-md font-bold font-medium leading-7 tracking-tighter"
+            class="text-md font-bold leading-7 tracking-tighter"
             >{{ error.$message }}</span
         >
     </div>
