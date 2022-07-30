@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full pr-6">
+    <div class="w-full">
         <div class="w-full">
             <slot></slot>
         </div>

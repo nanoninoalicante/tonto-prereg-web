@@ -16,21 +16,15 @@
                 </h1>
             </ChooseHandleForm>
         </div>
-        <DrawMouse></DrawMouse>
     </div>
 </template>
 <script setup>
-import { computed } from "vue";
 import DrawMouse from "~/components/DrawMouse";
 import ChooseHandleForm from "~/components/ChooseHandleForm";
 import AudioPlayerHolder from "~/components/Player/AudioPlayerHolder";
 import { usePostStore } from "~/stores/posts";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
 import { vAutoAnimate } from "~/directives/directives";
-import { useGeneral } from "~/composables/general";
-import { useMousePressed } from "@vueuse/core";
-const { getRandomInt } = useGeneral();
-
 const postId = "62c8cc735ce5bc000f58c7ea";
 const postStore = usePostStore();
 const { data } = useAsyncData("post", () => postStore.fetchPost(postId));
@@ -39,14 +33,4 @@ definePageMeta({
 });
 
 
-
-const titles = ["AUDIO SOCIAL", "AUDIO ONLY"];
-const titleSelectionIndex = ref(1);
-// const { pressed } = useMousePressed();
-// watch(pressed, (value) => {
-//     titleSelectionIndex.value = getRandomInt(0, 2);
-// });
-const title = computed(() => {
-    return titles[getRandomInt(0, 2)] || "TONTO";
-});
 </script>

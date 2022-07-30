@@ -53,7 +53,7 @@
                     class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
                 ></ExclamationCircleIcon>
                 <input
-                    class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                    class="w-full rounded-full border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                     :class="{ 'border-warning-500': emailAddressIsInvalid }"
                     type="email"
                     id="email"
