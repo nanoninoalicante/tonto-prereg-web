@@ -40,7 +40,7 @@ watch(offline, (newVal) => {
         <PrimaryPreRegLayout><slot /></PrimaryPreRegLayout>
 
         <AudioPlayerHolder></AudioPlayerHolder>
-        <PrimaryFooter />
+        <!-- <PrimaryFooter /> -->
         <Alerts></Alerts>
         <Cookies></Cookies>
     </div>

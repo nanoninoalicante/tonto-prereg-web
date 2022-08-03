@@ -1,5 +1,6 @@
 <template>
     <PrimaryPageHolder>
+        <FloatingChooseYourHandle></FloatingChooseYourHandle>
         <PrimarySection class="hidden bg-[url('/socialNetwork.png')] md:block">
             <FullPageWalkThrough>AUDIO SOCIAL</FullPageWalkThrough>
             <PageArrowHolder />
@@ -7,7 +8,7 @@
 
         <PrimarySection class="block md:fixed md:right-0 md:top-0 lg:px-20">
             <slot></slot>
-            <PageArrowHolder class="block md:hidden" />
+            <PageArrowHolder class="hidden md:hidden" />
         </PrimarySection>
         <PrimarySection class="block bg-[url('/socialNetwork.png')] md:hidden">
             <FullPageWalkThrough>AUDIO SOCIAL</FullPageWalkThrough>
@@ -43,6 +44,7 @@
     </PrimaryPageHolder>
 </template>
 <script setup>
+import FloatingChooseYourHandle from "~/components/FloatingChooseYourHandle";
 import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";

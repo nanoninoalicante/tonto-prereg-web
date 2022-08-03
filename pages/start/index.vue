@@ -1,18 +1,14 @@
 <template>
-    <ChooseHandleForm
-        ><h1
-            class="text-left text-2xl font-medium tracking-tighter text-grey-300"
-        >
+    <div class="flex flex-wrap">
+        <h1 class="text-left text-5xl font-medium tracking-tighter text-grey-800">
             Coming soon! Pre-register for early access
         </h1>
-        <h1 class="text-left text-3xl font-bold tracking-tighter text-grey-200">
+        <h1 class="text-left text-5xl font-bold tracking-tighter text-grey-600">
             Now we're talkin
         </h1>
-    </ChooseHandleForm>
+    </div>
 </template>
 <script setup>
-import ChooseHandleForm from "~/components/ChooseHandleForm";
-import GlobalPlayer from "~/components/Player/GlobalPlayer";
 import { usePostStore } from "../../stores/posts";
 
 const postId = "62c8cc735ce5bc000f58c7ea";
