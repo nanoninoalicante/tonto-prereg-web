@@ -48,15 +48,6 @@ useHead({
 <style>
 body {
     background-color: #ffffff;
-    overflow: hidden;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    touch-action: none;
-}
-#container {
-    overflow: hidden;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
 }
 .fade-enter-active,
 .fade-leave-active {
