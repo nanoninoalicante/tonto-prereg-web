@@ -3,9 +3,10 @@ import PrimaryLogoHolder from "~/components/PrimaryLogoHolder";
 </script>
 <template>
     <section
-        class="items-left relative flex min-h-screen overflow-x-hidden w-full snap-starts flex-col justify-start bg-cover px-4 py-4 md:w-1/2"
+        class="relative items-left flex min-h-screen overflow-x-hidden w-full snap-start flex-col justify-start bg-cover px-4 py-4 md:w-1/2"
     >
-        <div class="flex flex-col w-full">
+        <slot name="bgimage"></slot>
+        <div class="relative h-full flex flex-col w-full">
             <div class="flex px-6 pt-8">
                 <PrimaryLogoHolder />
             </div>
