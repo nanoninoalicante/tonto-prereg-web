@@ -49,6 +49,9 @@ useHead({
 body {
     background-color: #ffffff;
 }
+.bcustom {
+    border: 1px solid red;
+}
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.7s ease-in;

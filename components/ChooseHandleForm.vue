@@ -17,7 +17,7 @@
             >
                 <div class="relative w-full">
                     <input
-                        class="w-full rounded-full border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        class="w-full rounded-2xl md:rounded-full border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                         :class="{
                             'border-warning-500 focus:ring-warning-500':
                                 formIsInvalid,

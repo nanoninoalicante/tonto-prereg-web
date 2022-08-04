@@ -1,14 +1,14 @@
 <template>
     <div
-        class="w-full fixed bottom-0 z-50 left-0 px-4 py-4 flex justify-center items-center"
+        class="w-full fixed bottom-0 z-50 left-0 px-0 py-2 flex justify-center items-center"
     >
-        <div class="w-full md:w-2/3 lg:w-3/5 bg-gray-100 px-4 py-6 rounded-3xl">
+        <div class="w-full md:w-2/3 lg:w-3/5 px-2 py-4 rounded-3xl">
             <div
                 class="relative mb-2 flex justify-center items-stretch space-x-2 text-gray-600 focus-within:text-gray-800"
             >
                 <div class="relative w-full">
                     <input
-                        class="w-full rounded-full border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        class="w-full shadow-xl rounded-2xl border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                         :class="{
                             'border-warning-500 focus:ring-warning-500':
                                 formIsInvalid,
@@ -41,10 +41,11 @@
 
                 <div v-auto-animate class="buttons flex items-stretch">
                     <PrimaryButton
+                        class="shadow-xl px-3"
                         :disabled="formIsInvalid || !v$.newHandles.$dirty"
                         @click.once="reserveThisHandle"
                     >
-                        Next
+                       <ArrowRightIcon class="w-6 h-6 fill-white"></ArrowRightIcon>
                     </PrimaryButton>
                 </div>
             </div>
@@ -54,10 +55,12 @@
                     v-for="error in v$.newHandles.$silentErrors"
                     :key="error.$uid"
                     :error="error"
+                    class="shadow-xl"
                 />
                 <SuccessInputMessage
                     v-if="!v$.newHandles.$invalid && v$.newHandles.$dirty"
                     :message="'That\'s a good lookin handle!'"
+                    class="shadow-xl"
                 ></SuccessInputMessage>
             </div>
         </div>
@@ -70,7 +73,7 @@ IMPORTS
 import { computed, onMounted, ref, watch } from "vue";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-import { CheckCircleIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
+import { CheckCircleIcon, ExclamationCircleIcon, ArrowRightIcon } from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";

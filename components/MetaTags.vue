@@ -7,6 +7,11 @@ const { title, description, primaryUrl, metaTagImage } = useMetaTags();
         <Head>
             <Title>{{ title }} </Title>
             <Meta
+                name="theme-color"
+                content="#109C90"
+                media="(prefers-color-scheme: light)"
+            ></Meta>
+            <Meta
                 name="viewport"
                 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
             ></Meta>

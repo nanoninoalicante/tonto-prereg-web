@@ -1,11 +1,11 @@
 <template>
     <ChooseHandleForm
         ><h1
-            class="text-left text-5xl font-medium tracking-tighter leading-12 text-grey-700 mb-12"
+            class="text-left text-5xl font-bold tracking-tighter leading-[1.2em] text-grey-700 mb-12"
         >
             Are you ready for the next big thing in Social?
         </h1>
-        <h1 class="text-left text-6xl font-bold tracking-tighter leading-10 text-grey-700 mb-12">
+        <h1 class="text-left text-5xl font-normal tracking-tighter leading-[1.1em] text-grey-700 mb-12">
             Be the first to get access
         </h1></ChooseHandleForm
     >

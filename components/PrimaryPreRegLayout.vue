@@ -14,30 +14,40 @@ const { images, walkthroughScreens, filteredWalkthroughScreens } =
     useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
-const { y } = useScroll(el);
-const { y: sectionY, height } = useElementBounding(lastSection);
+const { y: windowY } = useScroll(el);
+const { y: yPosOfLastSection, height: hOfLastSection } =
+    useElementBounding(lastSection);
 const showFloatingForm = ref(false);
-const toggleShowFloatingForm = (scrollY) => {
-    if (
-        scrollY + height.value / 2 > sectionY.value ||
-        scrollY + height.value / 2 < height.value
-    ) {
+const toggleShowFloatingForm = (windowY) => {
+    if (windowY < hOfLastSection.value / 2) {
         showFloatingForm.value = false;
-    } else {
-        showFloatingForm.value = true;
+        return;
     }
+    if (windowY > yPosOfLastSection - hOfLastSection.value / 2) {
+        showFloatingForm.value = false;
+        return;
+    }
+    showFloatingForm.value = true;
+    return;
 };
-watch(y, (scrollY) => {
-    toggleShowFloatingForm(scrollY);
+watch(windowY, (windowY) => {
+    toggleShowFloatingForm(windowY);
 });
-let rellax = null;
 onMounted(() => {
-    toggleShowFloatingForm(y.value);
-    rellax = new Rellax(".rellax");
+    toggleShowFloatingForm(windowY.value);
 });
 </script>
 <template>
     <PrimaryPageHolder ref="el">
+        <div
+            v-if="false"
+            class="flex flex-col bg-white bg-opacity-70 backdrop-blur-lg p-4 z-[999] top-0 left-0 text-red-800"
+        >
+            <div>windowY: {{ windowY }}</div>
+            <div>height of last section: {{ hOfLastSection }}</div>
+            <div>y position of last section: {{ yPosOfLastSection }}</div>
+        </div>
+        <FloatingPrimaryLogoHolder></FloatingPrimaryLogoHolder>
         <FloatingChooseYourHandle
             v-if="showFloatingForm"
             class="fixed md:hidden"
@@ -46,7 +56,6 @@ onMounted(() => {
             <FullPageWalkThrough>{{
                 walkthroughScreens[0].text
             }}</FullPageWalkThrough>
-            <PageArrowHolder />
 
             <template v-slot:bgimage>
                 <img
@@ -60,7 +69,6 @@ onMounted(() => {
 
         <PrimarySection class="block md:fixed md:right-0 md:top-0 lg:px-20">
             <slot></slot>
-            <PageArrowHolder class="hidden md:hidden" />
         </PrimarySection>
         <PrimarySection
             v-for="(screen, index) in filteredWalkthroughScreens"
@@ -69,7 +77,6 @@ onMounted(() => {
             <FullPageWalkThrough class="rellax">{{
                 screen.text
             }}</FullPageWalkThrough>
-            <PageArrowHolder />
             <template v-slot:bgimage>
                 <img
                     class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
