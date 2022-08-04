@@ -1,4 +1,5 @@
-const images = ref([
+import { computed } from "vue";
+const images = [
     "cheerful-young-lady-wearing-headphones-using-mobi-2021-12-09-08-12-41-utc.jpg",
     "exercises-stretching-body-muscles-in-city-healthy-2021-09-02-07-22-45-utc.jpg",
     "happy-afro-man-using-mobile-smartphone-outdoor-2021-09-09-16-19-15-utc.jpg",
@@ -10,30 +11,40 @@ const images = ref([
     "smiling-girl-using-music-app-on-phone-2021-09-24-03-50-37-utc.jpg",
     "smiling-young-business-woman-using-her-free-hands-2021-08-27-09-31-39-utc.jpg",
     "young-woman-listening-music-smart-phone-drinking-c-2022-02-03-16-33-07-utc.jpg",
-]);
-const walkthroughScreens = reactive([
+];
+const walkthroughScreens = [
     {
         text: "AUDIO SOCIAL",
         imagePosition: "object-center",
+        image: images[0],
     },
     {
         text: "AUDIO SOCIAL",
         imagePosition: "object-left",
+        image: images[1],
     },
     {
         text: "AUDIO SOCIAL",
         imagePosition: "object-left",
+        image: images[2],
     },
     {
         text: "AUDIO SOCIAL",
         imagePosition: "object-center",
+        image: images[3],
     },
     {
         text: "AUDIO SOCIAL",
         imagePosition: "object-right",
+        image: images[4],
     },
-]);
+];
+
+const filteredWalkthroughScreens = computed(() => {
+    walkthroughScreens.shift();
+    return walkthroughScreens;
+});
 
 export function useLayoutContent() {
-    return { walkthroughScreens, images };
+    return { filteredWalkthroughScreens, walkthroughScreens, images };
 }

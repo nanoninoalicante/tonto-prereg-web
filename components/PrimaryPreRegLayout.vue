@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, watch, computed } from "vue";
+import { reactive, ref, watch, onMounted } from "vue";
 import FloatingChooseYourHandle from "~/components/FloatingChooseYourHandle";
 import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
@@ -10,30 +10,52 @@ import PageArrowHolder from "./PageArrowHolder";
 import { useScroll, useElementBounding } from "@vueuse/core";
 import { useLayoutContent } from "~~/composables/layoutContent";
 import Rellax from "rellax";
-const { images, walkthroughScreens } = useLayoutContent();
+const { images, walkthroughScreens, filteredWalkthroughScreens } =
+    useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
 const { y } = useScroll(el);
 const { y: sectionY, height } = useElementBounding(lastSection);
-const showFloatingForm = ref(true);
-watch(y, (scrollY) => {
-    if (scrollY + height.value / 2 > sectionY.value || scrollY < height.value) {
+const showFloatingForm = ref(false);
+const toggleShowFloatingForm = (scrollY) => {
+    if (
+        scrollY + height.value / 2 > sectionY.value ||
+        scrollY + height.value / 2 < height.value
+    ) {
         showFloatingForm.value = false;
     } else {
         showFloatingForm.value = true;
     }
+};
+watch(y, (scrollY) => {
+    toggleShowFloatingForm(scrollY);
+});
+let rellax = null;
+onMounted(() => {
+    toggleShowFloatingForm(y.value);
+    rellax = new Rellax(".rellax");
 });
 </script>
 <template>
     <PrimaryPageHolder ref="el">
         <FloatingChooseYourHandle
             v-if="showFloatingForm"
+            class="hidden"
         ></FloatingChooseYourHandle>
-        <PrimarySection :class="`hidden bg-[url('/${images[0]}')] md:block`">
+        <PrimarySection :class="`hidden md:block`">
             <FullPageWalkThrough>{{
                 walkthroughScreens[0].text
             }}</FullPageWalkThrough>
             <PageArrowHolder />
+
+            <template v-slot:bgimage>
+                <img
+                    class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
+                    :class="walkthroughScreens[0].imagePosition"
+                    :src="'/' + walkthroughScreens[0].image"
+                    alt=""
+                />
+            </template>
         </PrimarySection>
 
         <PrimarySection class="block md:fixed md:right-0 md:top-0 lg:px-20">
@@ -41,16 +63,18 @@ watch(y, (scrollY) => {
             <PageArrowHolder class="hidden md:hidden" />
         </PrimarySection>
         <PrimarySection
-            v-for="(screen, index) in walkthroughScreens"
+            v-for="(screen, index) in filteredWalkthroughScreens"
             :key="index"
         >
-            <FullPageWalkThrough class="rellax">{{ screen.text }}</FullPageWalkThrough>
+            <FullPageWalkThrough class="rellax">{{
+                screen.text
+            }}</FullPageWalkThrough>
             <PageArrowHolder />
             <template v-slot:bgimage>
                 <img
                     class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
                     :class="screen.imagePosition"
-                    :src="'/' + images[index]"
+                    :src="'/' + screen.image"
                     alt=""
                 />
             </template>
