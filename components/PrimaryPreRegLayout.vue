@@ -41,7 +41,7 @@ onMounted(() => {
     <PrimaryPageHolder ref="el">
         <div
             v-if="true"
-            class="flex flex-col bg-white bg-opacity-70 backdrop-blur-lg p-4 z-[999] top-0 left-0 text-red-800"
+            class="fixed flex flex-col bg-white bg-opacity-70 backdrop-blur-lg p-4 z-[9999] top-0 left-0 text-red-800"
         >
             <div>windowY: {{ windowY }}</div>
             <div>height of last section: {{ hOfLastSection }}</div>
