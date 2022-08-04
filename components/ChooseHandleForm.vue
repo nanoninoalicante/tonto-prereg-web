@@ -8,7 +8,7 @@
         </div>
         <div class="mt-2 md:mt-4">
             <label
-                class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
+                class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-gray-500"
                 for="handle"
                 >{{ "Choose your new Tonto Handle" }}</label
             >

@@ -10,6 +10,7 @@
     "@nuxtjs/tailwindcss": "^5.1.2",
     "@tailwindcss/forms": "^0.5.2",
     "@types/node": "^18.0.3",
+    "@types/rellax": "^1.7.4",
     "@types/uuid": "^8.3.4",
     "nuxt": "3.0.0-rc.4",
     "prettier": "^2.7.1",
@@ -28,6 +29,7 @@
     "hls.js": "^1.1.5",
     "ohmyfetch": "^0.4.18",
     "pinia": "^2.0.14",
+    "rellax": "^1.12.1",
     "uuid": "^8.3.2",
     "vue": "^3.2.37"
   }

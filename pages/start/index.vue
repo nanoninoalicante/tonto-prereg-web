@@ -1,14 +1,17 @@
 <template>
-    <div class="flex flex-wrap">
-        <h1 class="text-left text-5xl font-medium tracking-tighter text-grey-800">
-            Coming soon! Pre-register for early access
+    <ChooseHandleForm
+        ><h1
+            class="text-left text-5xl font-medium tracking-tighter leading-10 text-grey-700 mb-8"
+        >
+            Are you ready for the next big thing in Social?
         </h1>
-        <h1 class="text-left text-5xl font-bold tracking-tighter text-grey-600">
-            Now we're talkin
-        </h1>
-    </div>
+        <h1 class="text-left text-6xl font-bold tracking-tighter leading-10 text-grey-700 mb-8">
+            Be the first to get access
+        </h1></ChooseHandleForm
+    >
 </template>
 <script setup>
+import ChooseHandleForm from "~/components/ChooseHandleForm";
 import { usePostStore } from "../../stores/posts";
 
 const postId = "62c8cc735ce5bc000f58c7ea";
