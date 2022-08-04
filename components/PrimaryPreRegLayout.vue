@@ -14,16 +14,16 @@ const { images, walkthroughScreens, filteredWalkthroughScreens } =
     useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
-const { y: windowY, height: windowH } = useScroll(el);
+const { y: windowY } = useScroll(el);
 const { y: yPosOfLastSection, height: hOfLastSection } =
     useElementBounding(lastSection);
 const showFloatingForm = ref(false);
+const offset = computed(() => hOfLastSection.value / 2);
 const toggleShowFloatingForm = (windowY) => {
-    if (windowY < hOfLastSection.value / 2) {
-        showFloatingForm.value = false;
-        return;
-    }
-    if (windowY > yPosOfLastSection - hOfLastSection.value / 2) {
+    if (
+        windowY < offset.value ||
+        windowY + offset.value > yPosOfLastSection.value
+    ) {
         showFloatingForm.value = false;
         return;
     }
@@ -35,6 +35,7 @@ watch(windowY, (windowY) => {
 });
 onMounted(() => {
     toggleShowFloatingForm(windowY.value);
+    windowY.value = 0;
 });
 </script>
 <template>
@@ -46,7 +47,7 @@ onMounted(() => {
             <div>windowY: {{ windowY }}</div>
             <div>height of last section: {{ hOfLastSection }}</div>
             <div>y position of last section: {{ yPosOfLastSection }}</div>
-            <div>window height: {{ windowH }}</div>
+            <div>offset: {{ offset }}</div>
         </div>
         <FloatingPrimaryLogoHolder></FloatingPrimaryLogoHolder>
         <FloatingChooseYourHandle
@@ -68,7 +69,9 @@ onMounted(() => {
             </template>
         </PrimarySection>
 
-        <PrimarySection class="flex md:fixed md:right-0 md:top-0 lg:px-20 justify-center items-center">
+        <PrimarySection
+            class="flex md:fixed md:right-0 md:top-0 lg:px-20 justify-center items-center"
+        >
             <slot></slot>
         </PrimarySection>
         <PrimarySection
