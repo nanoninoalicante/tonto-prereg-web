@@ -14,29 +14,39 @@ const images = [
 ];
 const walkthroughScreens = [
     {
-        text: "AUDIO SOCIAL",
+        text: "Are you ready for the next big thing in Social",
         imagePosition: "object-center",
         image: images[0],
     },
     {
-        text: "AUDIO SOCIAL",
+        text: "Be the first to get access",
         imagePosition: "object-left",
         image: images[1],
     },
     {
-        text: "AUDIO SOCIAL",
+        text: "It's like Twitter but for voice",
         imagePosition: "object-left",
         image: images[2],
     },
     {
-        text: "AUDIO SOCIAL",
+        text: "It's like TikTok for Audio",
         imagePosition: "object-center",
         image: images[3],
     },
     {
-        text: "AUDIO SOCIAL",
+        text: "Comedy, Music, Talk shows, Discussions",
         imagePosition: "object-right",
         image: images[4],
+    },
+    {
+        text: "Message your friends with voice only",
+        imagePosition: "object-right",
+        image: images[5],
+    },
+    {
+        text: "Coming very soon, limited access",
+        imagePosition: "object-right",
+        image: images[6],
     },
 ];
 

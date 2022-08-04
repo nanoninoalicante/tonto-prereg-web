@@ -40,7 +40,7 @@ onMounted(() => {
     <PrimaryPageHolder ref="el">
         <FloatingChooseYourHandle
             v-if="showFloatingForm"
-            class="hidden"
+            class="fixed md:hidden"
         ></FloatingChooseYourHandle>
         <PrimarySection :class="`hidden md:block`">
             <FullPageWalkThrough>{{
