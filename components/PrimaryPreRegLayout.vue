@@ -67,7 +67,7 @@ onMounted(() => {
             </template>
         </PrimarySection>
 
-        <PrimarySection class="block md:fixed md:right-0 md:top-0 lg:px-20">
+        <PrimarySection class="flex md:fixed md:right-0 md:top-0 lg:px-20 justify-center items-center">
             <slot></slot>
         </PrimarySection>
         <PrimarySection
