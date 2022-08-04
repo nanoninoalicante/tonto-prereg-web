@@ -14,7 +14,7 @@ const { images, walkthroughScreens, filteredWalkthroughScreens } =
     useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
-const { y: windowY } = useScroll(el);
+const { y: windowY, height: windowH } = useScroll(el);
 const { y: yPosOfLastSection, height: hOfLastSection } =
     useElementBounding(lastSection);
 const showFloatingForm = ref(false);
@@ -46,6 +46,7 @@ onMounted(() => {
             <div>windowY: {{ windowY }}</div>
             <div>height of last section: {{ hOfLastSection }}</div>
             <div>y position of last section: {{ yPosOfLastSection }}</div>
+            <div>window height: {{ windowH }}</div>
         </div>
         <FloatingPrimaryLogoHolder></FloatingPrimaryLogoHolder>
         <FloatingChooseYourHandle
