@@ -93,9 +93,15 @@ onMounted(() => {
             <FullPageWalkThrough>{{ screen.text }}</FullPageWalkThrough>
             <template v-slot:bgimage>
                 <img
-                    class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
+                    class="absolute hidden md:block pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
                     :class="screen.imagePosition"
                     :src="'/' + screen.image"
+                    alt=""
+                />
+                <img
+                    class="absolute block md:hidden pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
+                    :class="screen.imagePosition"
+                    :src="'/' + screen.mobileImage"
                     alt=""
                 />
             </template>
