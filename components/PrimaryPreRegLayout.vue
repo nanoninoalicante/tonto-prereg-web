@@ -109,12 +109,12 @@ onMounted(() => {
         <PrimarySection ref="lastSection" class="block md:hidden">
             <ChooseHandleForm
                 ><h1
-                    class="text-left text-5xl font-medium tracking-tighter text-grey-700"
+                    class="text-left text-7xl font-medium tracking-tighter text-grey-700"
                 >
                     PRE REGISTER
                 </h1>
                 <h1
-                    class="text-left text-6xl font-bold tracking-tighter text-grey-700"
+                    class="text-left text-7xl font-bold tracking-tighter text-grey-700"
                 >
                     NOW
                 </h1></ChooseHandleForm
