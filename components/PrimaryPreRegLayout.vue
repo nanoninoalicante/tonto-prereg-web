@@ -7,9 +7,11 @@ import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
 import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
 import PageArrowHolder from "./PageArrowHolder";
-import { useScroll, useElementBounding } from "@vueuse/core";
-import { useLayoutContent } from "~~/composables/layoutContent";
-import Rellax from "rellax";
+import { useScroll, useElementBounding, useWindowSize } from "@vueuse/core";
+import { useLayoutContent } from "~/composables/layoutContent";
+import { useFloatingInput } from "~/composables/floatingInput";
+const { showFloatingForm } = useFloatingInput();
+const { width } = useWindowSize();
 const { images, walkthroughScreens, filteredWalkthroughScreens } =
     useLayoutContent();
 const el = ref(null);
@@ -17,7 +19,6 @@ const lastSection = ref(null);
 const { y: windowY } = useScroll(el);
 const { y: yPosOfLastSection, height: hOfLastSection } =
     useElementBounding(lastSection);
-const showFloatingForm = ref(false);
 const offset = computed(() => hOfLastSection.value / 2);
 const toggleShowFloatingForm = (windowY) => {
     if (
@@ -30,16 +31,26 @@ const toggleShowFloatingForm = (windowY) => {
     showFloatingForm.value = true;
     return;
 };
-watch(windowY, (windowY) => {
-    toggleShowFloatingForm(windowY);
+watch(width, (width) => {
+    if (width && width > 600) {
+        showFloatingForm.value = false;
+    } else {
+        showFloatingForm.value = true;
+    }
 });
+// watch(windowY, (windowY) => {
+//     console.log("height of last section: ", hOfLastSection.value);
+//     toggleShowFloatingForm(windowY);
+// });
 onMounted(() => {
-    toggleShowFloatingForm(windowY.value);
-    windowY.value = 0;
+    console.log("window width: ", width.value);
+    if (width.value && width.value > 600) {
+        showFloatingForm.value = false;
+    }
 });
 </script>
 <template>
-    <PrimaryPageHolder ref="el">
+    <PrimaryPageHolder id="primaryPageHolder" ref="el">
         <div
             v-if="false"
             class="fixed flex flex-col bg-white bg-opacity-70 backdrop-blur-lg p-4 z-[9999] top-0 left-0 text-red-800"
@@ -48,6 +59,7 @@ onMounted(() => {
             <div>height of last section: {{ hOfLastSection }}</div>
             <div>y position of last section: {{ yPosOfLastSection }}</div>
             <div>offset: {{ offset }}</div>
+            <div>windw width: {{ width }}</div>
         </div>
         <FloatingPrimaryLogoHolder></FloatingPrimaryLogoHolder>
         <FloatingChooseYourHandle
@@ -78,9 +90,7 @@ onMounted(() => {
             v-for="(screen, index) in filteredWalkthroughScreens"
             :key="index"
         >
-            <FullPageWalkThrough class="rellax">{{
-                screen.text
-            }}</FullPageWalkThrough>
+            <FullPageWalkThrough>{{ screen.text }}</FullPageWalkThrough>
             <template v-slot:bgimage>
                 <img
                     class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"

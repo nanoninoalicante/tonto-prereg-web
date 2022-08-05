@@ -6,7 +6,7 @@
         <div class="block w-full">
             <slot name="player"></slot>
         </div>
-        <div class="mt-2 md:mt-4">
+        <div v-auto-animate v-if="!showFloatingForm" class="">
             <label
                 class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-gray-500"
                 for="handle"
@@ -83,6 +83,8 @@ import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
+import { useFloatingInput } from "~/composables/floatingInput";
+const { showFloatingForm } = useFloatingInput();
 const { getContent } = useContent();
 const { description } = useMetaTags();
 
