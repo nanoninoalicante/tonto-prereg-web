@@ -21,7 +21,7 @@
                     class="box-shadow-xl m-4 flex animate-pulse items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl hover:bg-teal-700"
                 >
                     <span
-                        class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
+                        class="text-xl font-bold leading-7 tracking-tighter text-white"
                         >{{ preregData.newHandles }}</span
                     >
                     <CheckCircleIcon

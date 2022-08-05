@@ -44,7 +44,7 @@
                     <PrimaryButton
                         class="shadow-xl px-3"
                         :disabled="formIsInvalid || !v$.newHandles.$dirty"
-                        @click.once="reserveThisHandle"
+                        @click="reserveThisHandle"
                     >
                         <ArrowRightIcon
                             class="w-6 h-6 fill-white"

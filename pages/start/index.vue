@@ -8,7 +8,7 @@
         <h1
             class="text-left text-5xl font-normal tracking-tighter leading-[1.1em] text-grey-700 mb-12"
         >
-            Be the first to get access
+            Secure your Tonto username below👇
         </h1></ChooseHandleForm
     >
 </template>

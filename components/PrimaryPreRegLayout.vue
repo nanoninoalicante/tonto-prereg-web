@@ -3,6 +3,7 @@ import { reactive, ref, watch, onMounted } from "vue";
 import FloatingChooseYourHandle from "~/components/FloatingChooseYourHandle";
 import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
+import PageSection from "~/components/PageSection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
 import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
@@ -10,10 +11,10 @@ import PageArrowHolder from "./PageArrowHolder";
 import { useScroll, useElementBounding, useWindowSize } from "@vueuse/core";
 import { useLayoutContent } from "~/composables/layoutContent";
 import { useFloatingInput } from "~/composables/floatingInput";
+const route = useRoute();
 const { showFloatingForm } = useFloatingInput();
 const { width } = useWindowSize();
-const { walkthroughScreens, filteredWalkthroughScreens } =
-    useLayoutContent();
+const { walkthroughScreens, filteredWalkthroughScreens } = useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
 const { y: windowY } = useScroll(el);
@@ -42,7 +43,18 @@ watch(width, (width) => {
 //     console.log("height of last section: ", hOfLastSection.value);
 //     toggleShowFloatingForm(windowY);
 // });
-
+let page = null;
+onMounted(() => {
+    page = document.getElementById("primaryPageHolder");
+});
+const scrollToTop = () => {
+    console.log("scroll to top: ");
+    page.scroll({ top: 0, left: 0, behavior: "smooth" });
+};
+watch(route, () => {
+    console.log("route change");
+    scrollToTop();
+});
 
 onMounted(() => {
     console.log("window width: ", width.value);
@@ -69,11 +81,11 @@ onMounted(() => {
             class="fixed md:hidden"
         ></FloatingChooseYourHandle>
 
-        <PrimarySection
+        <PageSection
             class="flex md:fixed md:right-0 md:top-0 lg:px-20 justify-center items-center"
         >
-           <slot></slot>
-        </PrimarySection>
+            <slot></slot>
+        </PageSection>
         <PrimarySection
             v-for="(screen, index) in filteredWalkthroughScreens"
             :key="index"
@@ -93,7 +105,9 @@ onMounted(() => {
             </template>
         </PrimarySection>
         <PrimarySection ref="lastSection" class="block md:hidden">
-            <FullPageWalkThrough class="text-gray-700">PREREGISTER NOW</FullPageWalkThrough>
+            <FullPageWalkThrough class="text-gray-700 text-[5rem]"
+                >PRE<br />REGISTER NOW</FullPageWalkThrough
+            >
         </PrimarySection>
     </PrimaryPageHolder>
 </template>

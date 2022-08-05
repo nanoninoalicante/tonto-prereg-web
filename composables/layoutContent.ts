@@ -47,7 +47,7 @@ const walkthroughScreens = [
         mobileImage: mobileImages[4]
     },
     {
-        text: "Message your friends with voice only",
+        text: "Coming very soon, limited access",
         imagePosition: "object-right",
         image: images[5],
         mobileImage: mobileImages[5]
