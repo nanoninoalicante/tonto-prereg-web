@@ -2,12 +2,12 @@
     <div class="w-full">
         <div class="w-full">
             <p
-                class="text-left text-2xl font-medium tracking-tighter text-white"
+                class="text-left text-2xl font-medium tracking-tighter text-gray-700 mb-4"
             >
                 That's a great handle!
             </p>
             <p
-                class="text-left text-xl font-medium tracking-tighter text-white"
+                class="text-left text-xl font-medium tracking-tighter text-gray-700"
             >
                 We just need your email to secure that handle before someone
                 else gets it
@@ -21,7 +21,7 @@
                     class="box-shadow-xl m-4 flex animate-pulse items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl hover:bg-teal-700"
                 >
                     <span
-                        class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
+                        class="text-xl font-bold leading-7 tracking-tighter text-white"
                         >{{ preregData.newHandles }}</span
                     >
                     <CheckCircleIcon
@@ -53,7 +53,7 @@
                     class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
                 ></ExclamationCircleIcon>
                 <input
-                    class="w-full rounded-xl border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                    class="w-full rounded-full border-2 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                     :class="{ 'border-warning-500': emailAddressIsInvalid }"
                     type="email"
                     id="email"

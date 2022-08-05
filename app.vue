@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <MetaTags />
+    <div id="container" ref="el">
+        <MetaTags />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
@@ -8,7 +8,6 @@
 </template>
 <script setup>
 import MetaTags from "./components/MetaTags";
-
 definePageMeta({
     transition: {
         name: "page",
@@ -48,7 +47,10 @@ useHead({
 
 <style>
 body {
-    background-color: #109c90;
+    background-color: #ffffff;
+}
+.bcustom {
+    border: 1px solid red;
 }
 .fade-enter-active,
 .fade-leave-active {

@@ -10,6 +10,11 @@ const { title, description, primaryUrl, metaTagImage } = useMetaTags();
                 src="https://www.googleoptimize.com/optimize.js?id=OPT-5M6LZBS"
             ></Script>
             <Meta
+                name="theme-color"
+                content="#109C90"
+                media="(prefers-color-scheme: light)"
+            ></Meta>
+            <Meta
                 name="viewport"
                 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
             ></Meta>

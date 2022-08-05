@@ -6,10 +6,11 @@ import AudioPlayerHolder from "~/components/Player/AudioPlayerHolder";
 import FullPageLoading from "~/components/FullPageLoading";
 import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
 import PrimaryPreRegLayout from "~/components/PrimaryPreRegLayout";
-import { watch } from "vue";
+import { watch, onMounted } from "vue";
 import { useAlerts } from "~/composables/alerts";
 import PrimaryFooter from "../components/PrimaryFooter";
 import { useOnline } from "@vueuse/core/index";
+const route = useRoute();
 
 const offline = useOnline();
 const { addAlert } = useAlerts();
@@ -31,6 +32,7 @@ watch(offline, (newVal) => {
         });
     }
 });
+
 </script>
 
 <template>
@@ -40,7 +42,7 @@ watch(offline, (newVal) => {
         <PrimaryPreRegLayout><slot /></PrimaryPreRegLayout>
 
         <AudioPlayerHolder></AudioPlayerHolder>
-        <PrimaryFooter />
+        <!-- <PrimaryFooter /> -->
         <Alerts></Alerts>
         <Cookies></Cookies>
     </div>

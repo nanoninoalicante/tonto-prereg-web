@@ -2,12 +2,12 @@
     <div class="flex flex-col items-center">
         <div class="mb-4 w-full flex flex-col space-y-3">
             <p
-                class="text-left text-2xl font-medium tracking-tighter text-white"
+                class="text-left text-2xl font-medium tracking-tighter text-gray-700"
             >
                 The pre-registration has been successful
             </p>
             <p
-                class="text-left text-xl font-medium tracking-tighter text-white"
+                class="text-left text-xl font-medium tracking-tighter text-greay700"
             >
                 We will send you an email to confirm that you are part of the
                 Tonto community.
@@ -20,7 +20,7 @@
                 class="box-shadow-xl pointer-events-none m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
             >
                 <span
-                    class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
+                    class="text-xl font-bold leading-7 tracking-tighter text-white"
                     >{{ preregData.newHandles }}</span
                 >
                 <CheckCircleIcon
@@ -32,7 +32,7 @@
                 class="box-shadow-xl pointer-events-none m-4 flex items-center space-x-2 rounded-full bg-primary-700 p-4 text-gray-500 shadow-2xl"
             >
                 <span
-                    class="text-xl font-bold font-medium leading-7 tracking-tighter text-white"
+                    class="text-xl font-bold leading-7 tracking-tighter text-white"
                     >{{ preregData.emailAddress }}</span
                 >
                 <CheckCircleIcon

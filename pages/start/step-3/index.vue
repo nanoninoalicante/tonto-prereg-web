@@ -1,5 +1,5 @@
 <template>
-            <StepThree />
+    <StepThree />
 </template>
 <script setup>
 import StepThree from "~/components/StepThree";

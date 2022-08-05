@@ -6,46 +6,57 @@
         <div class="block w-full">
             <slot name="player"></slot>
         </div>
-        <div class="mt-2 md:mt-4">
+        <div v-auto-animate v-if="!showFloatingForm" class="">
             <label
-                class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-white"
+                class="mb-2 block w-full text-left text-lg font-medium tracking-tighter text-gray-500"
                 for="handle"
                 >{{ "Choose your new Tonto Handle" }}</label
             >
             <div
-                class="relative mb-2 flex w-full items-center text-gray-600 focus-within:text-gray-800"
+                class="relative mb-2 flex justify-center items-stretch space-x-2 text-gray-600 focus-within:text-gray-800"
             >
-                <CircleLoader
-                    v-if="formInputLoading"
-                    width="20"
-                    height="20"
-                    fill="#ccc"
-                    class="absolute left-0 ml-4"
-                ></CircleLoader>
-                <CheckCircleIcon
-                    v-if="!formIsInvalid && v$.newHandles.$dirty"
-                    class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-teal-800"
-                ></CheckCircleIcon>
-                <ExclamationCircleIcon
-                    v-if="v$.newHandles.$invalid"
-                    class="pointer-events-none absolute right-0 mr-5 h-8 w-8 text-warning-500"
-                ></ExclamationCircleIcon>
-                <input
-                    class="w-full rounded-xl border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
-                    :class="{
-                        'border-warning-500': formIsInvalid,
-                    }"
-                    type="text"
-                    id="handle"
-                    name="newHandleInput"
-                    ref="handleInputRef"
-                    autocorrect="off"
-                    v-model="v$.newHandles.$model"
-                    placeholder="@elonmusk"
-                    v-on:keydown.enter="reserveThisHandle"
-                />
-            </div>
+                <div class="relative w-full">
+                    <input
+                        class="w-full rounded-2xl md:rounded-full border-4 border-teal-500 py-5 px-12 text-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+                        :class="{
+                            'border-warning-500 focus:ring-warning-500':
+                                formIsInvalid,
+                        }"
+                        type="text"
+                        id="handle"
+                        name="newHandleInput"
+                        ref="handleInputRef"
+                        autocorrect="off"
+                        v-model="v$.newHandles.$model"
+                        placeholder="@elonmusk"
+                        v-on:keydown.enter="reserveThisHandle"
+                    />
+                    <CircleLoader
+                        v-if="formInputLoading"
+                        width="20"
+                        height="20"
+                        fill="#ccc"
+                        class="absolute left-0 top-1/2 -mt-2 ml-5"
+                    ></CircleLoader>
+                    <CheckCircleIcon
+                        v-if="!formIsInvalid && v$.newHandles.$dirty"
+                        class="pointer-events-none absolute right-0 top-1/2 -mt-4 mr-5 h-8 w-8 text-teal-800"
+                    ></CheckCircleIcon>
+                    <ExclamationCircleIcon
+                        v-if="v$.newHandles.$invalid"
+                        class="pointer-events-none absolute right-0 top-1/2 -mt-4 mr-5 h-8 w-8 text-warning-500"
+                    ></ExclamationCircleIcon>
+                </div>
 
+                <div v-auto-animate class="buttons flex items-stretch">
+                    <PrimaryButton
+                        :disabled="formIsInvalid || !v$.newHandles.$dirty"
+                        @click.once="reserveThisHandle"
+                    >
+                        Next
+                    </PrimaryButton>
+                </div>
+            </div>
             <div v-auto-animate class="flex w-full flex-col space-y-1">
                 <ErrorMessage
                     v-for="error in v$.newHandles.$silentErrors"
@@ -56,15 +67,6 @@
                     v-if="!v$.newHandles.$invalid && v$.newHandles.$dirty"
                     :message="'That\'s a good lookin handle!'"
                 ></SuccessInputMessage>
-            </div>
-
-            <div v-auto-animate class="buttons mt-4 space-x-2">
-                <PrimaryButton
-                    :disabled="formIsInvalid || !v$.newHandles.$dirty"
-                    @click.once="reserveThisHandle"
-                >
-                    Reserve this username
-                </PrimaryButton>
             </div>
         </div>
     </div>
@@ -81,6 +83,8 @@ import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
+import { useFloatingInput } from "~/composables/floatingInput";
+const { showFloatingForm } = useFloatingInput();
 const { getContent } = useContent();
 const { description } = useMetaTags();
 

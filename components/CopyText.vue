@@ -16,7 +16,7 @@ const handleCopyLink = () => {
     <div
         @click="handleCopyLink"
         v-auto-animate
-        class="relative cursor-pointer text-left text-xl font-medium tracking-tighter text-white underline hover:text-teal-300 active:text-teal-700"
+        class="relative cursor-pointer text-left text-xl font-medium tracking-tighter text-gray-700 underline hover:text-teal-500 active:text-teal-400"
     >
         <slot></slot>
         <div
