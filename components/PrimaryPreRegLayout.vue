@@ -68,25 +68,11 @@ onMounted(() => {
             v-if="showFloatingForm"
             class="fixed md:hidden"
         ></FloatingChooseYourHandle>
-        <PrimarySection :class="`hidden md:block`">
-            <FullPageWalkThrough>{{
-                walkthroughScreens[0].text
-            }}</FullPageWalkThrough>
-
-            <template v-slot:bgimage>
-                <img
-                    class="absolute pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
-                    :class="walkthroughScreens[0].imagePosition"
-                    :src="'/' + walkthroughScreens[0].image"
-                    alt=""
-                />
-            </template>
-        </PrimarySection>
 
         <PrimarySection
             class="flex md:fixed md:right-0 md:top-0 lg:px-20 justify-center items-center"
         >
-            <slot></slot>
+           <slot></slot>
         </PrimarySection>
         <PrimarySection
             v-for="(screen, index) in filteredWalkthroughScreens"
@@ -96,31 +82,18 @@ onMounted(() => {
             <template v-slot:bgimage>
                 <img
                     class="absolute hidden md:block pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
-                    :class="screen.imagePosition"
                     :src="'/' + screen.image"
                     alt=""
                 />
                 <img
                     class="absolute block md:hidden pointer-events-none z-0 top-0 left-0 h-full w-full object-cover"
-                    :class="screen.imagePosition"
                     :src="'/' + screen.mobileImage"
                     alt=""
                 />
             </template>
         </PrimarySection>
         <PrimarySection ref="lastSection" class="block md:hidden">
-            <ChooseHandleForm
-                ><h1
-                    class="text-left text-7xl font-medium tracking-tighter text-grey-700"
-                >
-                    PRE REGISTER
-                </h1>
-                <h1
-                    class="text-left text-7xl font-bold tracking-tighter text-grey-700"
-                >
-                    NOW
-                </h1></ChooseHandleForm
-            >
+            <FullPageWalkThrough class="text-gray-700">PREREGISTER NOW</FullPageWalkThrough>
         </PrimarySection>
     </PrimaryPageHolder>
 </template>
