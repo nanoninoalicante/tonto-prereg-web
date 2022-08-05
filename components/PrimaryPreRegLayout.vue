@@ -12,7 +12,7 @@ import { useLayoutContent } from "~/composables/layoutContent";
 import { useFloatingInput } from "~/composables/floatingInput";
 const { showFloatingForm } = useFloatingInput();
 const { width } = useWindowSize();
-const { images, walkthroughScreens, filteredWalkthroughScreens } =
+const { walkthroughScreens, filteredWalkthroughScreens } =
     useLayoutContent();
 const el = ref(null);
 const lastSection = ref(null);
@@ -32,7 +32,7 @@ const toggleShowFloatingForm = (windowY) => {
     return;
 };
 watch(width, (width) => {
-    if (width && width > 600) {
+    if (width && width > 768) {
         showFloatingForm.value = false;
     } else {
         showFloatingForm.value = true;
@@ -42,6 +42,8 @@ watch(width, (width) => {
 //     console.log("height of last section: ", hOfLastSection.value);
 //     toggleShowFloatingForm(windowY);
 // });
+
+
 onMounted(() => {
     console.log("window width: ", width.value);
     if (width.value && width.value > 600) {

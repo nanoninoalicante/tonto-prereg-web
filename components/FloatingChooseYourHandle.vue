@@ -1,6 +1,7 @@
 <template>
     <div
         class="w-full fixed bottom-0 z-50 left-0 px-0 py-2 flex justify-center items-center"
+        :class="{ hidden: !isOnHomePage }"
     >
         <div class="w-full md:w-2/3 lg:w-3/5 px-2 py-4 rounded-3xl">
             <div
@@ -45,7 +46,9 @@
                         :disabled="formIsInvalid || !v$.newHandles.$dirty"
                         @click.once="reserveThisHandle"
                     >
-                       <ArrowRightIcon class="w-6 h-6 fill-white"></ArrowRightIcon>
+                        <ArrowRightIcon
+                            class="w-6 h-6 fill-white"
+                        ></ArrowRightIcon>
                     </PrimaryButton>
                 </div>
             </div>
@@ -73,18 +76,25 @@ IMPORTS
 import { computed, onMounted, ref, watch } from "vue";
 import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-import { CheckCircleIcon, ExclamationCircleIcon, ArrowRightIcon } from "@heroicons/vue/solid";
+import {
+    CheckCircleIcon,
+    ExclamationCircleIcon,
+    ArrowRightIcon,
+} from "@heroicons/vue/solid";
 import { usePreReg } from "~/composables/prereg";
 import { vAutoAnimate } from "~/directives/directives";
 import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
+const route = useRoute();
+const isOnHomePage = computed(
+    () => route.fullPath === "/start" || route.fullPath === "/start/"
+);
 const { getContent } = useContent();
 const { description } = useMetaTags();
 
 const chooseYourHandleLabel = getContent("label", "chooseYourNewHandleLabel");
 
 const { preregData } = usePreReg();
-const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 
 const indices = [

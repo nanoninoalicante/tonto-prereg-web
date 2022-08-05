@@ -2,12 +2,12 @@
     <div class="w-full">
         <div class="w-full">
             <p
-                class="text-left text-2xl font-medium tracking-tighter text-white"
+                class="text-left text-2xl font-medium tracking-tighter text-gray-700 mb-4"
             >
                 That's a great handle!
             </p>
             <p
-                class="text-left text-xl font-medium tracking-tighter text-white"
+                class="text-left text-xl font-medium tracking-tighter text-gray-700"
             >
                 We just need your email to secure that handle before someone
                 else gets it

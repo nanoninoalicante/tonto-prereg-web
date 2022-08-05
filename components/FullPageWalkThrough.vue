@@ -4,7 +4,7 @@
 <template>
     <div class="flex">
         <h1
-            class="transition-all text-[4rem] font-medium text-left leading-[1em] text-white md:text-[5rem] customs"
+            class="transition-all text-[3rem] font-medium text-left leading-[1em] text-white md:text-[5rem] customs"
         >
             <slot></slot>
         </h1>
