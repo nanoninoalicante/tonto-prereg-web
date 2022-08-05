@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div v-if="showCookies" class="fixed z-60 bottom-0 left-0 right-0 mx-8">
+    <div v-if="showCookies" class="fixed z-[99999] bottom-0 left-0 right-0 mx-8">
       <div class="relative z-10 rounded-t-3xl bg-gray-100 px-8 py-5 md:px-14">
         <div class="-mx-4 flex flex-wrap items-center">
           <div class="mb-6 w-full px-4 md:w-1/3 lg:mb-0 xl:w-1/4">
