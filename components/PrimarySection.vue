@@ -6,7 +6,7 @@
     >
         <slot name="bgimage"></slot>
         <div
-            class="relative h-full flex flex-col pt-36 md:pt-0 pb-[25vh] md:pb-28 lg:pb-36 justify-end w-full"
+            class="relative h-full flex flex-col pt-36 md:pt-0 pb-[30vh] md:pb-28 lg:pb-36 justify-end w-full"
         >
             <div class="flex py-4">
                 <slot />

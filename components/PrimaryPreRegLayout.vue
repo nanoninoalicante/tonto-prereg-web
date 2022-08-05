@@ -105,7 +105,7 @@ onMounted(() => {
             </template>
         </PrimarySection>
         <PrimarySection ref="lastSection" class="block md:hidden">
-            <FullPageWalkThrough class="text-gray-700 text-[5rem]"
+            <FullPageWalkThrough class="text-gray-700 text-[3rem]"
                 >PRE<br />REGISTER NOW</FullPageWalkThrough
             >
         </PrimarySection>
