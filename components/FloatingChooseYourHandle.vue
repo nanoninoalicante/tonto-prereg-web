@@ -87,7 +87,7 @@ import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
 const route = useRoute();
 const isOnHomePage = computed(
-    () => route.fullPath === "/start" || route.fullPath === "/start/"
+    () => route.fullPath === "/pre-registration-tonto" || route.fullPath === "/pre-registration-tonto/"
 );
 const { getContent } = useContent();
 const { description } = useMetaTags();
@@ -180,7 +180,7 @@ watch(
 const reserveThisHandle = () => {
     if (v$.value.newHandles.$invalid) return null;
     return navigateTo({
-        path: "/start/step-2/",
+        path: "/pre-registration-tonto/step-2/",
     });
 };
 

@@ -179,13 +179,13 @@ const formIsInvalid = computed(() => {
 // PREVIOUS STEP
 const goToPrevious = () => {
     return navigateTo({
-        path: "/start/",
+        path: "/pre-registration-tonto/",
     });
 };
 
 const proceedToStepThree = () => {
     return navigateTo({
-        path: "/start/step-3",
+        path: "/pre-registration-tonto/step-3",
     });
 };
 
@@ -248,7 +248,7 @@ onMounted(() => {
         !preregData.value?.newHandles ||
         preregData.value?.newHandles.length === 0
     ) {
-        window.location.href = "/start/";
+        window.location.href = "/pre-registration-tonto/";
     }
 });
 onMounted(async () => {

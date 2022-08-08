@@ -73,7 +73,7 @@ onMounted(() => {
         !preregData.value?.emailAddress ||
         preregData.value?.emailAddress.length === 0
     ) {
-        window.location.href = "/start/";
+        window.location.href = "/pre-registration-tonto/";
     }
 });
 </script>

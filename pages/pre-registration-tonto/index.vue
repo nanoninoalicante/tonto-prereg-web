@@ -21,5 +21,6 @@ const postStore = usePostStore();
 const { data } = useAsyncData("post", () => postStore.fetchPost(postId));
 definePageMeta({
     layout: "pre-reg-v3",
+    middleware: ["redirect"],
 });
 </script>

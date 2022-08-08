@@ -1,0 +1,13 @@
+[[redirects]]
+  from = "/start"
+  to = "/pre-registration-tonto"
+  status = 200
+[[redirects]]
+  from = "/start"
+  to = "/pre-registration-tonto"
+  status = 200
+
+[[redirects]]
+  from = "/start/*"
+  to = "/pre-registration-tonto/:splat"
+  status = 200
