@@ -35,7 +35,7 @@ const walkthroughScreens = [
         mobileImage: mobileImages[2]
     },
     {
-        text: "Comedy, Music, Talk shows, Discussions",
+        text: "Podcasts, Comedy, Music, Talk shows, Discussions",
         imagePosition: "object-center",
         image: images[3],
         mobileImage: mobileImages[3]
