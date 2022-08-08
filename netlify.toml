@@ -1,9 +1,9 @@
 [[redirects]]
   from = "/start"
   to = "/pre-registration-tonto"
-  status = 200
+  status = 302
 
 [[redirects]]
   from = "/start/*"
   to = "/pre-registration-tonto/:splat"
-  status = 200
+  status = 302
