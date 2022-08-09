@@ -3,7 +3,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (to.path === "/") {
         navigateTo("/pre-registration-tonto");
     }
-    if (to.path === "/start") {
+    if (to.path.startsWith("/start")) {
         navigateTo("/pre-registration-tonto");
     }
 });
