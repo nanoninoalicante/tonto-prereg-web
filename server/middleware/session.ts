@@ -1,3 +1,4 @@
-export default defineEventHandler((event) => {
-    console.log("url: ", event.req.url);
-});
+export default (req, res, next) => {
+    console.log("Legacy middleware: ", req.url);
+    next();
+};

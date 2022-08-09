@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/start"
+  to = "/pre-registration-tonto"
+
+[[redirects]]
+  from = "/start/*"
+  to = "/pre-registration-tonto/:splat"
