@@ -1,6 +1,28 @@
 import { $fetch } from "ohmyfetch";
 
-const preRegisterUser = async (requestData, runtimeConfig) => {
+const parse = (str: any) => {
+    try {
+        return JSON.parse(str);
+    } catch (error) {
+        return str;
+    }
+}
+
+const sanitizeTrackingParams = (params: any) => {
+    if (!params) return "";
+    if (typeof params === 'string') {
+      return params;
+    }
+    return Object.keys(params)
+        .map((i) => `${i}-${params[i]}`)
+        .join("__");
+};
+
+
+const preRegisterUser = async (
+    requestData: { email: any; handle: string; handleType: string },
+    runtimeConfig: { public: { primaryApiBaseUrl: any; primaryApiApiKey: any } }
+) => {
     console.log("config: ", runtimeConfig.public?.primaryApiBaseUrl);
     if (!requestData.email) {
         throw new Error("missing email");
@@ -11,6 +33,7 @@ const preRegisterUser = async (requestData, runtimeConfig) => {
     const body = {
         email: requestData.email,
         handleName: requestData.handle.replace(/^@/i, ""),
+        handleType: requestData.handleType
     };
     console.log("request data: ", body);
     const data = await $fetch(
@@ -33,5 +56,5 @@ const preRegisterUser = async (requestData, runtimeConfig) => {
     return data;
 };
 export function usePrimaryApi() {
-    return { preRegisterUser };
+    return { preRegisterUser, sanitizeTrackingParams, parse };
 }
