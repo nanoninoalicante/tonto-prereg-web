@@ -10,7 +10,12 @@ import { watch, onMounted } from "vue";
 import { useAlerts } from "~/composables/alerts";
 import PrimaryFooter from "../components/PrimaryFooter";
 import { useOnline } from "@vueuse/core/index";
+import { useStorage } from "@vueuse/core";
 const route = useRoute();
+onMounted(() => {
+    console.log("route: ", route.query);
+    useStorage("tonto-ga", route.query);
+});
 
 const offline = useOnline();
 const { addAlert } = useAlerts();
@@ -32,7 +37,6 @@ watch(offline, (newVal) => {
         });
     }
 });
-
 </script>
 
 <template>

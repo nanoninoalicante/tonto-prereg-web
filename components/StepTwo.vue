@@ -120,7 +120,13 @@ import { useAlerts } from "~/composables/alerts";
 import { usePrimaryApi } from "~/composables/api";
 import { vAutoAnimate, vAutoFocus } from "~/directives/directives";
 import AcceptTermsCheckbox from "./AcceptTermsCheckbox";
+import { useStorage } from "@vueuse/core";
 const runtimeConfig = useRuntimeConfig();
+
+const tontoTrackingParams = useStorage("tonto-ga");
+onMounted(() => {
+    console.log("tracking prams: ", tontoTrackingParams.value);
+});
 /*
 META DATA
  */
@@ -173,7 +179,7 @@ const emailAddressIsInvalid = computed(() => {
     return v$.value.emailAddress.$invalid;
 });
 const formIsInvalid = computed(() => {
-    return v$.value.$invalid;
+    return v$.value.$invalid || v$.value.termsAccepted.$invalid;
 });
 
 // PREVIOUS STEP
@@ -206,7 +212,12 @@ const submitPrereg = async () => {
     const requestData = {
         email: preregData.value.emailAddress,
         handle: preregData.value.newHandles,
+        handleType: primaryApi.sanitizeTrackingParams(
+            primaryApi.parse(tontoTrackingParams.value)
+        ),
     };
+    console.log("track data: ", primaryApi.parse(tontoTrackingParams.value));
+    console.log("request datas: ", requestData);
     const r = await primaryApi
         .preRegisterUser(requestData, runtimeConfig)
         .catch((e) => {
