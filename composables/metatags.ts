@@ -1,5 +1,5 @@
 const description =
-    "Tonto - Audio Social App Coming soon to Android and iOS, Pre-register for early access and choose your new Tonto Handle";
+    "Be the first to get access to this next-gen audio social platform like Twitter and TikTok! Pre-register for Tonto now and Get your voice heard!";
 const title = "Tonto - Audio Social App - Pre-register your name";
 const primaryUrl = "https://start.gettonto.com/";
 const metaTagImage = "https://start.gettonto.com/secureYourHandleAtTonto.png";
