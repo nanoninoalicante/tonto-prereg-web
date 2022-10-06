@@ -62,7 +62,7 @@
                     v-auto-focus
                     v-model="v$.emailAddress.$model"
                     v-on:keydown.enter="submitPrereg"
-                    placeholder="elon@musk.com"
+                    placeholder="youremail@example.com"
                 />
             </div>
 
@@ -102,7 +102,7 @@
             <PrimaryButton
                 :disabled="formIsInvalid || !v$.emailAddress.$dirty"
                 @click.prevent="submitPrereg"
-                >Pre Register</PrimaryButton
+                >Early Access</PrimaryButton
             >
         </div>
     </div>

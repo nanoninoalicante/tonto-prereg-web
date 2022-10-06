@@ -9,7 +9,7 @@
     </h3>
     <p class="my-8 inline-block rounded-full bg-gray-100 p-4 text-2xl font-medium text-gray-500">
         <TwitterVerifiedIcon class="mr-1 inline-block h-6 w-6"></TwitterVerifiedIcon
-        >{{ preregData.newHandles || "@elonmusk" }}
+        >{{ preregData.newHandles || "@yournewname" }}
     </p>
     <div class="flex flex-wrap justify-center space-y-2">
         <div class="w-full">

@@ -28,7 +28,7 @@
                         ref="handleInputRef"
                         autocorrect="off"
                         v-model="v$.newHandles.$model"
-                        placeholder="@elonmusk"
+                        placeholder="@younewname"
                         v-on:keydown.enter="reserveThisHandle"
                     />
                     <CircleLoader

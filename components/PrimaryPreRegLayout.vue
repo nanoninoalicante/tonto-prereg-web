@@ -1,13 +1,11 @@
 <script setup>
 import { reactive, ref, watch, onMounted } from "vue";
 import FloatingChooseYourHandle from "~/components/FloatingChooseYourHandle";
-import ChooseHandleForm from "~/components/ChooseHandleForm";
 import PrimarySection from "~/components/PrimarySection";
 import PageSection from "~/components/PageSection";
 import PrimaryPageHolder from "~/components/PrimaryPageHolder";
+import FloatingPrimaryMenu from "~/components/FloatingPrimaryMenu";
 import FullPageWalkThrough from "~/components/FullPageWalkThrough";
-import ArrowDownIconV2 from "~/components/icons/ArrowDownIconV2";
-import PageArrowHolder from "./PageArrowHolder";
 import { useScroll, useElementBounding, useWindowSize } from "@vueuse/core";
 import { useLayoutContent } from "~/composables/layoutContent";
 import { useFloatingInput } from "~/composables/floatingInput";
@@ -76,6 +74,7 @@ onMounted(() => {
             <div>windw width: {{ width }}</div>
         </div>
         <FloatingPrimaryLogoHolder></FloatingPrimaryLogoHolder>
+        <FloatingPrimaryMenu></FloatingPrimaryMenu>
         <FloatingChooseYourHandle
             v-if="showFloatingForm"
             class="fixed md:hidden"
