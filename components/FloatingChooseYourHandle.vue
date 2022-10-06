@@ -20,7 +20,7 @@
                         ref="handleInputRef"
                         autocorrect="off"
                         v-model="v$.newHandles.$model"
-                        placeholder="@elonmusk"
+                        placeholder="@yournewname"
                         v-on:keydown.enter="reserveThisHandle"
                     />
                     <CircleLoader
@@ -87,7 +87,9 @@ import { useMetaTags } from "~/composables/metatags";
 import { useContent } from "~/composables/content";
 const route = useRoute();
 const isOnHomePage = computed(
-    () => route.fullPath === "/pre-registration-tonto" || route.fullPath === "/pre-registration-tonto/"
+    () =>
+        route.fullPath === "/pre-registration-tonto" ||
+        route.fullPath === "/pre-registration-tonto/"
 );
 const { getContent } = useContent();
 const { description } = useMetaTags();
